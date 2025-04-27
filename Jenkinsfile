@@ -1,6 +1,11 @@
 pipeline{
     agent any
     stages{
+        stage('Check User Info') {
+            steps {
+                sh 'id && whoami && groups'
+            }
+        }
         stage('Deploy Prepare Check Running Container'){
             steps{
                  script {
