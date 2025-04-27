@@ -1,16 +1,11 @@
 pipeline{
     agent any
     stages{
-        stage('Check User Info') {
-            steps {
-                sh 'id && whoami && groups'
-            }
-        }
         stage('Deploy Prepare Check Running Container'){
             steps{
                  script {
                     // Docker 컨테이너의 이름 또는 ID
-                    def containerName = 'ecommerce-FE-user'
+                    def containerName = 'ecommerce-fe-user'
 
                     // Docker 컨테이너가 가동 중인지 확인
                     def result = sh(script: "docker ps -q -f name=${containerName}", returnStdout: true).trim()
@@ -25,7 +20,7 @@ pipeline{
             steps {
                 script {
                     // Docker 컨테이너의 이름 또는 ID
-                    def containerName = 'ecommerce-FE-user'
+                    def containerName = 'ecommerce-fe-user'
 
                     // 모든 Docker 컨테이너 목록을 가져와서 해당 컨테이너가 존재하는지 확인
                     def result = sh(script: "docker ps -a -q -f name=${containerName}", returnStdout: true).trim()
@@ -40,7 +35,7 @@ pipeline{
             steps {
                 script {
                     // 확인할 Docker 이미지의 이름과 태그
-                    def imageName = 'ecommerce-FE-user-image'
+                    def imageName = 'ecommerce-fe-user-image'
                     def imageId
 
                     // Docker 이미지의 전체 이름 (이름과 태그)
@@ -61,7 +56,7 @@ pipeline{
                     // Dockerfile이 위치한 디렉토리 (Dockerfile 경로)
                     def dockerfileDir = 'ecommerce-user'
                     // 빌드할 Docker 이미지의 이름과 태그
-                    def imageName = 'ecommerce-FE-user-image'
+                    def imageName = 'ecommerce-fe-user-image'
                     def imageFullName = "${imageName}"
 
                     // Docker 이미지 빌드
@@ -77,9 +72,9 @@ pipeline{
             steps {
                 script {
                    // 컨테이너의 이름
-                    def containerName = 'ecommerce-FE-user'
+                    def containerName = 'ecommerce-fe-user'
                     // Docker 이미지 이름과 태그
-                    def imageName = 'ecommerce-FE-user-image'
+                    def imageName = 'ecommerce-fe-user-image'
                     def imageFullName = "${imageName}"
 
                     // Docker 컨테이너를 실행하기 전에 컨테이너가 이미 존재하는지 확인하고 삭제
@@ -93,7 +88,7 @@ pipeline{
                     
                     // Docker 컨테이너 실행
                     echo "Starting Docker container '${containerName}' from image '${imageFullName}'..."
-                    sh "docker run -d -e TZ=Asia/Seoul -p 500:443 --name ${containerName} ${imageFullName}"
+                    sh "docker run -d -e TZ=Asia/Seoul -p 3000:3000 --name ${containerName} ${imageFullName}"
 
                     // 컨테이너 상태 확인
                     def containerId = sh(script: "docker ps -q -f name=${containerName}", returnStdout: true).trim()
