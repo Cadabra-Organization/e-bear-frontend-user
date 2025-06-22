@@ -12,13 +12,13 @@ function Navigation({ navigationMenu }) {
                 <div className="nav-links">
                     {
                         navigationMenu.map((item, index) => (
-                            index==0 ? (
+                            index == 0 ? (
                                 <span className="nav-link active" key={index}>
-                                {item.title}</span>
+                                    {item.title}</span>
                             ) : (
-                            <span className="nav-link" key={index}>
-                                {item.title}</span>
-                        )))
+                                <span className="nav-link" key={index}>
+                                    {item.title}</span>
+                            )))
                     }
                 </div>
             </div>
