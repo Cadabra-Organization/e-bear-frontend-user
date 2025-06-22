@@ -4,8 +4,8 @@ import { useState } from "react"
 import "./MyPageInquiryReport.css"
 import Headers from "../components/Headers"
 import Footer from "../components/Footer"
+import Navigation from "../components/Navigation"
 import SideNavigation from "../components/SideNavigation"
-import { MenuIcon } from '../components/CustomTag';
 
 const MyPageInquiryReport = () => {
   const [isInquiryOpen, setIsInquiryOpen] = useState(true)
@@ -29,7 +29,7 @@ const MyPageInquiryReport = () => {
     {
       title: "문의내역",
       link: "/my-page/inquiry",
-    }, 
+    },
     {
       title: "고객문의",
       link: "/my-page/inquiry",
@@ -56,26 +56,36 @@ const MyPageInquiryReport = () => {
     }
   ]
 
+  let navigationMenu = [
+    {
+      title: "Hot",
+      link: "/my-page/info",
+    },
+    {
+      title: "세일",
+      link: "/my-page/order",
+    },
+    {
+      title: "라이브",
+      link: "/my-page/inquiry",
+    },
+    {
+      title: "이벤트",
+      link: "/my-page/inquiry",
+    },
+    {
+      title: "회원혜택",
+      link: "/my-page/inquiry",
+    }
+  ]
+
   return (
     <div className="ebear-container">
       {/* 헤더 */}
       <Headers />
 
       {/* 네비게이션 */}
-        <nav className="navigation">
-          <div className="nav-content">
-            <div className="menu-button">
-              <MenuIcon className="menu-icon" />
-            </div>
-            <div className="nav-links">
-              <span className="nav-link active">HOT</span>
-              <span className="nav-link">세일</span>
-              <span className="nav-link">라이브</span>
-              <span className="nav-link">이벤트</span>
-              <span className="nav-link">회원혜택</span>
-            </div>
-          </div>
-        </nav>
+      <Navigation navigationMenu={navigationMenu}/>
 
       <div className="page-title">
         <h1>문의내역 (신고문의)</h1>
@@ -147,8 +157,8 @@ const MyPageInquiryReport = () => {
           </div>
         </main>
       </div>
-    {/* 푸터 */}
-    <Footer />
+      {/* 푸터 */}
+      <Footer />
     </div>
   )
 }
