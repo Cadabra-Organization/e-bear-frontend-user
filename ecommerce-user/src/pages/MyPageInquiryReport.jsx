@@ -5,11 +5,79 @@ import "./MyPageInquiryReport.css"
 import Headers from "../components/Headers"
 import Footer from "../components/Footer"
 import Navigation from "../components/Navigation"
-import { ChevronRightIcon, ChevronDownIcon, Avatar, AvatarFallback, UserIcon } from '../components/CustomTag';
+import SideNavigation from "../components/SideNavigation"
 
 const MyPageInquiryReport = () => {
   const [isInquiryOpen, setIsInquiryOpen] = useState(true)
   const [showResponse, setShowResponse] = useState(false)
+
+  let sideMenu = [
+    {
+      title: "회원정보 조회 및 수정",
+      link: "/my-page/info",
+      subMenu: [
+        {
+          title: "회원정보 조회 및 수정",
+          link: "/my-page/info",
+        }
+      ]
+    },
+    {
+      title: "주문내역",
+      link: "/my-page/order",
+    },
+    {
+      title: "문의내역",
+      link: "/my-page/inquiry",
+    },
+    {
+      title: "고객문의",
+      link: "/my-page/inquiry",
+    },
+    {
+      title: "신고문의",
+      link: "/my-page/inquiry",
+    },
+    {
+      title: "찜목록",
+      link: "/my-page/inquiry",
+    },
+    {
+      title: "최근 본 상품",
+      link: "/my-page/inquiry",
+    },
+    {
+      title: "쿠폰",
+      link: "/my-page/inquiry",
+    },
+    {
+      title: "회원탈퇴",
+      link: "/my-page/inquiry",
+    }
+  ]
+
+  let navigationMenu = [
+    {
+      title: "Hot",
+      link: "/my-page/info",
+    },
+    {
+      title: "세일",
+      link: "/my-page/order",
+    },
+    {
+      title: "라이브",
+      link: "/my-page/inquiry",
+    },
+    {
+      title: "이벤트",
+      link: "/my-page/inquiry",
+    },
+    {
+      title: "회원혜택",
+      link: "/my-page/inquiry",
+    }
+  ]
 
   return (
     <div className="ebear-container">
@@ -17,70 +85,15 @@ const MyPageInquiryReport = () => {
       <Headers />
 
       {/* 네비게이션 */}
-      <Navigation />
+      <Navigation navigationMenu={navigationMenu}/>
 
       <div className="page-title">
         <h1>문의내역 (신고문의)</h1>
       </div>
 
       <div className="main-layout">
-        {/* 사이드바 */}
-        <aside className="sidebar">
-          {/* 사용자 프로필 */}
-          <div className="user-profile">
-            <div className="profile-content">
-              <Avatar className="profile-avatar">
-                <AvatarFallback className="avatar-fallback">
-                  <UserIcon className="avatar-icon" />
-                </AvatarFallback>
-              </Avatar>
-              <div className="profile-info">
-                <p className="username">유저아이디</p>
-                <p className="user-type">일반회원</p>
-              </div>
-            </div>
-          </div>
-
-          {/* 네비게이션 메뉴 */}
-          <nav className="sidebar-nav">
-            <div className="nav-item">
-              <span>회원정보 조회 및 수정</span>
-              <ChevronRightIcon />
-            </div>
-            <div className="nav-item">
-              <span>주문내역</span>
-              <ChevronRightIcon />
-            </div>
-            <div className="nav-item">
-              <span>문의내역</span>
-              <ChevronDownIcon />
-            </div>
-            <div className="nav-item">
-              <span>고객문의</span>
-              <ChevronRightIcon />
-            </div>
-            <div className="nav-item">
-              <span>신고문의</span>
-              <ChevronRightIcon />
-            </div>
-            <div className="nav-item">
-              <span>적립북</span>
-              <ChevronRightIcon />
-            </div>
-            <div className="nav-item">
-              <span>최근 본 상품</span>
-              <ChevronRightIcon />
-            </div>
-            <div className="nav-item">
-              <span>쿠폰</span>
-              <ChevronRightIcon />
-            </div>
-            <div className="nav-item">
-              <span>회원탈퇴</span>
-              <ChevronRightIcon />
-            </div>
-          </nav>
-        </aside>
+        {/* 사이드 네비게이션 메뉴 */}
+        <SideNavigation sideMenu={sideMenu} />
 
         {/* 메인 콘텐츠 */}
         <main className="main-content">
@@ -144,8 +157,8 @@ const MyPageInquiryReport = () => {
           </div>
         </main>
       </div>
-    {/* 푸터 */}
-    <Footer />
+      {/* 푸터 */}
+      <Footer />
     </div>
   )
 }
