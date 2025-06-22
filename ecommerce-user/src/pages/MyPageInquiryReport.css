@@ -344,16 +344,6 @@
   
   /* 반응형 디자인 */
   @media (max-width: 768px) {
-    .header-content {
-      flex-direction: column;
-      gap: 16px;
-    }
-  
-    .search-section {
-      margin: 0;
-      max-width: 100%;
-    }
-  
     .main-layout {
       flex-direction: column;
     }
