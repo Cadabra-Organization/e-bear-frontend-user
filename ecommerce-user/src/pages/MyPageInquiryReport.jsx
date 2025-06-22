@@ -4,7 +4,8 @@ import { useState } from "react"
 import "./MyPageInquiryReport.css"
 import Headers from "../components/Headers"
 import Footer from "../components/Footer"
-import { MenuIcon, ChevronRightIcon, ChevronDownIcon, Avatar, AvatarFallback, UserIcon } from '../components/CustomTag';
+import Navigation from "../components/Navigation"
+import { ChevronRightIcon, ChevronDownIcon, Avatar, AvatarFallback, UserIcon } from '../components/CustomTag';
 
 const MyPageInquiryReport = () => {
   const [isInquiryOpen, setIsInquiryOpen] = useState(true)
@@ -16,20 +17,7 @@ const MyPageInquiryReport = () => {
       <Headers />
 
       {/* 네비게이션 */}
-        <nav className="navigation">
-          <div className="nav-content">
-            <div className="menu-button">
-              <MenuIcon className="menu-icon" />
-            </div>
-            <div className="nav-links">
-              <span className="nav-link active">HOT</span>
-              <span className="nav-link">세일</span>
-              <span className="nav-link">라이브</span>
-              <span className="nav-link">이벤트</span>
-              <span className="nav-link">회원혜택</span>
-            </div>
-          </div>
-        </nav>
+      <Navigation />
 
       <div className="page-title">
         <h1>문의내역 (신고문의)</h1>
