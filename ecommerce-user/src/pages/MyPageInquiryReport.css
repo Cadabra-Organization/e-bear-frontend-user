@@ -17,6 +17,7 @@
     display: flex;
     align-items: center;
     gap: 32px;
+    justify-content: center;
   }
   
   .menu-button {
@@ -46,6 +47,7 @@
   .nav-links {
     display: flex;
     gap: 24px;
+    margin: 0 auto; /* 이게 화면 기준 중앙 정렬의 핵심 */
   }
   
   .nav-link {
@@ -213,10 +215,17 @@
     border-bottom: 2px solid #1e40af;
     padding-bottom: 8px;
     margin-bottom: 24px;
+    max-width: 1280px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
   }
   
   .page-title h1 {
-    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    padding: 15px 0px;
+    font-size: 32px;
     font-weight: 500;
     color: #1f2937;
     margin: 0;
