@@ -2,8 +2,8 @@
 
 import { useState } from "react"
 import "./MyPageInquiryReport.css"
-import Headers from "./Headers"
-import Footer from "./Footer"
+import Headers from "../components/Headers"
+import Footer from "../components/Footer"
 import { MenuIcon, ChevronRightIcon, ChevronDownIcon, Avatar, AvatarFallback, UserIcon } from '../components/CustomTag';
 
 const MyPageInquiryReport = () => {
@@ -16,20 +16,24 @@ const MyPageInquiryReport = () => {
       <Headers />
 
       {/* 네비게이션 */}
-      <nav className="navigation">
-        <div className="nav-content">
-          <div className="menu-button">
-            <MenuIcon className="menu-icon" />
+        <nav className="navigation">
+          <div className="nav-content">
+            <div className="menu-button">
+              <MenuIcon className="menu-icon" />
+            </div>
+            <div className="nav-links">
+              <span className="nav-link active">HOT</span>
+              <span className="nav-link">세일</span>
+              <span className="nav-link">라이브</span>
+              <span className="nav-link">이벤트</span>
+              <span className="nav-link">회원혜택</span>
+            </div>
           </div>
-          <div className="nav-links">
-            <span className="nav-link active">HOT</span>
-            <span className="nav-link">세일</span>
-            <span className="nav-link">라이브</span>
-            <span className="nav-link">이벤트</span>
-            <span className="nav-link">회원혜택</span>
-          </div>
-        </div>
-      </nav>
+        </nav>
+
+      <div className="page-title">
+        <h1>문의내역 (신고문의)</h1>
+      </div>
 
       <div className="main-layout">
         {/* 사이드바 */}
@@ -92,10 +96,6 @@ const MyPageInquiryReport = () => {
 
         {/* 메인 콘텐츠 */}
         <main className="main-content">
-          <div className="page-title">
-            <h1>문의내역 (신고문의)</h1>
-          </div>
-
           {/* 문의 목록 */}
           <div className="inquiry-list">
             {/* 첫 번째 문의 */}
