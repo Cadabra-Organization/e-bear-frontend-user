@@ -1,0 +1,433 @@
+/* eBEAR 스타일 */
+.ebear-container {
+    min-height: 100vh;
+    background-color: white;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+  }
+      
+  /* 네비게이션 스타일 */
+  .navigation {
+    border-bottom: 1px solid #e5e7eb;
+    padding: 8px 16px;
+  }
+  
+  .nav-content {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+  
+  .menu-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .menu-button:hover {
+    background-color: #f3f4f6;
+  }
+  
+  .menu-icon {
+    width: 18px;
+    height: 18px;
+    color: #6b7280;
+  }
+  
+  .menu-icon {
+    margin-right: 8px;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 24px;
+  }
+  
+  .nav-link {
+    font-size: 14px;
+    color: #6b7280;
+    padding-bottom: 8px;
+    cursor: pointer;
+  }
+  
+  .nav-link.active {
+    color: #1e40af;
+    font-weight: 500;
+    border-bottom: 2px solid #1e40af;
+  }
+  
+  .nav-link:hover {
+    color: #1e40af;
+  }
+  
+  /* 메인 레이아웃 */
+  .main-layout {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+  }
+  
+  /* 사이드바 스타일 */
+  .sidebar {
+    width: 280px;
+    padding: 20px;
+    border-right: 1px solid #e5e7eb;
+  }
+  
+  .user-profile {
+    background-color: #f9fafb;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 24px;
+  }
+  
+  .profile-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .profile-avatar {
+    height: 48px;
+    width: 48px;
+    background-color: #e5e7eb;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .avatar-fallback {
+    color: #9ca3af;
+    background-color: #e5e7eb;
+  }
+  
+  .avatar-icon {
+    height: 24px;
+    width: 24px;
+  }
+  
+  .username {
+    font-weight: 500;
+    color: #1f2937;
+    margin: 0 0 4px 0;
+  }
+  
+  .user-type {
+    font-size: 14px;
+    color: #6b7280;
+    margin: 0;
+  }
+  
+  /* 사이드바 네비게이션 */
+  .sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    color: #1f2937;
+    cursor: pointer;
+  }
+  
+  .nav-item svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 2.5;
+  }
+  
+  .nav-item:hover {
+    color: #1e40af;
+  }
+  
+  .nav-item-collapsible {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .collapsible-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 8px 0;
+    color: #1f2937;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: inherit;
+  }
+  
+  .collapsible-trigger:hover {
+    color: #1e40af;
+  }
+  
+  .chevron {
+    transition: transform 0.2s;
+  }
+  
+  .chevron.rotated {
+    transform: rotate(180deg);
+  }
+  
+  .collapsible-content {
+    padding-left: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .sub-nav-item {
+    padding: 4px 0;
+    font-size: 14px;
+    color: #6b7280;
+    cursor: pointer;
+  }
+  
+  .sub-nav-item:hover {
+    color: #1e40af;
+  }
+  
+  .sub-nav-item.active {
+    color: #1e40af;
+    font-weight: 500;
+  }
+  
+  /* 메인 콘텐츠 */
+  .main-content {
+    flex: 1;
+    padding: 20px 30px;
+  }
+  
+  .page-title {
+    border-bottom: 2px solid #1e40af;
+    padding-bottom: 8px;
+    margin-bottom: 24px;
+  }
+  
+  .page-title h1 {
+    font-size: 20px;
+    font-weight: 500;
+    color: #1f2937;
+    margin: 0;
+  }
+  
+  /* 문의 목록 */
+  .inquiry-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .inquiry-item {
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 20px;
+  }
+  
+  .inquiry-item:last-child {
+    border-bottom: none;
+  }
+  
+  .inquiry-content {
+    display: flex;
+    gap: 16px;
+  }
+  
+  .product-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  
+  .inquiry-details {
+    flex: 1;
+  }
+  
+  .product-info {
+    margin-bottom: 8px;
+  }
+  
+  .brand-name {
+    font-weight: 500;
+    color: #1f2937;
+    margin: 0 0 4px 0;
+  }
+  
+  .product-name {
+    font-size: 14px;
+    color: #6b7280;
+    margin: 0 0 8px 0;
+  }
+  
+  .inquiry-title {
+    font-weight: 500;
+    color: #1f2937;
+    margin: 0 0 8px 0;
+  }
+  
+  .inquiry-description {
+    font-size: 14px;
+    color: #6b7280;
+    margin: 0 0 12px 0;
+    line-height: 1.5;
+  }
+  
+  .inquiry-date {
+    font-size: 12px;
+    color: #9ca3af;
+    margin: 0;
+  }
+  
+  .inquiry-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  
+  .separator {
+    font-size: 12px;
+    color: #9ca3af;
+  }
+  
+  .view-response-btn {
+    font-size: 12px;
+    color: #1e40af;
+    text-decoration: underline;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  
+  .view-response-btn:hover {
+    color: #1e3a8a;
+  }
+  
+  /* 답변 섹션 */
+  .response-section {
+    background-color: #f9fafb;
+    padding: 16px;
+    border-radius: 8px;
+    margin-top: 12px;
+  }
+  
+  .response-greeting {
+    font-size: 14px;
+    color: #1f2937;
+    margin: 0 0 8px 0;
+  }
+  
+  .response-content {
+    font-size: 14px;
+    color: #6b7280;
+    margin: 0 0 8px 0;
+    line-height: 1.5;
+  }
+  
+  .response-closing {
+    font-size: 14px;
+    color: #6b7280;
+    margin: 0;
+  }
+  
+  /* 푸터 */
+  .footer {
+    background-color: #1f2937;
+    color: white;
+    margin-top: 48px;
+  }
+  
+  .footer-content {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 32px 16px;
+  }
+  
+  .footer-links {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  
+  .footer-link {
+    font-size: 14px;
+    color: #9ca3af;
+    cursor: pointer;
+  }
+  
+  .footer-link:hover {
+    color: white;
+  }
+  
+  .footer-link.highlighted {
+    color: white;
+    font-weight: 500;
+  }
+  
+  .footer-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  
+  .company-info {
+    font-size: 14px;
+    color: #9ca3af;
+    margin: 0;
+  }
+  
+  .company-description {
+    font-size: 14px;
+    color: #9ca3af;
+    margin: 0;
+    line-height: 1.5;
+  }
+  
+  .copyright {
+    font-size: 12px;
+    color: #6b7280;
+    margin: 0;
+  }
+  
+  /* 반응형 디자인 */
+  @media (max-width: 768px) {
+    .header-content {
+      flex-direction: column;
+      gap: 16px;
+    }
+  
+    .search-section {
+      margin: 0;
+      max-width: 100%;
+    }
+  
+    .main-layout {
+      flex-direction: column;
+    }
+  
+    .sidebar {
+      width: 100%;
+      border-right: none;
+      border-bottom: 1px solid #e5e7eb;
+    }
+  
+    .footer-links {
+      flex-direction: column;
+      gap: 16px;
+    }
+  }
+  
