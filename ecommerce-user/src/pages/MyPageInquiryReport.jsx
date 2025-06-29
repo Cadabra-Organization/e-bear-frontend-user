@@ -14,7 +14,7 @@ const MyPageInquiryReport = () => {
 
   let item = [
     {
-      imageUrl: "asd" ,
+      imageUrl: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=100&h=100&fit=crop&crop=center" ,
       brand: "asdasd" ,
       productName: "asdasd" ,
       title: "asdasd" ,
