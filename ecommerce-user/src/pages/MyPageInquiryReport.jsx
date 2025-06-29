@@ -85,7 +85,7 @@ const MyPageInquiryReport = () => {
       <Headers />
 
       {/* 네비게이션 */}
-      <Navigation navigationMenu={navigationMenu}/>
+      <Navigation navigationMenu={navigationMenu} />
 
       <div className="page-title">
         <h1>문의내역 (신고문의)</h1>
