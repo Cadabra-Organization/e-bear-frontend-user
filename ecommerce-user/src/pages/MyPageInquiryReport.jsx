@@ -19,6 +19,7 @@ const MyPageInquiryReport = () => {
       productName: "asdasd" ,
       title: "asdasd" ,
       date: "asdasd" ,
+      content: "asd",
 
       response: {
         greeting: "으아ㅏㄱ",
@@ -32,6 +33,7 @@ const MyPageInquiryReport = () => {
       productName: "asdasd" ,
       title: "asdasd" ,
       date: "asdasd" ,
+      content: "asd",
 
       response: {
         greeting: "으아ㅏㄱ",

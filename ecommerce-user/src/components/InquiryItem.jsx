@@ -18,12 +18,15 @@ export default function InquiryItem({ item }) {
                         <p className="product-name">{item.productName}</p>
                     </div>
                     <p className="inquiry-title">{item.title}</p>
-                    <div className="inquiry-meta">
-                        <p className="inquiry-date">{item.date}</p>
-                        <span className="separator">|</span>
+                    <div className="inquiry-meta-content">
+                        <p className="inquiry-content">{item.content}</p>
                         <button onClick={() => setShowResponse(!showResponse)}>
                             답변보기
                         </button>
+                    </div>
+                    <div className="inquiry-meta">
+                        <p className="inquiry-date">{item.date}</p>
+                        <span className="separator">|</span>
                     </div>
 
                     {showResponse && (
