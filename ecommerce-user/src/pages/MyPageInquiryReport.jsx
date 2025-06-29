@@ -113,6 +113,12 @@ const MyPageInquiryReport = () => {
                     <p className="product-name">오브제 베어 드레스화 | UN-B1919N</p>
                   </div>
                   <p className="inquiry-title">휴닉스 신발 신고합니다</p>
+                  <div className="inquiry-meta-content">
+                    <p className="inquiry-content">내용입니다</p>
+                    <button className="view-response-btn" onClick={() => setShowResponse(!showResponse)}>
+                      답변보기
+                    </button>
+                  </div>
                   <p className="inquiry-date">2025.03.15 | 확인중</p>
                 </div>
               </div>
@@ -132,12 +138,15 @@ const MyPageInquiryReport = () => {
                     <p className="product-name">오브제 베어 드레스화 | UN-B1919N</p>
                   </div>
                   <p className="inquiry-title">휴닉스 신발 신고합니다</p>
-                  <div className="inquiry-meta">
-                    <p className="inquiry-date">2025.02.13</p>
-                    <span className="separator">|</span>
+                  <div className="inquiry-meta-content">
+                    <p className="inquiry-content">내용입니다</p>
                     <button className="view-response-btn" onClick={() => setShowResponse(!showResponse)}>
                       답변보기
                     </button>
+                  </div>
+                  <div className="inquiry-meta">
+                    <p className="inquiry-date">2025.02.13</p>
+                    <span className="separator">| 확인중</span>
                   </div>
 
                   {/* 답변 */}
