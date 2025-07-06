@@ -1,0 +1,31 @@
+.find-id-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.find-id-input {
+    width: 100%;
+    max-width: 540px;
+    height: 3.75rem;
+    border: 1px solid #EEEEEE;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: #EEEEEE;
+    font-size: 1.1rem;
+    box-sizing: border-box;
+}
+
+.find-id-auth-btn {
+    width: 100%;
+    max-width: 540px;
+    height: 3.75rem;
+    border: 1px solid #000000;
+    background-color: #FFFFFF;
+    color: #000000;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
