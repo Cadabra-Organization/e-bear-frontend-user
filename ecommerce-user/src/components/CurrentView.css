@@ -1,0 +1,114 @@
+/* 찜목록 */
+.current-view-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 60px;
+}
+
+.current-view-item {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.current-view-content {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    flex: 0 0 calc(50% - 10px);
+}
+
+.current-view-date {
+    gap: 16px;
+}
+
+.current-view-product-area {
+    display: flex;
+    gap: 16px;
+}
+
+.view-date {
+    font-size: 24px;
+    color: #000000;
+    margin: 0 0 4px 0;
+}
+
+.product-image {
+    width: 142px;
+    height: 170px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.current-view-details {
+    flex: 1;
+}
+
+.product-info {
+    margin-bottom: 55px;
+}
+
+.product-name {
+    font-size: 16px;
+    color: #000000;
+    margin: 0 0 8px 0;
+}
+
+.seller-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.seller-avatar {
+    height: 26px;
+    width: 26px;
+    background-color: #e5e7eb;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.avatar-fallback {
+    color: #9ca3af;
+    background-color: #e5e7eb;
+}
+
+.seller-avatar-icon {
+    height: 14px;
+    width: 14px;
+}
+
+.seller-name {
+    font-size: 16px;
+    color: #000000;
+    margin: 0 0 4px 0;
+}
+
+.price {
+    font-size: 16px;
+    color: #000000;
+    margin: 10px 0 4px 0;
+}
+
+.more-area {
+    display: flex;
+    justify-content: center;
+}
+
+.more-button {
+    width: 100%;
+    max-width: 500px;
+    height: 3rem;
+    border: 1px solid #000000;
+    background-color: #000000;
+    color: #FFFFFF;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
