@@ -58,12 +58,13 @@
   }
   
   .nav-item {
+    height: 70px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 8px 0;
     color: #1f2937;
     cursor: pointer;
+    margin: 0px 20px;
   }
   
   .nav-item svg {
