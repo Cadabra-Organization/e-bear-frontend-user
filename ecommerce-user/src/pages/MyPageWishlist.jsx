@@ -81,7 +81,8 @@ const MyPageWishlist = () => {
             product: "오브제 헤어 드라이기 UN-B1919N",
             seller: "판매자 정보",
             price: "41,000원",
-            link: "/product/info"
+            link: "/product/info",
+            wish: false
         },
         {
             imgSrc: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=100&h=100&fit=crop&crop=center",
@@ -89,7 +90,8 @@ const MyPageWishlist = () => {
             product: "오브제 헤어 드라이기 UN-B1919N",
             seller: "판매자 정보",
             price: "41,000원",
-            link: "/product/info"
+            link: "/product/info",
+            wish: false
         },
         {
             imgSrc: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=100&h=100&fit=crop&crop=center",
@@ -97,7 +99,8 @@ const MyPageWishlist = () => {
             product: "오브제 헤어 드라이기 UN-B1919N",
             seller: "판매자 정보",
             price: "41,000원",
-            link: "/product/info"
+            link: "/product/info",
+            wish: true
         }
     ]
 

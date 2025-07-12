@@ -1,14 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Wishlist.css';
-import { Avatar, AvatarFallback, UserIcon, HeartFillIcon } from "../components/CustomTag"
+import { Avatar, AvatarFallback, UserIcon, HeartFillIcon, HeartIcon } from "../components/CustomTag"
+import { useEffect } from 'react';
 
 function Wishlist({ wishlistProducts }) {
+    const [product, setProduct] = useState([]);
+
+    useEffect(() => {
+        if (wishlistProducts.length > 0) {
+            setProduct(wishlistProducts.map(item => ({ ...item })));
+        }
+    }, [wishlistProducts]);
+
+    const toggleWish = (index) => {
+        const updatedProducts = [...product];
+        updatedProducts[index].wish = !updatedProducts[index].wish;
+        setProduct(updatedProducts);
+    };
+
     return (
         <>
             <div className="wish-list">
                 <div className="wish-item">
                     {
-                        wishlistProducts.map((item) => (
+                        product.map((item, index) => (
                             <div className="wish-content"><img
                                 src={item.imgSrc}
                                 alt="상품 이미지"
@@ -18,7 +33,8 @@ function Wishlist({ wishlistProducts }) {
                                         <div className="heart-row">
                                             {/* 찜하트 */}
                                             <p className="brand-name">{item.brand}</p>
-                                            <HeartFillIcon className="heart-icon" />
+                                            {item.wish ? <div onClick={()=> toggleWish(index)}><HeartFillIcon className="heart-icon" /></div> 
+                                            : <div onClick={()=> toggleWish(index)}><HeartIcon className="heart-icon"  /></div>}
                                         </div>
                                         <p className="product-name">{item.product}</p>
                                     </div>
