@@ -6,7 +6,7 @@ function FindPwResult() {
     const [selected, setSelected] = useState('option1');
 
     return (
-        <div className="find-id-container">
+        <div className="find-pw-container">
             <div>
                 <h1 className="find-pw-title">eBear</h1>
             </div>

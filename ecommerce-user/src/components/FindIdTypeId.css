@@ -1,6 +1,7 @@
 .find-id-content {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .find-id-input {
