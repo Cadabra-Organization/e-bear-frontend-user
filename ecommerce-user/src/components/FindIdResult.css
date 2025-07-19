@@ -1,9 +1,61 @@
+.find-id-container {
+    width: 100%;
+    max-width: 540px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    box-sizing: border-box;
+}
+
 .find-id-title {
     color: #0E1F5B;
     font-weight: bold;
     font-size: 3rem;
     text-align: center;
     margin-bottom: 2rem;
+}
+
+.toggle-tab-container {
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    margin: 0 auto 2rem;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 2rem;
+    max-width: 540px;
+    width: 100%;
+}
+
+.toggle-tab {
+    flex: 1;
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #888;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.toggle-tab.active {
+    color: #0E1F5B;
+}
+
+.toggle-tab::after {
+    content: '';
+    display: block;
+    height: 3px;
+    width: 0;
+    background-color: #0E1F5B;
+    transition: width 0.3s ease;
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.toggle-tab.active::after {
+    width: 100%;
 }
 
 .id-result-area {
