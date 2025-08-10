@@ -31,7 +31,9 @@ function OrderItem({ orderProducts }) {
                         </div>
                         <div className="order-list-button-area">
                             <button className="order-btn">결제정보</button>
-                            <button className="order-btn">리뷰 작성</button>
+                            {item.deliveryStatus === "배송완료" && (
+                                <button className="order-btn">리뷰 작성</button>
+                            )}
                         </div>
                     </div>
                 ))
