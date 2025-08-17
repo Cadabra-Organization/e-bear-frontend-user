@@ -27,7 +27,7 @@ function Headers() {
             <div className="header-links">
               <span className="header-link">로그인</span>
               <span className="header-link">고객센터</span>
-              <span className="header-link">마이페이지</span>
+              <span className="header-link">이용안내</span>
             </div>
             <div className="header-icons">
               <BellIcon className="icon" />

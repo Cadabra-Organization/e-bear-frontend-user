@@ -20,6 +20,7 @@
 }
 
 .current-view-date {
+    font-weight: 500;
     gap: 16px;
 }
 
@@ -91,6 +92,7 @@
     font-size: 16px;
     color: #000000;
     margin: 10px 0 4px 0;
+    font-weight: 600;
 }
 
 .more-area {
