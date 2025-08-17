@@ -6,22 +6,21 @@ function Footer() {
       <footer className="footer">
         <div className="footer-content">
           <div className="footer-links">
-            <span className="footer-link">이용약 소개</span>
+            <span className="footer-link">이베어 소개</span>
             <span className="footer-link">사업자 정보</span>
             <span className="footer-link">이용약관</span>
             <span className="footer-link highlighted">개인정보처리방침</span>
-            <span className="footer-link">청소년보호 정책</span>
-            <span className="footer-link">통신 고시사항</span>
-            <span className="footer-link">피해신고 접수</span>
+            <span className="footer-link underline">결제대행 위탁사</span>
+            <span className="footer-link">법적 고시사항</span>
+            <span className="footer-link">파트너 지원</span>
             <span className="footer-link">고객 지원</span>
           </div>
 
           <div className="footer-info">
-            <p className="company-info">대표자 소개명</p>
-            <p className="company-info">통신 판매업신고</p>
+            <p className="company-ceo">대표자 이베어</p>
+            <p className="company-info">뭘 써야 할까요</p>
             <p className="company-description">
-              당사 사업자 정보 이메일로는 통신판매업에서 사업자 정보 통신판매업자신고 사업, 사업 번호, 이메일 정보
-              통신에 대한 정보를 공고드립니다. 수 있을 통신판매업자 고객센터 나타날 수 있습니다.
+              일부 상품의 경우 이베어는 통신사판매의 당사자가 아닌 통신판매중개자로서 상품, 상품정보, 거래에 대한 책임이 제한될 수 있으므로, 각 상품 페이지에서 구체적인 내용을 확인하시기 바랍니다.
             </p>
           </div>
 

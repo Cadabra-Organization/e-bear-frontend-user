@@ -1,0 +1,27 @@
+/* eBEAR 스타일 */
+.ebear-container {
+    min-height: 100vh;
+    background-color: white;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+}
+
+.page-title {
+    border-bottom: 2px solid #1e40af;
+    padding-bottom: 8px;
+    margin-bottom: 24px;
+    max-width: 1280px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.main-layout {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px 30px;
+}

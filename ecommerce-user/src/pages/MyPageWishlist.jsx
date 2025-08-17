@@ -80,7 +80,7 @@ const MyPageWishlist = () => {
             brand: "유닉스",
             product: "오브제 헤어 드라이기 UN-B1919N",
             seller: "판매자 정보",
-            price: "41,000원",
+            price: "41,000",
             link: "/product/info",
             wish: false
         },
@@ -89,7 +89,7 @@ const MyPageWishlist = () => {
             brand: "유닉스",
             product: "오브제 헤어 드라이기 UN-B1919N",
             seller: "판매자 정보",
-            price: "41,000원",
+            price: "41,000",
             link: "/product/info",
             wish: false
         },
@@ -98,7 +98,7 @@ const MyPageWishlist = () => {
             brand: "유닉스",
             product: "오브제 헤어 드라이기 UN-B1919N",
             seller: "판매자 정보",
-            price: "41,000원",
+            price: "41,000",
             link: "/product/info",
             wish: true
         }

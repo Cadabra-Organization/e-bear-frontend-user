@@ -47,7 +47,7 @@ function Wishlist({ wishlistProducts }) {
                                         </Avatar>
                                         <p className="seller-name">{item.seller}</p>
                                     </div>
-                                    <p className="price">{item.price}</p>
+                                    <p className="price">{item.price} 원</p>
                                 </div>
                             </div>
                         ))

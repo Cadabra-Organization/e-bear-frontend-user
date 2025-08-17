@@ -1,11 +1,12 @@
-import "./MyPageCurrentView.css"
+import { useState } from "react"
+import "./MyPageOrderList.css"
 import Headers from "../components/Headers"
 import Footer from "../components/Footer"
 import Navigation from "../components/Navigation"
 import SideNavigation from "../components/SideNavigation"
-import CurrentView from "../components/CurrentView"
+import OrderItem from "../components/OrderItem"
 
-const MyPageCurrentView = () => {
+const MyPageOrderList = () => {
     let sideMenu = [
         {
             title: "회원정보 조회 및 수정",
@@ -74,33 +75,28 @@ const MyPageCurrentView = () => {
         }
     ]
 
-    let currentViewProducts = [
+    let orderProducts = [
         {
+            orderDate: "2025.03.16",
+            recipient: "김철수",
             imgSrc: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=100&h=100&fit=crop&crop=center",
-            viewDate: "2025.02.14",
             brand: "유닉스",
             product: "오브제 헤어 드라이기 UN-B1919N",
-            seller: "판매자 정보",
+            quantity: "1",
             price: "41,000",
-            link: "/product/info"
+            link: "/product/info",
+            deliveryStatus: "배송완료"
         },
         {
+            orderDate: "2025.02.14",
+            recipient: "김철수",
             imgSrc: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=100&h=100&fit=crop&crop=center",
-            viewDate: "2025.02.14",
             brand: "유닉스",
             product: "오브제 헤어 드라이기 UN-B1919N",
-            seller: "판매자 정보",
+            quantity: "1",
             price: "41,000",
-            link: "/product/info"
-        },
-        {
-            imgSrc: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=100&h=100&fit=crop&crop=center",
-            viewDate: "2025.02.14",
-            brand: "유닉스",
-            product: "오브제 헤어 드라이기 UN-B1919N",
-            seller: "판매자 정보",
-            price: "41,000",
-            link: "/product/info"
+            link: "/product/info",
+            deliveryStatus: "상품 준비 중"
         }
     ]
 
@@ -113,7 +109,7 @@ const MyPageCurrentView = () => {
             <Navigation navigationMenu={navigationMenu} />
 
             <div className="page-title">
-                <h1>최근본상품</h1>
+                <h1>주문내역</h1>
             </div>
 
             <div className="main-layout">
@@ -122,8 +118,8 @@ const MyPageCurrentView = () => {
 
                 {/* 메인 콘텐츠 */}
                 <main className="main-content">
-                    {/* 최근본상품 */}
-                    <CurrentView currentViewProducts={currentViewProducts} />
+                    {/* 찜목록 */}
+                    <OrderItem orderProducts={orderProducts} />
                 </main>
             </div>
             {/* 푸터 */}
@@ -132,4 +128,4 @@ const MyPageCurrentView = () => {
     )
 }
 
-export default MyPageCurrentView
+export default MyPageOrderList;
