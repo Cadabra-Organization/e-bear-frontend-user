@@ -1,15 +1,14 @@
  /* 사이드바 스타일 */
  .sidebar {
     width: 280px;
-    padding: 20px;
     border-right: 1px solid #e5e7eb;
   }
   
-  .user-profile {
+  .user-profile-true {
     background-color: #f9fafb;
     border-radius: 8px;
-    padding: 16px;
-    margin-bottom: 24px;
+    padding: 22px;
+    margin: 18px;
   }
   
   .profile-content {
@@ -49,12 +48,27 @@
     color: #6b7280;
     margin: 0;
   }
+
+  .user-profile-false {
+    background-color: #F5F5F5;
+    padding: 16px;
+    margin-bottom: 18px;
+  }
+
+  .category {
+    font-weight: 500;
+    font-size: 23px;
+    color: #000000;
+    margin: 28px;
+    text-align: center;
+  }
   
   /* 사이드바 네비게이션 */
   .sidebar-nav {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    padding: 10px;
   }
   
   .nav-item {
