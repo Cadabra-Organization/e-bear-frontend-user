@@ -72,13 +72,21 @@
   }
   
   .nav-item {
-    height: 70px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
     color: #1f2937;
     cursor: pointer;
     margin: 0px 20px;
+    flex-direction: column;
+  }
+
+  .nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    color: #1f2937;
+    padding: 18px 0;
   }
   
   .nav-item svg {
@@ -86,10 +94,22 @@
     height: 20px;
     stroke-width: 2.5;
   }
+
+  .sub-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin: 6px 0 10px 22px;
+}
+
+  .sub-item {
+    padding: 6px 0;
+}
   
-  .nav-item:hover {
-    color: #1e40af;
-  }
+.nav-row:hover .nav-title,
+.sub-item:hover .sub-title {
+  color: #1e40af;
+}
   
    /* 반응형 디자인 */
    @media (max-width: 768px) {

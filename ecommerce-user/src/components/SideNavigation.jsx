@@ -30,13 +30,24 @@ function SideNavigation({ sideMenu, type = true }) {
                     sideMenu.map((item, index) => (
                         item.subMenu ? (
                             <div className="nav-item" key={index}>
-                                <span>{item.title}</span>
-                                <ChevronDownIcon />
+                                <div className="nav-row">
+                                    <span className="nav-title">{item.title}</span>
+                                    <ChevronDownIcon />
+                                </div>
+                                <div className="sub-list">
+                                    {item.subMenu.map((sub, sIndex) => (
+                                        <div key={sIndex} className="sub-item">
+                                            <span className="sub-title">{sub.title}</span>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         ) : (
                             <div className="nav-item" key={index}>
-                                <span>{item.title}</span>
-                                <ChevronRightIcon />
+                                <div className="nav-row">
+                                    <span className="nav-title">{item.title}</span>
+                                    <ChevronRightIcon />
+                                </div>
                             </div>
                         )))
                 }
