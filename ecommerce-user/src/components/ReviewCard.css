@@ -1,0 +1,16 @@
+.border-line {
+    padding: 10px;
+    border: 1px solid rgb(217, 217, 217);
+    width: 240px;
+    min-height: 217px;
+    border-radius: 8px;
+}
+
+.profile-sector {
+    display: flex;
+}
+
+.profile-text-info {
+    display: flex;
+    flex-direction: column;
+}
