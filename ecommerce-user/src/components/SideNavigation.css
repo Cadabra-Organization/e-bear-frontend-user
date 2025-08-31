@@ -2,6 +2,8 @@
  .sidebar {
     width: 280px;
     border-right: 1px solid #e5e7eb;
+    display: flex;
+    flex-direction: column;
   }
   
   .user-profile-true {
@@ -63,34 +65,12 @@
     text-align: center;
   }
   
-  /* 사이드바 네비게이션 */
   .sidebar-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding: 10px;
+      display: flex;
+      flex-direction: column;
+      padding: 0 0 0 10px;
   }
-  
-  .nav-item {
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: #1f2937;
-    cursor: pointer;
-    margin: 0px 20px;
-  }
-  
-  .nav-item svg {
-    width: 20px;
-    height: 20px;
-    stroke-width: 2.5;
-  }
-  
-  .nav-item:hover {
-    color: #1e40af;
-  }
-  
+
    /* 반응형 디자인 */
    @media (max-width: 768px) {
     .sidebar {
