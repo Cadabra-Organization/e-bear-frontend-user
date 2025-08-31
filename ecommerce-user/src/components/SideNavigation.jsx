@@ -1,10 +1,11 @@
 import React from 'react';
 import './SideNavigation.css';
-import { ChevronRightIcon, ChevronDownIcon, Avatar, AvatarFallback, UserIcon } from '../components/CustomTag';
+import SideNavigationMenu from "../components/SideNavigationMenu"
+import { Avatar, AvatarFallback, UserIcon } from '../components/CustomTag';
 
-function SideNavigation({ sideMenu, type = true, level = 0 }) {
-    if (level == 0) {
-        return (
+function SideNavigation({ sideMenu, type = true }) {
+    return (
+        <>
             <aside className="sidebar">
                 {type ? (
                     <div className="user-profile-true">
@@ -25,47 +26,12 @@ function SideNavigation({ sideMenu, type = true, level = 0 }) {
                         <p className="category">카테고리</p>
                     </div>
                 )}
-
                 <nav className="sidebar-nav">
-                    {sideMenu.map((item, index) => (
-                        <div className="nav-item" key={index}>
-                            <div className="nav-row">
-                                <span className="nav-title">{item.title}</span>
-                                {item.subMenu ? <ChevronDownIcon /> : <ChevronRightIcon />}
-                            </div>
-
-                            {item.subMenu ? (
-                                <div className="sub-list">
-                                    <SideNavigation sideMenu={item.subMenu} type={type} level={level + 1} />
-                                </div>
-                            ) : null}
-                        </div>
-                    ))}
+                    <SideNavigationMenu sideMenu={sideMenu} />
                 </nav>
             </aside>
-        );
-    }
-
-    return (
-        <>
-            {sideMenu.map((item, index) => (
-                <div className="sub-item">
-                    <div className="nav-row">
-                        <span className="nav-title">{item.title}</span>
-                        {item.subMenu ? <ChevronDownIcon /> : <ChevronRightIcon />}
-                    </div>
-
-                    {item.subMenu ? (
-                        <div className="sub-list">
-                            <SideNavigation sideMenu={item.subMenu} type={type} level={level + 1} />
-                        </div>
-                    ) : null}
-                </div>
-            ))}
         </>
     );
 }
-
-
 
 export default SideNavigation;
