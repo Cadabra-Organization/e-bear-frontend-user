@@ -1,3 +1,4 @@
+import './CustomTag.css';
 
 // 커스텀 인풋 컴포넌트
 export const Input = ({ className = "", ...props }) => {
@@ -70,6 +71,10 @@ export const Button = ({ children, className = "", variant = "default", size = "
       {children}
     </button>
   )
+}
+
+export const AvatarCustom = ({ children, className = "" }) => {
+  return <div className={`relative flex shrink-0 overflow-hidden rounded ${className}`}>{children}</div>
 }
 
 // 아바타 컴포넌트
