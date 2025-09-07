@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useRef } from "react"
 import "./MyPageUserInfo.css"
 import Headers from "../components/Headers"
 import Footer from "../components/Footer"
@@ -6,9 +6,6 @@ import Navigation from "../components/Navigation"
 import SideNavigation from "../components/SideNavigation"
 
 const MyPageUserInfo = () => {
-    const [isInquiryOpen, setIsInquiryOpen] = useState(true)
-    const [showResponse, setShowResponse] = useState(false)
-
     let sideMenu = [
         {
             title: "회원정보 조회 및 수정",
@@ -77,6 +74,32 @@ const MyPageUserInfo = () => {
         }
     ]
 
+    // useRef를 생성 main 요소에 연결할 준비
+    const formRef = useRef(null);
+
+    const updateUserInfo = () => {
+        const formElement = formRef.current;
+        if (!formElement) return;
+
+        // 모든 input태그 가져오기
+        const inputs = formElement.querySelectorAll('input');
+
+        // 비어있는 필드 확인
+        const hasEmptyInput = Array.from(inputs).some(input => input.value.trim() === '');
+
+        if (hasEmptyInput) {
+            // 값이 하나라도 비어있을 경우
+            alert("모든 정보를 입력해주세요.");
+            return;
+        }
+
+        // 값 체크 완료
+        console.log('모든 값이 채워져 있습니다. 회원정보를 수정합니다.');
+
+        // 여기에 서버로 데이터를 보내는 등의 수정 로직을 추가
+        // const formData = new FormData(formElement);
+    };
+
     return (
         <div className="ebear-container">
             {/* 헤더 */}
@@ -94,7 +117,7 @@ const MyPageUserInfo = () => {
                 <SideNavigation sideMenu={sideMenu} />
 
                 {/* 메인 콘텐츠 */}
-                <main className="main-content">
+                <main id="userInfoForm" className="main-content" ref={formRef}>
                     <input className="user-input" type="text" placeholder="아이디" />
                     <input className="user-input" type="password" placeholder="비밀번호" />
                     <input className="user-input" type="password" placeholder="비밀번호 확인" />
@@ -103,7 +126,6 @@ const MyPageUserInfo = () => {
                         <input className="user-input" type="email" placeholder="이메일" />
                         <button className="user-button">인증</button>
                     </div>
-                    
                     <div className="user-flex">
                         <input className="user-input" type="text" placeholder="인증코드" />
                         <button className="user-button">인증</button>
@@ -113,14 +135,13 @@ const MyPageUserInfo = () => {
                         <button className="user-button">주소찾기</button>
                     </div>
                     <input className="user-input" type="text" placeholder="핸드폰번호" />
-                    <button className="user-button">수정</button>
+                    <button className="user-button" onClick={updateUserInfo}>수정</button>
                 </main>
             </div>
             {/* 푸터 */}
             <Footer />
         </div>
     )
-
 }
 
 export default MyPageUserInfo
