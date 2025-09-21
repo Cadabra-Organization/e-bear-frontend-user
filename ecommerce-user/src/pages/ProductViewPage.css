@@ -586,3 +586,61 @@ dl, ul, ol, menu, li, dd {
     color: #FF0038;
     font-weight: bold;
 }
+
+@media (max-width: 768px) {
+    .product-view-contents-right-area {
+        display: none;
+    }
+
+    .product-info-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-img {
+        width: 100%;
+        height: auto;
+    }
+
+    .sub-image-container {
+        display: none;
+    }
+
+    .product-info-category,
+    .product-info-content {
+        padding: 0px;
+    }
+
+    .border-line {
+        width: 100%;
+    }
+}
+  
+@media (max-width: 480px) {
+    .product-view-contents-right-area {
+        display: none;
+    }
+
+    .product-info-container{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-img {
+        width: 100%;
+        height: auto;
+    }
+
+    .sub-image-container {
+        display: none;
+    }
+
+    .product-info-category,
+    .product-info-content {
+        padding: 0px;
+    }
+
+    .border-line {
+        width: 100%;
+    }
+}
