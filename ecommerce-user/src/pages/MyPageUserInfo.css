@@ -1,0 +1,105 @@
+/* eBEAR 스타일 */
+.ebear-container {
+    min-height: 100vh;
+    background-color: white;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+}
+
+/* 메인 레이아웃 */
+.main-layout {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+}
+
+/* 메인 콘텐츠 */
+.main-content {
+    flex: 1;
+    padding: 20px 30px;
+}
+
+.page-title {
+    border-bottom: 2px solid #1e40af;
+    padding-bottom: 8px;
+    margin-bottom: 24px;
+    max-width: 1280px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.page-title h1 {
+    display: flex;
+    justify-content: center;
+    padding: 15px 0px;
+    font-size: 32px;
+    font-weight: 500;
+    color: #1f2937;
+    margin: 0;
+}
+
+.user-button {
+    width: 100%;
+    height: 3.75rem;
+    border: 1px solid #000000;
+    background-color: #000000;
+    color: #FFFFFF;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+.user-input {
+  width: 100%;
+  height: 3.75rem;
+  border: 1px solid #EEEEEE;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: #EEEEEE;
+  font-size: 1.1rem;
+  box-sizing: border-box;
+}
+
+.user-flex {
+    display: flex;
+}
+
+.user-flex > .user-input {
+    width: 270%;
+    margin-right: 1.5%;
+}
+
+/* 반응형 768px */
+@media (max-width: 768px) {
+    .main-layout {
+        flex-direction: column;
+    }
+
+    .login-title {
+      font-size: 2.25rem;
+    }
+  
+    .user-input,
+    .user-button {
+      font-size: 1rem;
+      padding: 0.875rem;
+      height: 3.25rem;
+    }
+}
+  
+/* 반응형 480px */
+@media (max-width: 480px) {
+    .login-title {
+        font-size: 1.875rem;
+    }
+
+    .user-input,
+    .user-button {
+        font-size: 0.95rem;
+        height: 3rem;
+    }
+}
+  

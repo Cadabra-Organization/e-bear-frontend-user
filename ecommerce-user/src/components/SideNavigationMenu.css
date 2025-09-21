@@ -1,0 +1,39 @@
+  /* 사이드바 네비게이션 */
+  .nav-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      color: #1f2937;
+      padding: 18px 0;
+  }
+
+  .sub-list {
+      display: flex;
+      flex-direction: column;
+      margin: 0px 0 0px 22px;
+  }
+
+  .nav-icon {
+      width: 44px;
+      height: 26px;
+      display: inline-block;
+      color: #0B0B0B;
+      opacity: 0.9;
+      padding: 0 16px 0 0;
+  }
+
+  .nav-item {
+      display: flex;
+      justify-content: space-between;
+      cursor: pointer;
+      flex-direction: column;
+  }
+
+  .nav-row:hover .nav-title {
+      color: #1e40af;
+  }
+
+  .nav-row:hover .nav-icon {
+    color: #1e40af;
+  }
