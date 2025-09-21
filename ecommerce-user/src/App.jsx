@@ -1,10 +1,10 @@
 import "./App.css"
-import ProductViewPage from "./pages/ProductViewPage"
+import PaymentComplete from "./pages/PaymentComplete"
 
 function App() {
   return (
     <div className="App">
-      <ProductViewPage />
+      <PaymentComplete />
     </div>
   )
 }
