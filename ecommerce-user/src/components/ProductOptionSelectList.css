@@ -1,0 +1,242 @@
+.b_product_buy_selected {
+    margin-bottom: -1px;
+    border: 1px solid #f4f4f4;
+}
+
+.c_product_option_item {
+    position: relative;
+}
+
+.c_product_option_item > .ctrl .c_product_btn_delete {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+}
+
+.c_product_option_item {
+    position: relative;
+    display: table;
+    width: 100%;
+    padding: 16px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.c_product_option_item strong {
+    display: block;
+    color: #111;
+    font-weight: normal;
+    font-size: 15px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.c_product_option_item > .cont:not(:last-child) > strong {
+    padding: 5px 9px 0 0;
+}
+
+.c_product_option_item > .cont {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.c_product_option_item > .cont .c_product_input_count {
+    z-index: 2;
+}
+
+.c_product_option_item .c_product_input {
+    margin-top: 8px;
+}
+
+.c_product_input_count {
+    position: relative;
+    border: 1px solid #eee;
+}
+
+.c_product_input {
+    position: relative;
+    display: inline-block;
+}
+
+.c_product_input_count .form_input:not(:only-child) {
+    padding: 0 32px;
+}
+
+.c_product_input_count .form_input {
+    width: 108px;
+    height: 32px;
+    border: none;
+    text-align: center;
+    font-size: 16px;
+    line-height: 32px;
+}
+
+.c_product_input .form_input {
+    width: 100%;
+    height: 48px;
+    padding: 0 13px 0 16px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    color: #111;
+    font-size: 15px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.c_product_input_count .form_add {
+    overflow: hidden;
+    position: static;
+}
+
+.c_product_input .form_add {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    text-align: right;
+}
+
+.c_product_btn_count1:before, .c_product_btn_count2:before {
+    width: 13px;
+    height: 2px;
+    margin: -1px 0 0 -7px;
+    background-color: #b3b3b3;
+}
+
+.c_product_btn_count2:after {
+    width: 2px;
+    height: 13px;
+    margin: -7px 0 0 -1px;
+    background-color: #b3b3b3;
+}
+
+.amount-area {
+    display: flex;
+}
+
+.c_product_btn_delete:before, .c_product_btn_count1:before, .c_product_btn_count2:before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    content: "";
+}
+
+.c_product_btn_delete:after, .c_product_btn_count1:after, .c_product_btn_count2:after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    content: "";
+}
+
+.c_product_btn_count1, .c_product_btn_count2 {
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    width: 32px;
+    vertical-align: middle;
+    font-size: 1px;
+    line-height: 200px;
+}
+
+.c_prd_price .price dt {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    margin: -1px;
+    width: 1px;
+    height: 1px;
+}
+
+.c_prd_price dt {
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.c_prd_price .price {
+    margin-right: 4px;
+    color: #111;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 20px;
+    letter-spacing: 0;
+}
+
+.c_prd_price .price {
+    margin-right: 4px;
+    color: #111;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 20px;
+    letter-spacing: 0;
+}
+
+.skip {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    margin: -1px;
+    width: 1px;
+    height: 1px;
+}
+
+dl, ul, ol, menu, li, dd {
+    list-style: none;
+    padding-inline-start: 0px;
+    margin-inline-start: 0px;
+}
+
+.c_product_btn_delete {
+    width: 18px;
+    height: 18px;
+    background-color: #ccc !important;
+    border-radius: 50%;
+    border: 0 none;
+}
+
+.c_product_btn_delete:after {
+    width: 10px;
+    height: 1px;
+    margin-left: -5px;
+    background-color: #fff;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.c_product_btn_delete:after {
+    -webkit-transform: rotate(135deg);
+    -ms-transform: rotate(135deg);
+    transform: rotate(135deg);
+}
+
+.c_product_btn_delete:before {
+    width: 10px;
+    height: 1px;
+    margin-left: -5px;
+    background-color: #fff;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+@media (max-width: 768px) {
+    .product-options-list {
+        overflow-y: auto; 
+        padding-right: 16px; 
+        min-height: 0; 
+        max-height: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-options-list {
+        overflow-y: auto; 
+        padding-right: 16px; 
+        min-height: 0; 
+        max-height: 400px;
+    }
+}
