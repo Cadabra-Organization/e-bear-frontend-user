@@ -118,7 +118,7 @@ const ProductViewPage = () => {
     
     useEffect(() => {
         setActiveTab(productMenu[0].value);
-    })
+    }, []);
 
     return (
         <>

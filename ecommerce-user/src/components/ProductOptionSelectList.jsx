@@ -7,9 +7,9 @@ function ProductOptionSelectList({selectProductOptionList}) {
         <div className="product-options-list"> 
             {selectProductOptionList.map((data, index) => {
                 return(
-                    <ul className="option_bottom ui_optSelWrapper  b_product_buy_selected">
-                        <li className="option_item c_product_option_item">
-                            <div className="option_item_info cont">
+                    <ul className="b_product_buy_selected">
+                        <li className="c_product_option_item">
+                            <div className="option_item_info">
                                 <strong className="option_name">{data.optionSubject}</strong>
                                 <div className="option_amount c_product_input c_product_input_count">
                                     <div className="amount-area">
