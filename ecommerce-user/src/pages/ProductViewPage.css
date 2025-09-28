@@ -127,6 +127,7 @@
 
 .text-color {
     color: #929292;
+    white-space: pre-line;
 }
 
 .comboBox {
