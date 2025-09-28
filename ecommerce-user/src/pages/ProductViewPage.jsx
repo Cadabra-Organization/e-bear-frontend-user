@@ -16,9 +16,18 @@ const ProductViewPage = () => {
     const [comboBoxItem, setComboBoxItem] = useState(0);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [expanded, setExpanded] = useState(false);
+    const [isMobileOptionsOpen, setIsMobileOptionsOpen] = useState(false);
 
     const isMobile = useMediaQuery('(max-width: 768px)');
     const [activeTab, setActiveTab] = useState('info'); // 'info', 'review', 'qna', 'return'
+
+    const handleOpenMobileOptions = () => {
+        setIsMobileOptionsOpen(true);
+    }
+
+    const handleCloseMobileOptions = () => {
+        setIsMobileOptionsOpen(false);
+    }
 
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
@@ -270,7 +279,8 @@ const ProductViewPage = () => {
                             </>
                         )}
                     </div>
-
+                    
+                    {( !isMobile ) && (
                     <div className="product-view-contents-right-area">
                         <div className="product-view-contents-right">
                             <div className="comboBox-section">
@@ -521,6 +531,165 @@ const ProductViewPage = () => {
                             </div>
                         </div>
                     </div>
+                    )}
+
+                    {( isMobile ) && (
+                    <div>
+                        <div className="l_product_buy_result">
+                        {isMobileOptionsOpen && (
+                            
+                                <div className="mobile-options-popup" onClick={(e) => e.stopPropagation()}>
+
+                                    <div className="mobile-options-header">
+                                        <h4>옵션 선택</h4>
+                                        <button className="btn-close" onClick={handleCloseMobileOptions}>&times;</button>
+                                    </div>
+                                    
+                                    <div className="mobile_buy_option_area">
+                                        <div className="comboBox-section">
+                                            <div className="comboBox">
+                                                <a onClick={handleComboBox}>
+                                                    <div className="comboBox-header">
+                                                        <span>등급</span>
+                                                        <ChevronDownIcon className={comboBox ? "rotate-180" : ""} />
+                                                    </div>
+                                                </a>
+                                                <ul className="comboBox-option" style={{display: comboBox ? "block" : "none"}}>
+                                                    <li className="comboBox-option-item">
+                                                        <a onClick={() => handleComboBoxItem(1)}>
+                                                            <div className="comboBox-header-option">
+                                                                <span>제목</span>
+                                                                <span>가격</span>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                    <li className="comboBox-option-item">
+                                                        <a onClick={() => handleComboBoxItem(9)}>
+                                                            <div className="comboBox-header-option">
+                                                                <span>제목</span>
+                                                                <span>가격</span>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                    <li className="comboBox-option-item">
+                                                        <a onClick={() => handleComboBoxItem(9)}>
+                                                            <div className="comboBox-header-option">
+                                                                <span>제목</span>
+                                                                <span>가격</span>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                    <li className="comboBox-option-item">
+                                                        <a onClick={() => handleComboBoxItem(9)}>
+                                                            <div className="comboBox-header-option">
+                                                                <span>제목</span>
+                                                                <span>가격</span>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                    <li className="comboBox-option-item">
+                                                        <a onClick={() => handleComboBoxItem(9)}>
+                                                            <div className="comboBox-header-option">
+                                                                <span>제목</span>
+                                                                <span>가격</span>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div className="product-options-list"> 
+                                            <ul className="option_bottom ui_optSelWrapper  b_product_buy_selected">
+                                                <li className="option_item c_product_option_item">
+                                                    <div className="option_item_info cont">
+                                                        <strong className="option_name">008_블러밍 스트링 자수 반팔 데님 셔츠 자켓_52SH443 / 라이트블루/FREE(55~66)[58444-1]</strong>
+
+                                                        <div className="option_amount c_product_input c_product_input_count">
+                                                            <div className="amount-area">
+                                                                <button type="button" className="btn_decrs on c_product_btn c_product_btn_count1"><span className="skip">수량감소</span></button>
+                                                                <input type="text" name="prdcAmount" className="text form_input" title="수량설정" value="1"/>
+                                                                <button type="button" className="btn_incrs on c_product_btn c_product_btn_count2"><span className="skip">수량증가</span></button>
+                                                            </div>
+                                                        </div>
+                                                        <dl className="c_prd_price">
+                                                            <div className="price">
+                                                                <dt>판매가</dt>
+                                                                <dd><span className="value">26,800</span><span className="unit">원</span></dd>
+                                                            </div>
+                                                        </dl>
+                                                    </div>
+                                                    <div className="ctrl">
+                                                        <button type="button" className="btn_del c_product_btn c_product_btn_delete"></button>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <ul className="option_bottom ui_optSelWrapper  b_product_buy_selected">
+                                                <li className="option_item c_product_option_item">
+                                                    <div className="option_item_info cont">
+                                                        <strong className="option_name">008_블러밍 스트링 자수 반팔 데님 셔츠 자켓_52SH443 / 라이트블루/FREE(55~66)[58444-1]</strong>
+
+                                                        <div className="option_amount c_product_input c_product_input_count">
+                                                            <div className="amount-area">
+                                                                <button type="button" className="btn_decrs on c_product_btn c_product_btn_count1"><span className="skip">수량감소</span></button>
+                                                                <input type="text" name="prdcAmount" className="text form_input" title="수량설정" value="1"/>
+                                                                <button type="button" className="btn_incrs on c_product_btn c_product_btn_count2"><span className="skip">수량증가</span></button>
+                                                            </div>
+                                                        </div>
+                                                        <dl className="c_prd_price">
+                                                            <div className="price">
+                                                                <dt>판매가</dt>
+                                                                <dd><span className="value">26,800</span><span className="unit">원</span></dd>
+                                                            </div>
+                                                        </dl>
+                                                    </div>
+                                                    <div className="ctrl">
+                                                        <button type="button" className="btn_del c_product_btn c_product_btn_delete"></button>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <ul className="option_bottom ui_optSelWrapper  b_product_buy_selected">
+                                                <li className="option_item c_product_option_item">
+                                                    <div className="option_item_info cont">
+                                                        <strong className="option_name">008_블러밍 스트링 자수 반팔 데님 셔츠 자켓_52SH443 / 라이트블루/FREE(55~66)[58444-1]</strong>
+
+                                                        <div className="option_amount c_product_input c_product_input_count">
+                                                            <div className="amount-area">
+                                                                <button type="button" className="btn_decrs on c_product_btn c_product_btn_count1"><span className="skip">수량감소</span></button>
+                                                                <input type="text" name="prdcAmount" className="text form_input" title="수량설정" value="1"/>
+                                                                <button type="button" className="btn_incrs on c_product_btn c_product_btn_count2"><span className="skip">수량증가</span></button>
+                                                            </div>
+                                                        </div>
+                                                        <dl className="c_prd_price">
+                                                            <div className="price">
+                                                                <dt>판매가</dt>
+                                                                <dd><span className="value">26,800</span><span className="unit">원</span></dd>
+                                                            </div>
+                                                        </dl>
+                                                    </div>
+                                                    <div className="ctrl">
+                                                        <button type="button" className="btn_del c_product_btn c_product_btn_delete"></button>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                           
+                        )}
+                            <div>
+                                <div className="total_price_area">
+                                    <span className="total_cnt">총 4개</span>
+                                    <span className="total_price">가격</span>
+                                </div>
+                                <div className="cupon_area">
+                                    <button className="btn_cupon_change btn_buy" onClick={handleOpenMobileOptions}>구매</button>
+                                    <button className="btn_cupon_change btn_shopping_cart">장바구니</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    )}
+
                 </div>
             </div>
 
