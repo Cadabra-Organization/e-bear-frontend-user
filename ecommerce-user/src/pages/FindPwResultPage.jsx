@@ -10,8 +10,10 @@ const FindPwResultPage = () => {
             {/* 헤더 */}
             <Headers />
 
-            {/*비밀번호 찾기 결과 영역 */}
-            <FindPwResult />
+            <div className="find-id-container">
+                {/*비밀번호 찾기 결과 영역 */}
+                <FindPwResult />
+            </div>
 
             {/* 푸터 */}
             <Footer />

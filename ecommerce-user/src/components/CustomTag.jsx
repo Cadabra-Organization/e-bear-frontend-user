@@ -109,3 +109,10 @@ export const ChevronDownIcon = ({ className = "" }) => (
     <polyline points="6,9 12,15 18,9"></polyline>
   </svg>
 )
+
+export const CheckIcon = ({ className = "" }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="35" fill="#0E1F5B" stroke="#FFFFFF" stroke-width="5"/>
+    <path d="M30 50 L45 65 L70 40" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+)

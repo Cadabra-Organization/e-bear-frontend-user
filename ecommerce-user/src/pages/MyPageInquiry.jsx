@@ -1,4 +1,3 @@
-import { useState } from "react"
 import "./MyPageInquiry.css"
 import Headers from "../components/Headers"
 import Footer from "../components/Footer"
@@ -7,9 +6,6 @@ import SideNavigation from "../components/SideNavigation"
 import InquiryItem from "../components/InquiryItem"
 
 const MyPageInquiry = () => {
-    const [isInquiryOpen, setIsInquiryOpen] = useState(true)
-    const [showResponse, setShowResponse] = useState(false)
-
     let sideMenu = [
         {
             title: "회원정보 조회 및 수정",
@@ -99,13 +95,7 @@ const MyPageInquiry = () => {
             productName: "asdasd",
             title: "asdasd",
             date: "asdasd",
-            content: "asd",
-
-            response: {
-                greeting: "으아ㅏㄱ",
-                content: "asdasd",
-                closing: "asdasd"
-            }
+            content: "asd"
         }
     ]
 

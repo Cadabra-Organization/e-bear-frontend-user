@@ -5,6 +5,7 @@
     margin: 0 auto;
     padding: 2rem 1rem;
     box-sizing: border-box;
+    min-height: 60vh;
 }
 
 .find-pw-title {
@@ -64,8 +65,18 @@
     font-size: 1.3rem;
     text-align: center;
     margin-bottom: 2rem;
-    padding: 5rem;
+    padding: 3rem;
     word-break: keep-all;
     white-space: normal;
     line-height: 1.6;
+}
+
+.find-pw-result-icon {
+    display: flex;
+    justify-content: center;
+}
+
+.find-pw-result-title-container{
+    display: flex;
+    align-items: center;
 }

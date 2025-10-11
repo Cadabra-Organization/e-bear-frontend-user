@@ -1,27 +1,22 @@
+import { CheckIcon } from "./CustomTag";
 import "./FindPwResult.css";
-import { useState } from "react";
-import FindIdTypeId from "../components/FindIdTypeId";
 
 function FindPwResult() {
-    const [selected, setSelected] = useState('option1');
-
     return (
-        <div className="find-pw-container">
-            <div>
-                <h1 className="find-pw-title">eBear</h1>
-            </div>
-            <div className="toggle-tab-container">
-                <div className={`toggle-tab ${selected === "option1" ? "active" : ""}`} onClick={() => setSelected("option1")}>
-                    아이디 찾기
+        <>
+            <div className="find-pw-result-title-container">
+                <div className="find-pw-result-icon">
+                    <CheckIcon />
                 </div>
-                <div className={`toggle-tab ${selected === "option2" ? "active" : ""}`} onClick={() => setSelected("option2")}>
-                    비밀번호 찾기
-                </div>
+                
+                <h1 className="find-id-title">비밀번호 찾기 완료</h1>
             </div>
-            {
-                selected === 'option1' ? <FindIdTypeId /> : <p className="pw-result">비밀번호 재설정을 위한 링크가 고객님의 이메일로 전송되었습니다.</p>
-            }
-        </div>
+            <p className="pw-result">비밀번호 재설정을 위한 링크가 고객님의 이메일로 전송되었습니다.</p>
+            <div className="buttons">
+                <button className="login-button">로그인</button>
+                <button className="find-pw-button">홈으로</button>
+            </div>
+        </>
     )
 }
 
