@@ -9,9 +9,6 @@ import SideNavigation from "../components/SideNavigation"
 import InquiryItem from "../components/InquiryItem"
 
 const MyPageInquiryReport = () => {
-  const [isInquiryOpen, setIsInquiryOpen] = useState(true)
-  const [showResponse, setShowResponse] = useState(false)
-
   let item = [
     {
       imageUrl: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=100&h=100&fit=crop&crop=center" ,

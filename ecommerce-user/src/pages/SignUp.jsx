@@ -8,16 +8,16 @@ const SignUp = () => {
                 eBear
             </div>
             <div className="signup-input-container">
-                <input className="signup-input" type="text" placeholder="ID" />
-                <input className="signup-input" type="password" placeholder="Password" />
-                <input className="signup-input" type="password" placeholder="Password Confirm" />
-                <input className="signup-input" type="text" placeholder="Name" />
+                <input className="signup-input" type="text" placeholder="이름" />
+                <input className="signup-input" type="password" placeholder="아이디" />
+                <input className="signup-input" type="password" placeholder="비밀번호" />
+                <input className="signup-input" type="text" placeholder="비밀번호 확인" />
                 <div className="email-auth-container">
-                    <input className="signup-email-input" type="text" placeholder="Email" />
+                    <input className="signup-email-input" type="text" placeholder="이메일" />
                     <button className="email-auth-button">인증</button>
                 </div>
-                <input className="signup-input" type="text" placeholder="Phone" />
-                <button className="signup-button">Sign Up</button>
+                <input className="signup-input" type="text" placeholder="이메일 인증번호" />
+                <button className="signup-button">가입하기</button>
             </div>
        </div>
     )

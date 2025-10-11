@@ -79,27 +79,27 @@ const PaymentComplete = () => {
                 {/* 메인 콘텐츠 */}
                 <main className="main-content">
 
-                    <div className="product-grid">
+                    <div className="payment-product-grid">
                         {products.map(product => (
-                            <div key={product.id} className="product-card">
-                                <div className="product-image-container">
+                            <div key={product.id} className="payment-product-card">
+                                <div className="payment-product-image-container">
                                     <img src={product.imageUrl || 'https://via.placeholder.com/300'} alt={product.name} />
                                 </div>
-                                <div className="product-details">
-                                    <span className="product-brand">{product.brand}</span>
-                                    <p className="product-name">{product.name}</p>
+                                <div className="payment-product-details">
+                                    <span className="payment-product-brand">{product.brand}</span>
+                                    <p className="payment-product-name">{product.name}</p>
                                     
                                     {product.salePrice ? (
-                                        <div className="product-price">
-                                            <span className="original-price">{formatPrice(product.price)}원</span>
-                                            <span className="sale-info">
-                                                <span className="sale-percentage">20%</span>
-                                                <span className="sale-price">{formatPrice(product.salePrice)}원</span>
+                                        <div className="payment-product-price">
+                                            <span className="payment-original-price">{formatPrice(product.price)}원</span>
+                                            <span className="payment-sale-info">
+                                                <span className="payment-sale-percentage">20%</span>
+                                                <span className="payment-sale-price">{formatPrice(product.salePrice)}원</span>
                                             </span>
                                         </div>
                                     ) : (
-                                        <div className="product-price">
-                                            <span className="normal-price">{formatPrice(product.price)}원</span>
+                                        <div className="payment-product-price">
+                                            <span className="payment-normal-price">{formatPrice(product.price)}원</span>
                                         </div>
                                     )}
                                 </div>
@@ -108,13 +108,13 @@ const PaymentComplete = () => {
                     </div>
 
                     {/* 총 합계 */}
-                    <div className="total-price-container">
-                        합계: <span className="total-price">{formatPrice(totalPrice)}원</span>
+                    <div className="payment-total-price-container">
+                        합계: <span className="payment-total-price">{formatPrice(totalPrice)}원</span>
                     </div>
 
                     {/* 주문내역 보기 버튼 */}
-                    <div className="order-details-button-container">
-                    <button className="order-details-button">주문내역 보기</button>
+                    <div className="payment-order-details-button-container">
+                    <button className="payment-order-details-button">주문내역 보기</button>
                     </div>
                 </main>
             </div>

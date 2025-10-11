@@ -20,13 +20,13 @@ export default function InquiryItem({ item }) {
                     <p className="inquiry-title">{item.title}</p>
                     <div className="inquiry-meta-content">
                         <p className="inquiry-content">{item.content}</p>
-                        <button className="view-response-btn" onClick={() => setShowResponse(!showResponse)}>답변보기</button>
+                        {(item.response != null) && <button className="view-response-btn" onClick={() => setShowResponse(!showResponse)}>답변보기</button>}
                     </div>
+                    {(item.response != null) &&
                     <div className="inquiry-meta">
                         <p className="inquiry-date">{item.date}</p>
                         <span className="separator">|</span>
-                        
-                    </div>
+                    </div>}
 
                     {showResponse && (
                         <div className="response-section">
