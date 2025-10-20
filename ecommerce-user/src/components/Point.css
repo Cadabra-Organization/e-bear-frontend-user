@@ -1,0 +1,186 @@
+.point-container {
+}
+
+.point-header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.point-left-header{
+    color: #0E1F5B;
+    font-size: 40px;
+    font-size: 600;
+}
+
+.point-right-header{
+    color: black;
+    font-size: 40px;
+    font-size: 400;
+}
+
+.btn-point-charge {
+    margin-left: 24px;
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    font-size: 400;
+    padding: 11px 20px;
+    width: 180px;
+    border: 0px;
+}
+
+.point-info-btn {
+    display: flex;
+    align-items: center;
+}
+
+.point-list-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+table {
+    width: 90%;
+    border-collapse: collapse; /* 테이블 선 겹침 방지 */
+    border-top: 1px solid #eee;
+}
+
+thead {
+    border-top: solid 1px black;
+    border-bottom: solid 1px #D9D9D9;
+}
+
+th, td {
+    padding: 16px 8px;
+    vertical-align: middle; /* 세로 중앙 정렬 */
+}
+  
+thead th {
+    text-align: left;
+    font-size: 20px;
+    color: black;
+    font-weight: normal;
+}
+  
+thead th:last-child {
+    text-align: right; /* 헤더의 '포인트 내역' 오른쪽 정렬 */
+}
+  
+  /* 첫 번째 TD 내부 스타일 */
+.history-type {
+    display: flex;
+    align-items: center; /* 아이콘과 텍스트를 세로 중앙 정렬 */
+    gap: 12px; /* 아이콘과 텍스트 사이 간격 */
+}
+  
+  /* 아이콘 공통 스타일 */
+.point-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    font-size: 18px;
+    font-weight: bold;
+    border: 2px solid;
+}
+  
+  /* 유형별 아이콘 색상 */
+.point-icon.charge {
+    color: #FFCC00;
+    border-color: #FFCC00;
+}
+  
+.point-icon.purchase {
+    color: #153085;
+    border-color: #153085;
+}
+  
+  /* 날짜 및 설명 텍스트 */
+.text-info p {
+    margin: 0;
+    line-height: 1.4;
+}
+  
+.text-info .date {
+    font-size: 16px;
+    color: black;
+}
+  
+.text-info .description {
+    font-size: 24px;
+    color: black;
+}
+  
+  /* 포인트 텍스트 스타일 */
+.points {
+    text-align: right; /* 포인트 오른쪽 정렬 */
+    font-size: 24px;
+}
+
+.point-pagenation-container{
+    display: flex;
+    justify-content: center;
+}
+
+
+/* --- 📱 모바일 반응형 스타일 (768px 이하) --- */
+@media (max-width: 768px) {
+  
+    /* 모바일에선 'eBEAR 포인트' 보이기 */
+    .point-left-header {
+      display: none;
+    }
+    .point-right-header{
+        font-size: 20pt;
+    }
+
+    .point-header{
+        display: block;
+    }
+
+    .point-info-btn {
+        justify-content: space-around;
+    }
+
+    thead th {
+        font-size: 12pt;
+        text-align: center;
+    }
+    
+    th, td {
+        padding: 8px 8px;
+        vertical-align: middle; /* 세로 중앙 정렬 */
+        text-align: center;
+    }
+
+    tr {
+      padding: 16px 0;
+    }
+  
+    td {
+      border: none;
+      padding: 0;
+    }
+  
+    .point-icon {
+      display: none;
+    }
+    
+    .text-info .date {
+        font-size: 12pt;
+    }
+    .text-info .description { font-size: 12pt; }
+  
+    /* 2. 포인트 TD (모바일) */
+    td.points {
+      font-size: 12pt;
+    }
+
+    thead th:last-child {
+        text-align: center;
+    }
+  }

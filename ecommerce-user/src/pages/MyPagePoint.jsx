@@ -4,6 +4,7 @@ import SideNavigation from "../components/SideNavigation";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import Headers from "../components/Headers";
+import Point from "../components/Point";
 
 const MyPagePoint = () => {
     let sideMenu = [
@@ -72,7 +73,13 @@ const MyPagePoint = () => {
             title: "회원혜택",
             link: "/my-page/inquiry",
         }
-    ]
+    ];
+
+    let pointPageInfo = {currentPoint: 1000};
+    let pointInfoList = [
+        {method:'충전', date: '2025/03/16', description:'충전', point: 300, iconNo: 1},
+        {method:'구매', date: '2025/03/16', description:'상품구매', point: 600, iconNo: 2},
+    ];
 
     return ( 
         <div className="ebear-container">
@@ -83,7 +90,7 @@ const MyPagePoint = () => {
             <Navigation navigationMenu={navigationMenu} />
 
             <div className="page-title">
-                <h1>쿠폰</h1>
+                <h1>포인트</h1>
             </div>
 
             <div className="main-layout">
@@ -92,7 +99,7 @@ const MyPagePoint = () => {
 
                 {/* 메인 콘텐츠 */}
                 <main className="main-content">
-
+                    <Point pointPageInfo={pointPageInfo} pointInfoList={pointInfoList}/>
                 </main>
             </div>
             {/* 푸터 */}
