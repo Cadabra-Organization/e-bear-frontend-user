@@ -1,7 +1,7 @@
 pipeline{
     agent any
     tools {
-        docker 'docker' // 3번에서 설정한 이름
+        dockerTool 'docker' // 3번에서 설정한 이름
     }
     stages{
         stage('Deploy Prepare Check Running Container'){
