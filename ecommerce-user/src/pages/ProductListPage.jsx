@@ -83,7 +83,7 @@ const ProductListPage = () => {
             brand: '유닉스',
             name: '오브제 헤어 드라이기 UN-B1919N_1',
             price: 89900,
-            salePrice: null,
+            salePercentage : null,
             rating: null,
         },
         {
@@ -92,7 +92,7 @@ const ProductListPage = () => {
             brand: '유닉스',
             name: '오브제 헤어 드라이기 UN-B1919N_2',
             price: 89900,
-            salePrice: null,
+            salePercentage : null,
             rating: null,
         },
         {
@@ -101,7 +101,7 @@ const ProductListPage = () => {
             brand: '유닉스',
             name: '오브제 헤어 드라이기 UN-B1919_3',
             price: 89900,
-            salePrice: 71920,
+            salePercentage : 20,
             rating: null,
         },
         {
@@ -110,7 +110,7 @@ const ProductListPage = () => {
             brand: '유닉스',
             name: '오브제 헤어 드라이기 UN-B1919N_4',
             price: 89900,
-            salePrice: null,
+            salePercentage : null,
             rating: 5.0,
             reviewCount: 3,
         },
@@ -152,25 +152,28 @@ const ProductListPage = () => {
                                 <div className="product-details">
                                     <span className="product-brand">{product.brand}</span>
                                     <p className="product-name">{product.name}</p>
-                                    
-                                    {product.salePrice ? (
                                         <div className="product-price">
-                                            <span className="original-price">{formatPrice(product.price)}원</span>
-                                            <span className="sale-info">
-                                                <span className="sale-percentage">20%</span>
-                                                <span className="sale-price">{formatPrice(product.salePrice)}원</span>
-                                            </span>
+                                            {/* 세일 퍼센트 존재할경우 세일가로 표시 */}
+                                            {product.salePercentage ? (
+                                                <div className="product-price">
+                                                    <span className="original-price">{formatPrice(product.price)}원</span>
+                                                    <span className="sale-info">
+                                                        <span className="sale-percentage">{product.salePercentage}%</span>
+                                                        <span className="sale-price">{formatPrice(product.price - ((product.price * product.salePercentage) / 100))}원</span>
+                                                    </span>
+                                                </div>
+                                            ) : (
+                                                <div className="product-price">
+                                                    <span className="normal-price">{formatPrice(product.price)}원</span>
+                                                </div>
+                                            )}
+                                            {/* 별점 표시 */}
+                                            {product.rating && (
+                                                <div className="product-rating-container"> {/* 클래스 이름을 분리하는 것이 좋습니다. */}
+                                                    <span className="product-rating">★ {product.rating.toFixed(1)} ({product.reviewCount})</span>
+                                                </div>
+                                            )}
                                         </div>
-                                    ) : product.rating ? (
-                                        <div className="product-price-rating">
-                                            <span className="normal-price">{formatPrice(product.price)}원</span>
-                                            <span className="product-rating">★ {product.rating.toFixed(1)} ({product.reviewCount})</span>
-                                        </div>
-                                    ) : (
-                                        <div className="product-price">
-                                            <span className="normal-price">{formatPrice(product.price)}원</span>
-                                        </div>
-                                    )}
                                 </div>
                             </div>
                         ))}
