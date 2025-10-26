@@ -68,6 +68,7 @@ pipeline {
     post {
         // 빌드 성공/실패 여부와 관계없이 항상 로그아웃
         always {
+            // 'steps' 블록으로 감싸야 합니다.
             steps {
                 echo "--- 5. Docker Hub 로그아웃 ---"
                 sh "docker logout"
