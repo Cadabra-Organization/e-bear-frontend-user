@@ -1,8 +1,15 @@
 import { useState } from "react";
 import './OrderItem.css';
 import Pagination from '@mui/material/Pagination';
+import OrderItemReviewPopup from "../components/OrderItemReviewPopup"
+import PopUp from "../components/PopUp"
 
 function OrderItem({ orderProducts }) {
+    const [reviewPopupOpen, setReviewPopupOpen] = useState(false);
+
+    const handleReviewPopup = () => {
+        setReviewPopupOpen(false);
+    }
     return (
         <div className="order-list">
             {orderProducts.length === 0 ? (
@@ -32,13 +39,20 @@ function OrderItem({ orderProducts }) {
                         <div className="order-list-button-area">
                             <button className="order-btn">결제정보</button>
                             {item.deliveryStatus === "배송완료" && (
-                                <button className="order-btn">리뷰 작성</button>
+                                <button className="order-btn" onClick={() => setReviewPopupOpen(true)}>리뷰 작성</button>
                             )}
                         </div>
                     </div>
                 ))
             )}
             <Pagination count={10} color="primary" />
+
+            <PopUp 
+                isOpen={reviewPopupOpen} 
+                onClose={(handleReviewPopup)} 
+                title={"리뷰작성"} 
+                component={<OrderItemReviewPopup />}
+            />
         </div>
     )
 }
