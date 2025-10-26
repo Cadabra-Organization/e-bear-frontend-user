@@ -1,2 +1,2 @@
 # e-bear-frontend-user
-e-bear-frontend-user Repo
+this is e-bear-frontend-user Repository

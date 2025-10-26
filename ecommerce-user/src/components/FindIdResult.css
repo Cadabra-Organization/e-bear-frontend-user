@@ -4,6 +4,7 @@
     margin: 0 auto;
     padding: 2rem 1rem;
     box-sizing: border-box;
+    min-height: 80vh;
 }
 
 .find-id-title {
@@ -11,7 +12,7 @@
     font-weight: bold;
     font-size: 3rem;
     text-align: center;
-    margin-bottom: 2rem;
+    margin: 0;
 }
 
 .toggle-tab-container {
@@ -65,7 +66,7 @@
 
 .id-result {
     color: #000000;
-    font-size: 1.5rem;
+    font-size: 2rem;
     text-align: center;
     margin-bottom: 2rem;    
 }
@@ -103,4 +104,14 @@
     justify-content: center;
     margin-bottom: 1rem;
     cursor: pointer;
+}
+
+.find-id-result-icon {
+    display: flex;
+    justify-content: center;
+}
+
+.find-id-result-title-container{
+    display: flex;
+    align-items: center;
 }

@@ -1,11 +1,13 @@
-import "./MyPageInquiry.css"
-import Headers from "../components/Headers"
-import Footer from "../components/Footer"
-import Navigation from "../components/Navigation"
-import SideNavigation from "../components/SideNavigation"
-import InquiryItem from "../components/InquiryItem"
+import React from "react";
+import "./MyPageCupon.css";
+import Cupon from "../components/Cupon";
+import SideNavigation from "../components/SideNavigation";
+import Navigation from "../components/Navigation";
+import Footer from "../components/Footer";
+import Headers from "../components/Headers";
+import Pagination from "@mui/material/Pagination";
 
-const MyPageInquiry = () => {
+const MyPageCupon = () => {
     let sideMenu = [
         {
             title: "회원정보 조회 및 수정",
@@ -74,32 +76,16 @@ const MyPageInquiry = () => {
         }
     ]
 
-    let item = [
-        {
-            imageUrl: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=100&h=100&fit=crop&crop=center",
-            brand: "asdasd",
-            productName: "asdasd",
-            title: "asdasd",
-            date: "asdasd",
-            content: "asd",
+    const cuponList = [
+        {price: 1000, condition: 'gt', conditionPrice: 10000, startDt: '2025.10.18', endDt: '2025.10.19', publisher: '발행처' },
+        {price: 1000, condition: 'gt', conditionPrice: 10000, startDt: '2025.10.18', endDt: '2025.10.19', publisher: '발행처' },
+        {price: 1000, condition: 'gt', conditionPrice: 10000, startDt: '2025.10.18', endDt: '2025.10.19', publisher: '발행처' },
+        {price: 1000, condition: 'gt', conditionPrice: 10000, startDt: '2025.10.18', endDt: '2025.10.19', publisher: '발행처' },
+        {price: 1000, condition: 'gt', conditionPrice: 10000, startDt: '2025.10.18', endDt: '2025.10.19', publisher: '발행처' },
+        {price: 1000, condition: 'gt', conditionPrice: 10000, startDt: '2025.10.18', endDt: '2025.10.19', publisher: '발행처' }
+    ];
 
-            response: {
-                greeting: "으아ㅏㄱ",
-                content: "asdasd",
-                closing: "asdasd"
-            }
-        },
-        {
-            imageUrl: "asd",
-            brand: "asdasd",
-            productName: "asdasd",
-            title: "asdasd",
-            date: "asdasd",
-            content: "asd"
-        }
-    ]
-
-    return (
+    return ( 
         <div className="ebear-container">
             {/* 헤더 */}
             <Headers />
@@ -108,7 +94,7 @@ const MyPageInquiry = () => {
             <Navigation navigationMenu={navigationMenu} />
 
             <div className="page-title">
-                <h1>문의내역 (고객문의)</h1>
+                <h1>쿠폰</h1>
             </div>
 
             <div className="main-layout">
@@ -117,19 +103,31 @@ const MyPageInquiry = () => {
 
                 {/* 메인 콘텐츠 */}
                 <main className="main-content">
-                    {/* 문의 목록 */}
-                    <div className="inquiry-list">
-                        {item.map((data, index) => (
-                            <InquiryItem key={data.id || index} item={data} />
-                        ))}
+                    {/* 쿠폰 목록 */}
+                    <div className="cupon-area">
+                        <div className="cupon-search-area">
+                            <div className="cupon-search">
+                                <input type="text" placeholder="검색어를 입력해주세요." />
+                                <select>
+                                    <option value={'all'}>전체</option>
+                                </select>
+                            </div>
+                            <hr />
+                        </div>
+
+                        <div className="cupon-list">
+                            {cuponList.map(data => <Cupon data={data} />)}
+                        </div>
+
+                        <Pagination count={10} color="primary" />
                     </div>
+                    
                 </main>
             </div>
             {/* 푸터 */}
             <Footer />
         </div>
     )
-
 }
 
-export default MyPageInquiry
+export default MyPageCupon;

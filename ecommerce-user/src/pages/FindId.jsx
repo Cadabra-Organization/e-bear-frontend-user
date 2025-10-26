@@ -11,7 +11,7 @@ const FindId = () => {
             <div>
                 <h1 className="find-id-title">eBear</h1>
             </div>
-             <div className="toggle-tab-container">
+            <div className="toggle-tab-container">
                 <div className={`toggle-tab ${selected === "option1" ? "active" : ""}`} onClick={() => setSelected("option1")}>
                     아이디 찾기
                 </div>

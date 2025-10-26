@@ -1,11 +1,12 @@
-import "./MyPageInquiry.css"
-import Headers from "../components/Headers"
-import Footer from "../components/Footer"
-import Navigation from "../components/Navigation"
-import SideNavigation from "../components/SideNavigation"
-import InquiryItem from "../components/InquiryItem"
+import React from "react";
+import "./MyPagePoint.css";
+import SideNavigation from "../components/SideNavigation";
+import Navigation from "../components/Navigation";
+import Footer from "../components/Footer";
+import Headers from "../components/Headers";
+import Point from "../components/Point";
 
-const MyPageInquiry = () => {
+const MyPagePoint = () => {
     let sideMenu = [
         {
             title: "회원정보 조회 및 수정",
@@ -72,34 +73,15 @@ const MyPageInquiry = () => {
             title: "회원혜택",
             link: "/my-page/inquiry",
         }
-    ]
+    ];
 
-    let item = [
-        {
-            imageUrl: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=100&h=100&fit=crop&crop=center",
-            brand: "asdasd",
-            productName: "asdasd",
-            title: "asdasd",
-            date: "asdasd",
-            content: "asd",
+    let pointPageInfo = {currentPoint: 1000};
+    let pointInfoList = [
+        {method:'충전', date: '2025/03/16', description:'충전', point: 300, iconNo: 1},
+        {method:'구매', date: '2025/03/16', description:'상품구매', point: 600, iconNo: 2},
+    ];
 
-            response: {
-                greeting: "으아ㅏㄱ",
-                content: "asdasd",
-                closing: "asdasd"
-            }
-        },
-        {
-            imageUrl: "asd",
-            brand: "asdasd",
-            productName: "asdasd",
-            title: "asdasd",
-            date: "asdasd",
-            content: "asd"
-        }
-    ]
-
-    return (
+    return ( 
         <div className="ebear-container">
             {/* 헤더 */}
             <Headers />
@@ -108,7 +90,7 @@ const MyPageInquiry = () => {
             <Navigation navigationMenu={navigationMenu} />
 
             <div className="page-title">
-                <h1>문의내역 (고객문의)</h1>
+                <h1>포인트</h1>
             </div>
 
             <div className="main-layout">
@@ -117,19 +99,13 @@ const MyPageInquiry = () => {
 
                 {/* 메인 콘텐츠 */}
                 <main className="main-content">
-                    {/* 문의 목록 */}
-                    <div className="inquiry-list">
-                        {item.map((data, index) => (
-                            <InquiryItem key={data.id || index} item={data} />
-                        ))}
-                    </div>
+                    <Point pointPageInfo={pointPageInfo} pointInfoList={pointInfoList}/>
                 </main>
             </div>
             {/* 푸터 */}
             <Footer />
         </div>
     )
-
 }
 
-export default MyPageInquiry
+export default MyPagePoint;

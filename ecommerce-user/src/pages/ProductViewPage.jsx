@@ -3,7 +3,7 @@ import ReviewCard from "../components/ReviewCard"
 import "./ProductViewPage.css"
 import useMediaQuery from "../hooks/useMediaQuery";
 import { useEffect, useState } from "react";
-import Test from "../components/Test"
+import InquiryPopUp from "../components/InquiryPopUp"
 import PopUp from "../components/PopUp"
 import QnaAccordion from "../components/QnaAccordion";
 import ProductViewComboBox from "../components/ProductViewComboBox";
@@ -301,8 +301,8 @@ const ProductViewPage = () => {
             <PopUp 
                 isOpen={isPopupOpen} 
                 onClose={(handleClosePopup)} 
-                title={"테스트"} 
-                component={<Test />}
+                title={"상품문의"} 
+                component={<InquiryPopUp />}
             />
         </>
     )
