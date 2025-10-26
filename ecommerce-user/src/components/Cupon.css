@@ -1,0 +1,45 @@
+.div-cupon {
+    border: 1px solid black;
+    width: 288px;
+    height: 120px;
+    border-radius: 8px;
+    box-shadow: 4px 4px 3px 0px rgba(0, 0, 0, 0.1);
+    padding: 0px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cupon-price {
+    font-size: 32px;   
+    font-weight: 700;
+}
+
+.money-type {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.sale-cupon {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.sale-cupon-date {
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.cupon-condition {
+    font-size: 12px;
+    font-weight: 300;
+    color: #656565;
+}
+
+.cupon-condition-div {
+    margin-top: 0px;
+}
+
+.cupon-download {
+    display: flex;
+    align-items: center;
+}
