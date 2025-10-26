@@ -2,22 +2,6 @@
     width: 35% !important;
 }
 
-/* .inquiry-popup-container {
-    width: 100%;
-    height: 100%;
-    background-color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    font-size: 16px;
-    color: #656565;
-    padding: 24px;
-    box-sizing: border-box;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    position: relative;
-} */
-
 /* 팝업 제목 (추가) */
 .popup-title {
     font-size: 20px;
@@ -59,15 +43,6 @@
     display: flex;
     align-items: flex-start;
 }
-
-/* 기존의 '■' 스타일을 유지하면서, JSX에서 전체 p 태그에 적용되도록 수정 */
-/* .inquiry-popup-guide p::before {
-    content: "■";
-    margin-right: 5px;
-    font-size: 10px;
-    line-height: 1.2;
-    color: #666;
-} */
 
 /* --- 별점 영역 스타일 추가 --- */
 .rating-area {
