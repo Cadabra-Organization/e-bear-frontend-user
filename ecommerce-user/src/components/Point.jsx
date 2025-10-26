@@ -43,7 +43,7 @@ const Point = ({pointPageInfo, pointInfoList}) => {
                                     {
                                         isMobile ? (
                                             <>
-                                                <td><p className="date">{data.date}</p></td>
+                                                <td><p className="date">{data.method}</p></td>
                                                 <td><p className="description">{data.point}point</p></td>
                                                 <td className="date">{data.date} </td>
                                             </>
