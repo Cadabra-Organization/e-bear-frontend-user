@@ -75,41 +75,16 @@ const MyPageInquiryReport = () => {
         link: "/mypage/cupon",
     },
     {
+      title: "포인트",
+      link: "/mypage/point",
+    },
+    {
         title: "회원탈퇴"
     }
   ]
 
-  let navigationMenu = [
-    {
-      title: "Hot",
-      link: "/my-page/info",
-    },
-    {
-      title: "세일",
-      link: "/my-page/order",
-    },
-    {
-      title: "라이브",
-      link: "/my-page/inquiry",
-    },
-    {
-      title: "이벤트",
-      link: "/my-page/inquiry",
-    },
-    {
-      title: "회원혜택",
-      link: "/my-page/inquiry",
-    }
-  ]
-
   return (
-    <div className="ebear-container">
-      {/* 헤더 */}
-      <Headers />
-
-      {/* 네비게이션 */}
-      <Navigation navigationMenu={navigationMenu} />
-
+    <>
       <div className="page-title">
         <h1>문의내역 (신고문의)</h1>
       </div>
@@ -130,9 +105,7 @@ const MyPageInquiryReport = () => {
           </div>
         </main>
       </div>
-      {/* 푸터 */}
-      <Footer />
-    </div>
+    </>
   )
 }
 
