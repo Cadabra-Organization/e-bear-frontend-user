@@ -38,6 +38,10 @@ const MyPageWishlist = () => {
             link: "/mypage/cupon",
         },
         {
+            title: "포인트",
+            link: "/mypage/point",
+        },
+        {
             title: "회원탈퇴"
         }
     ]

@@ -48,6 +48,10 @@ const ProductListPage = () => {
             link: "/my-page/inquiry",
         },
         {
+            title: "포인트",
+            link: "/mypage/point",
+        },
+        {
             title: "회원탈퇴",
             link: "/my-page/inquiry",
         }
