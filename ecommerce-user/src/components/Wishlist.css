@@ -27,6 +27,7 @@
 
 .wish-details {
     flex: 1;
+    min-width: 140px;
 }
 
 .product-info {
@@ -40,6 +41,7 @@
 
 .brand-name {
     font-size: 16px;
+    font-weight: 500;
     color: #000000;
     margin: 0 0 4px 0;
 }
@@ -53,6 +55,7 @@
 
 .product-name {
     font-size: 16px;
+    font-weight: 400;
     color: #000000;
     margin: 0 0 8px 0;
 }
@@ -60,7 +63,7 @@
 .seller-content {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 6px;
 }
 
 .seller-avatar {
@@ -85,6 +88,7 @@
 
 .seller-name {
     font-size: 16px;
+    font-weight: 500;
     color: #000000;
     margin: 0 0 4px 0;
 }
@@ -93,6 +97,7 @@
     font-size: 16px;
     color: #000000;
     margin: 10px 0 4px 0;
+    font-weight: 600;
 }
 
 .more-area {
