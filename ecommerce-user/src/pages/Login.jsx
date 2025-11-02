@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Login.css";
+import { Link } from "react-router-dom";
 
 const Login = () => {
     return (
@@ -22,9 +23,9 @@ const Login = () => {
                     </label>
                 </div>
                 <div className="login-link-container">
-                    <a className="login-link" href="#">아이디 찾기</a>
-                    <a className="login-link" href="#">비밀번호 찾기</a>
-                    <a className="login-link" href="#">회원가입</a>
+                    <Link className="login-link" to="/findid">아이디 찾기</Link>
+                    <Link className="login-link" to="/findid">비밀번호 찾기</Link>
+                    <Link className="login-link" to="/signuptermsagreement">회원가입</Link>
                 </div>
                 <div className="login-social-button-container">
                     <div className="login-social-button-item">

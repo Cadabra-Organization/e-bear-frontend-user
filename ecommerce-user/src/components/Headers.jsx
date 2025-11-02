@@ -1,6 +1,7 @@
 import React from 'react';
 import './Headers.css';
 import { Input, SearchIcon, BellIcon, UserIcon, HeartIcon, HomeIcon } from '../components/CustomTag';
+import { Link } from 'react-router-dom';
 
 
 function Headers() {
@@ -9,7 +10,7 @@ function Headers() {
         <div className="header-content">
           {/* 로고 */}
           <div className="logo-section">
-            <h1 className="logo">eBEAR</h1>
+            <Link className="header-link logo"to="/"><h1>eBEAR</h1></Link>
           </div>
 
           {/* 검색바 */}
@@ -25,15 +26,15 @@ function Headers() {
           {/* 우측 아이콘들 */}
           <div className="header-right">
             <div className="header-links">
-              <span className="header-link">로그인</span>
+              <Link className="header-link"to="/login">로그인</Link>
               <span className="header-link">고객센터</span>
               <span className="header-link">이용안내</span>
             </div>
             <div className="header-icons">
               <BellIcon className="icon" />
-              <UserIcon className="icon" />
-              <HeartIcon className="icon" />
-              <HomeIcon className="icon" />
+              <Link className="header-link"to="/mypage/userinfo"><UserIcon className="icon" /></Link>
+              <Link className="header-link"to="/mypage/wishlist"><HeartIcon className="icon" /></Link>
+              <Link className="header-link"to="/"><HomeIcon className="icon" /></Link>
             </div>
           </div>
         </div>
