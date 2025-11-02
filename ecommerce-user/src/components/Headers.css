@@ -90,6 +90,7 @@
     color: #6b7280;
     cursor: pointer;
     white-space: nowrap;
+    text-decoration: none;
   }
   
   .header-link:hover {
