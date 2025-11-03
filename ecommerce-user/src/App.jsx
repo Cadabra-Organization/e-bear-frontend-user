@@ -14,6 +14,7 @@ import MyPageCoupon from "./pages/MyPageCupon"
 import FindId from "./pages/FindId"
 import Signup from "./pages/Signup"
 import SignupTermsAgreement from "./pages/SignupTermsAgreement"
+import ProductListPage from "./pages/ProductListPage"
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/mypage/coupon" element={<MyPageCoupon />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/signuptermsagreement" element={<SignupTermsAgreement />} />
+        <Route path="/product-list" element={<ProductListPage />} />
       </Routes>
      <Footer />
    </div>
