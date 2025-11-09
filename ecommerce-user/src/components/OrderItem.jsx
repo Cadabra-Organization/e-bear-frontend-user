@@ -60,7 +60,7 @@ function OrderItem({ orderProducts }) {
                 isOpen={payInfoPopupOpen} 
                 onClose={handleCloseModal} 
                 title={"주문결제정보"} 
-                component={<OrderItemPayInfoPopup order={payInfoPopupOpen}/>}
+                component={<OrderItemPayInfoPopup item={payInfoPopupOpen}/>}
             />
             <PopUp 
                 isOpen={reviewPopupOpen} 
