@@ -2,11 +2,21 @@ import { useState } from "react";
 import './OrderItem.css';
 import Pagination from '@mui/material/Pagination';
 import OrderItemReviewPopup from "../components/OrderItemReviewPopup"
+import OrderItemPayInfoPopup from "../components/OrderItemPayInfoPopup"
 import PopUp from "../components/PopUp"
 
 function OrderItem({ orderProducts }) {
-    const [reviewPopupOpen, setReviewPopupOpen] = useState(false);
+    // 결제정보
+    const [payInfoPopupOpen, payInfoPopup] = useState(null);
+    const setPayInfoPopupOpen = (order) => {
+        payInfoPopup(order);
+    };
+    const handleCloseModal = () => {
+        payInfoPopup(null);
+    };
 
+    // 리뷰작성
+    const [reviewPopupOpen, setReviewPopupOpen] = useState(false);
     const handleReviewPopup = () => {
         setReviewPopupOpen(false);
     }
@@ -37,7 +47,7 @@ function OrderItem({ orderProducts }) {
                             <p className="delivery-status">{item.deliveryStatus}</p>
                         </div>
                         <div className="order-list-button-area">
-                            <button className="order-btn">결제정보</button>
+                            <button className="order-btn" onClick={() => setPayInfoPopupOpen(item)}>결제정보</button>
                             {item.deliveryStatus === "배송완료" && (
                                 <button className="order-btn" onClick={() => setReviewPopupOpen(true)}>리뷰 작성</button>
                             )}
@@ -46,7 +56,12 @@ function OrderItem({ orderProducts }) {
                 ))
             )}
             <Pagination count={10} color="primary" />
-
+            <PopUp
+                isOpen={payInfoPopupOpen} 
+                onClose={handleCloseModal} 
+                title={"주문결제정보"} 
+                component={<OrderItemPayInfoPopup item={payInfoPopupOpen}/>}
+            />
             <PopUp 
                 isOpen={reviewPopupOpen} 
                 onClose={(handleReviewPopup)} 
