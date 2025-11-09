@@ -1,7 +1,10 @@
 import { useState } from "react";
 import "./TermsAgreement.css";
+import { useNavigate } from "react-router-dom";
 
 function TermsAgreement() {
+    const navigate = useNavigate();
+
     const [checkedItems, setCheckedItems] = useState({
         age: false,
         terms: false,
@@ -86,7 +89,7 @@ function TermsAgreement() {
                 <p className="agreement-description">전체 동의에는 선택 항목에 대한 동의가 포함되어 있습니다. 개별적으로 동의를 할 수 있으며, 선택 항목에 대한 동의를 거부하는 경우에도 서비스 이용이 가능합니다.</p>
                 <button
                     className="agreement-button"
-                    disabled={!checkedItems.age || !checkedItems.terms || !checkedItems.privacy}>동의하고 시작하기</button>
+                    disabled={!checkedItems.age || !checkedItems.terms || !checkedItems.privacy} onClick={() => navigate("/signup")}>동의하고 시작하기</button>
             </div>
         </div>
     )

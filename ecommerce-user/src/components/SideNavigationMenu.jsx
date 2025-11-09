@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import './SideNavigationMenu.css';
 import { ChevronRightIcon, ChevronDownIcon } from '../components/CustomTag';
+import { useNavigate } from 'react-router-dom';
 
 function SideNavigationMenu({ sideMenu }) {
+    const navigate = useNavigate();
     const [openStates, setOpenStates] = useState({});
     const toggleMenu = (index) => {
         setOpenStates(prev => ({
@@ -20,7 +22,9 @@ function SideNavigationMenu({ sideMenu }) {
                             className="nav-row"
                             onClick={() => toggleMenu(index)}
                         >
-                            <span className="nav-title">{item.title}</span>
+                            {item.subMenu ?
+                                <span className="nav-title">{item.title}</span>
+                                : <span className="nav-title" onClick={() => navigate(item.link)}>{item.title}</span>}
                             {item.subMenu ?
                                 <ChevronDownIcon className="nav-icon" />
                                 : <ChevronRightIcon className="nav-icon" />}

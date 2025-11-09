@@ -1,9 +1,9 @@
-FROM node:latest
+FROM node:20.14.0
 
 WORKDIR /app
 
 COPY package.json package-lock.json ./
-RUN npm install
+RUN npm ci
 
 COPY . ./
 RUN npm run build
