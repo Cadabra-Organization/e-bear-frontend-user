@@ -122,10 +122,8 @@ const ProductListPage = () => {
 
     return (
         <div className="ebear-container">
-            {/* 헤더 */}
             <Headers />
 
-            {/* 네비게이션 */}
             <Navigation navigationMenu={navigationMenu} />
 
             <div className="page-title">
@@ -133,10 +131,8 @@ const ProductListPage = () => {
             </div>
 
             <div className="main-layout">
-                {/* 사이드 네비게이션 메뉴 */}
                 <SideNavigation sideMenu={sideMenu} />
 
-                {/* 메인 콘텐츠 */}
                 <main className="main-content">
                     <div className="product-select">
                         <select>
@@ -173,7 +169,7 @@ const ProductListPage = () => {
                                             )}
                                             {/* 별점 표시 */}
                                             {product.rating && (
-                                                <div className="product-rating-container"> {/* 클래스 이름을 분리하는 것이 좋습니다. */}
+                                                <div className="product-rating-container">
                                                     <span className="product-rating">★ {product.rating.toFixed(1)} ({product.reviewCount})</span>
                                                 </div>
                                             )}
