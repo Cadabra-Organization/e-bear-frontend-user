@@ -32,7 +32,6 @@ function App() {
         <Route path="/mypage/inquiry" element={<MyPageInquiry />} />
         <Route path="/mypage/inquiryreport" element={<MyPageInquiryReport />} />
         <Route path="/mypage/wishlist" element={<MyPageWishlist />} />
-        <Route path="/mypage/coupon" element={<MyPageCoupon />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/signuptermsagreement" element={<SignupTermsAgreement />} />
         <Route path="/product-list" element={<ProductListPage />} />
