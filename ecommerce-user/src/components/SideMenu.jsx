@@ -213,6 +213,16 @@ function SideMenu({ onClose }) {
 
     const [hoveredIndex, setHoveredIndex] = useState(null);
     const [hoverTimeout, setHoverTimeout] = useState(null);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+        
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const handleMouseEnter = (index) => {
         if (hoverTimeout) {
@@ -220,6 +230,17 @@ function SideMenu({ onClose }) {
             setHoverTimeout(null);
         }
         setHoveredIndex(index);
+    };
+
+    const handleMenuClick = (index) => {
+        if (isMobile) {
+            // 모바일에서는 클릭 시 하위 메뉴 토글
+            if (hoveredIndex === index) {
+                setHoveredIndex(null);
+            } else {
+                setHoveredIndex(index);
+            }
+        }
     };
 
     const handleMouseLeave = () => {
@@ -236,6 +257,39 @@ function SideMenu({ onClose }) {
         }
     };
 
+    const handleLinkClick = () => {
+        if (onClose) {
+            onClose();
+        }
+    };
+
+    const handleWrapperClick = (e) => {
+        // 모바일에서만 뒷 배경(오버레이) 클릭 시 메뉴 닫기
+        if (isMobile) {
+            // 클릭한 요소가 wrapper 자체이거나, 메뉴 박스 밖의 영역일 때
+            const clickedElement = e.target;
+            const menuBox = e.currentTarget.querySelector('.side-menu');
+            
+            if (!menuBox || !menuBox.contains(clickedElement)) {
+                if (onClose) {
+                    onClose();
+                }
+            }
+        }
+    };
+
+    const handleMenuBoxClick = (e) => {
+        // 메뉴 박스 자체를 클릭했을 때는 이벤트가 상위(wrapper)로 전파되지 않도록
+        // 하위 메뉴 패널이 활성화되어 있어도 이벤트 전파를 차단 (오버레이 클릭 방지)
+        e.stopPropagation();
+    };
+
+    const handleSubMenuPanelClick = (e) => {
+        // 하위 메뉴 패널 내부 클릭은 wrapper로 전파되지 않도록 차단
+        // 이렇게 하면 오버레이 클릭으로 인식되지 않음
+        e.stopPropagation();
+    };
+
     const renderMenuItems = (items, depth = 0) => {
         if (!Array.isArray(items) || items.length === 0) {
             return null;
@@ -248,6 +302,7 @@ function SideMenu({ onClose }) {
                 <Link
                     to={item.link}
                     className={depth === 0 ? 'sub-menu-column-title-link' : 'sub-menu-item-link'}
+                    onClick={handleLinkClick}
                 >
                     {depth === 0 ? (
                         <h3 className="sub-menu-column-title">{item.title}</h3>
@@ -276,6 +331,7 @@ function SideMenu({ onClose }) {
                                     <Link
                                         to={item.link}
                                         className="sub-menu-item-link"
+                                        onClick={handleLinkClick}
                                     >
                                         {item.title}
                                     </Link>
@@ -304,6 +360,7 @@ function SideMenu({ onClose }) {
                     key={key}
                     to={item.link || '#'}
                     className="sub-menu-item-link"
+                    onClick={handleLinkClick}
                 >
                     {item.title}
                 </Link>
@@ -324,8 +381,8 @@ function SideMenu({ onClose }) {
     }
 
     return (
-        <div className="side-menu-wrapper">
-            <aside className="side-menu">
+        <div className="side-menu-wrapper" onClick={handleWrapperClick}>
+            <aside className="side-menu" onClick={handleMenuBoxClick}>
                 <div 
                     className="side-menu-container"
                     onMouseLeave={handleMouseLeave}
@@ -336,7 +393,15 @@ function SideMenu({ onClose }) {
                             <div 
                                 className="menu-item-container" 
                                 key={firstIndex}
-                                onMouseEnter={() => handleMouseEnter(firstIndex)}
+                                onMouseEnter={() => !isMobile && handleMouseEnter(firstIndex)}
+                                onClick={(e) => {
+                                    // 모바일에서만 1depth 메뉴 클릭 처리
+                                    // 하위 메뉴 패널이 활성화되어 있으면 이벤트 전파 차단
+                                    if (isMobile) {
+                                        e.stopPropagation();
+                                        handleMenuClick(firstIndex);
+                                    }
+                                }}
                             >
                                 <div className={`menu-item ${hoveredIndex === firstIndex ? 'active' : ''}`}>
                                     <div className="menu-row first-level">
@@ -353,9 +418,19 @@ function SideMenu({ onClose }) {
                     {/* 오른쪽 흰색 패널 - 2depth, 3depth 멀티 컬럼 */}
                     {hoveredIndex !== null && ecommerceMenu[hoveredIndex].subMenu && (
                         <div 
-                            className="sub-menu-content-panel"
+                            className={`sub-menu-content-panel ${isMobile ? 'active-panel' : ''}`}
                             onMouseEnter={handleSubMenuMouseEnter}
+                            onClick={handleSubMenuPanelClick}
                         >
+                            {isMobile && (
+                                <div className="sub-menu-back-button" onClick={(e) => {
+                                    e.stopPropagation();
+                                    setHoveredIndex(null);
+                                }}>
+                                    <ChevronRightIcon className="back-icon" style={{ transform: 'rotate(180deg)' }} />
+                                    <span>뒤로</span>
+                                </div>
+                            )}
                             <div className="sub-menu-columns-wrapper">
                                 {renderMenuItems(ecommerceMenu[hoveredIndex].subMenu)}
                             </div>
