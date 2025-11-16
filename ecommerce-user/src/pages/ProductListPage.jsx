@@ -1,10 +1,10 @@
 import Navigation from "../components/Navigation"
+import Product from "../components/Product";
 import SideNavigation from "../components/SideNavigation"
 import "./ProductListPage.css"
 
 const ProductListPage = () => {
-    const formatPrice = (price) => price.toLocaleString('ko-KR');
-
+    
     let sideMenu = [
         {
             title: "전체",
@@ -132,37 +132,7 @@ const ProductListPage = () => {
 
                     <div className="product-grid">
                         {productData.products.map(product => (
-                            <div key={product.id} className="product-card">
-                                <div className="product-image-container">
-                                    <img src={product.imageUrl || 'https://via.placeholder.com/300'} alt={product.name} />
-                                </div>
-                                <div className="product-details">
-                                    <span className="product-brand">{product.brand}</span>
-                                    <p className="product-name">{product.name}</p>
-                                        <div className="product-price">
-                                            {/* 세일 퍼센트 존재할경우 세일가로 표시 */}
-                                            {product.salePercentage ? (
-                                                <div className="product-price">
-                                                    <span className="original-price">{formatPrice(product.price)}원</span>
-                                                    <span className="sale-info">
-                                                        <span className="sale-percentage">{product.salePercentage}%</span>
-                                                        <span className="sale-price">{formatPrice(product.price - ((product.price * product.salePercentage) / 100))}원</span>
-                                                    </span>
-                                                </div>
-                                            ) : (
-                                                <div className="product-price">
-                                                    <span className="normal-price">{formatPrice(product.price)}원</span>
-                                                </div>
-                                            )}
-                                            {/* 별점 표시 */}
-                                            {product.rating && (
-                                                <div className="product-rating-container">
-                                                    <span className="product-rating">★ {product.rating.toFixed(1)} ({product.reviewCount})</span>
-                                                </div>
-                                            )}
-                                        </div>
-                                </div>
-                            </div>
+                            <Product product={product} />
                         ))}
                     </div>
 
