@@ -2,6 +2,7 @@
 .navigation {
     border-bottom: 1px solid #e5e7eb;
     padding: 8px 16px;
+    position: relative;
   }
   
   .nav-content {

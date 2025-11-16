@@ -12,8 +12,9 @@ import MyPageInquiry from "./pages/MyPageInquiry"
 import MyPageWishlist from "./pages/MyPageWishlist"
 import MyPageInquiryReport from "./pages/MyPageInquiryReport"
 import FindId from "./pages/FindId"
-import SignUp from "./pages/SignUp"
-import SignUpTermsAgreement from "./pages/SignUpTermsAgreement"
+import Signup from "./pages/Signup"
+import SignupTermsAgreement from "./pages/SignupTermsAgreement"
+import ProductListPage from "./pages/ProductListPage"
 import MyPageCurrentView from "./pages/MyPageCurrentView"
 
 function App() {
@@ -31,9 +32,11 @@ function App() {
         <Route path="/mypage/inquiry" element={<MyPageInquiry />} />
         <Route path="/mypage/inquiryreport" element={<MyPageInquiryReport />} />
         <Route path="/mypage/wishlist" element={<MyPageWishlist />} />
+        <Route path="/mypage/coupon" element={<MyPageCoupon />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/signuptermsagreement" element={<SignupTermsAgreement />} />
+        <Route path="/product-list" element={<ProductListPage />} />
         <Route path="/mypage/currentview" element={<MyPageCurrentView />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/signuptermsagreement" element={<SignUpTermsAgreement />} />
       </Routes>
      <Footer />
    </div>
