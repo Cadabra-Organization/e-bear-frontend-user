@@ -1,8 +1,4 @@
-import { useState } from "react"
 import "./MyPageOrderList.css"
-import Headers from "../components/Headers"
-import Footer from "../components/Footer"
-import Navigation from "../components/Navigation"
 import SideNavigation from "../components/SideNavigation"
 import OrderItem from "../components/OrderItem"
 
@@ -87,7 +83,7 @@ const MyPageOrderList = () => {
 
                 {/* 메인 콘텐츠 */}
                 <main className="main-content">
-                    {/* 찜목록 */}
+                    {/* 주문 상품 목록 */}
                     <OrderItem orderProducts={orderProducts} />
                 </main>
             </div>
