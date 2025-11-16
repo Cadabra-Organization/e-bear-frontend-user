@@ -48,6 +48,10 @@ const ProductListPage = () => {
             link: "/my-page/inquiry",
         },
         {
+            title: "포인트",
+            link: "/mypage/point",
+        },
+        {
             title: "회원탈퇴",
             link: "/my-page/inquiry",
         }
@@ -83,7 +87,7 @@ const ProductListPage = () => {
             brand: '유닉스',
             name: '오브제 헤어 드라이기 UN-B1919N_1',
             price: 89900,
-            salePrice: null,
+            salePercentage : null,
             rating: null,
         },
         {
@@ -92,7 +96,7 @@ const ProductListPage = () => {
             brand: '유닉스',
             name: '오브제 헤어 드라이기 UN-B1919N_2',
             price: 89900,
-            salePrice: null,
+            salePercentage : null,
             rating: null,
         },
         {
@@ -101,7 +105,7 @@ const ProductListPage = () => {
             brand: '유닉스',
             name: '오브제 헤어 드라이기 UN-B1919_3',
             price: 89900,
-            salePrice: 71920,
+            salePercentage : 20,
             rating: null,
         },
         {
@@ -110,7 +114,7 @@ const ProductListPage = () => {
             brand: '유닉스',
             name: '오브제 헤어 드라이기 UN-B1919N_4',
             price: 89900,
-            salePrice: null,
+            salePercentage : null,
             rating: 5.0,
             reviewCount: 3,
         },
@@ -118,10 +122,8 @@ const ProductListPage = () => {
 
     return (
         <div className="ebear-container">
-            {/* 헤더 */}
             <Headers />
 
-            {/* 네비게이션 */}
             <Navigation navigationMenu={navigationMenu} />
 
             <div className="page-title">
@@ -129,10 +131,8 @@ const ProductListPage = () => {
             </div>
 
             <div className="main-layout">
-                {/* 사이드 네비게이션 메뉴 */}
                 <SideNavigation sideMenu={sideMenu} />
 
-                {/* 메인 콘텐츠 */}
                 <main className="main-content">
                     <div className="product-select">
                         <select>
@@ -152,25 +152,28 @@ const ProductListPage = () => {
                                 <div className="product-details">
                                     <span className="product-brand">{product.brand}</span>
                                     <p className="product-name">{product.name}</p>
-                                    
-                                    {product.salePrice ? (
                                         <div className="product-price">
-                                            <span className="original-price">{formatPrice(product.price)}원</span>
-                                            <span className="sale-info">
-                                                <span className="sale-percentage">20%</span>
-                                                <span className="sale-price">{formatPrice(product.salePrice)}원</span>
-                                            </span>
+                                            {/* 세일 퍼센트 존재할경우 세일가로 표시 */}
+                                            {product.salePercentage ? (
+                                                <div className="product-price">
+                                                    <span className="original-price">{formatPrice(product.price)}원</span>
+                                                    <span className="sale-info">
+                                                        <span className="sale-percentage">{product.salePercentage}%</span>
+                                                        <span className="sale-price">{formatPrice(product.price - ((product.price * product.salePercentage) / 100))}원</span>
+                                                    </span>
+                                                </div>
+                                            ) : (
+                                                <div className="product-price">
+                                                    <span className="normal-price">{formatPrice(product.price)}원</span>
+                                                </div>
+                                            )}
+                                            {/* 별점 표시 */}
+                                            {product.rating && (
+                                                <div className="product-rating-container">
+                                                    <span className="product-rating">★ {product.rating.toFixed(1)} ({product.reviewCount})</span>
+                                                </div>
+                                            )}
                                         </div>
-                                    ) : product.rating ? (
-                                        <div className="product-price-rating">
-                                            <span className="normal-price">{formatPrice(product.price)}원</span>
-                                            <span className="product-rating">★ {product.rating.toFixed(1)} ({product.reviewCount})</span>
-                                        </div>
-                                    ) : (
-                                        <div className="product-price">
-                                            <span className="normal-price">{formatPrice(product.price)}원</span>
-                                        </div>
-                                    )}
                                 </div>
                             </div>
                         ))}
