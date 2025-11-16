@@ -1,186 +1,215 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './SideMenu.css';
 import { ChevronRightIcon } from '../components/CustomTag';
 import { Link } from 'react-router-dom';
 
 function SideMenu({ onClose }) {
-    // 3depth 이커머스 임시 메뉴 구조
-    const ecommerceMenu = [
-        {
-            title: "브랜드패션",
-            subMenu: [
-                {
-                    title: "패션의류",
-                    subMenu: [
-                        { title: "여성의류", link: "/product-list" },
-                        { title: "남성의류", link: "/product-list" },
-                        { title: "언더웨어", link: "/product-list" },
-                        { title: "유아동의류", link: "/product-list" },
-                    ]
-                },
-                {
-                    title: "잡화",
-                    subMenu: [
-                        { title: "신발", link: "/product-list" },
-                        { title: "가방/잡화", link: "/product-list" },
-                        { title: "유아동신발/잡화", link: "/product-list" },
-                        { title: "쥬얼리/시계", link: "/product-list" },
-                        { title: "수입명품", link: "/product-list" },
-                    ]
-                },
-                {
-                    title: "뷰티",
-                    subMenu: [
-                        { title: "화장품/향수", link: "/product-list" },
-                        { title: "바디/헤어", link: "/product-list" },
-                    ]
-                }
-            ]
-        },
-        {
-            title: "유아동",
-            subMenu: [
-                {
-                    title: "유아동 의류",
-                    subMenu: [
-                        { title: "신생아", link: "/product-list" },
-                        { title: "유아", link: "/product-list" },
-                        { title: "키즈", link: "/product-list" },
-                    ]
-                },
-                {
-                    title: "유아동 용품",
-                    subMenu: [
-                        { title: "이유식", link: "/product-list" },
-                        { title: "기저귀", link: "/product-list" },
-                        { title: "수유용품", link: "/product-list" },
-                    ]
-                }
-            ]
-        },
-        {
-            title: "식품·생필품",
-            subMenu: [
-                {
-                    title: "식품",
-                    subMenu: [
-                        { title: "신선식품", link: "/product-list" },
-                        { title: "가공식품", link: "/product-list" },
-                        { title: "냉동식품", link: "/product-list" },
-                    ]
-                },
-                {
-                    title: "생필품",
-                    subMenu: [
-                        { title: "세제", link: "/product-list" },
-                        { title: "화장지", link: "/product-list" },
-                    ]
-                }
-            ]
-        },
-        {
-            title: "홈데코ㆍ문구ㆍ취미ㆍ반려",
-            subMenu: [
-                {
-                    title: "홈데코",
-                    subMenu: [
-                        { title: "침구", link: "/product-list" },
-                        { title: "커튼", link: "/product-list" },
-                    ]
-                },
-                {
-                    title: "문구",
-                    subMenu: [
-                        { title: "필기구", link: "/product-list" },
-                        { title: "다이어리", link: "/product-list" },
-                    ]
-                }
-            ]
-        },
-        {
-            title: "컴퓨터·디지털·가전",
-            subMenu: [
-                {
-                    title: "컴퓨터",
-                    subMenu: [
-                        { title: "노트북", link: "/product-list" },
-                        { title: "데스크탑", link: "/product-list" },
-                    ]
-                },
-                {
-                    title: "디지털",
-                    subMenu: [
-                        { title: "스마트폰", link: "/product-list" },
-                        { title: "태블릿", link: "/product-list" },
-                    ]
-                },
-                {
-                    title: "가전",
-                    subMenu: [
-                        { title: "TV", link: "/product-list" },
-                        { title: "냉장고", link: "/product-list" },
-                    ]
-                }
-            ]
-        },
-        {
-            title: "스포츠·건강·렌탈",
-            subMenu: [
-                {
-                    title: "스포츠",
-                    subMenu: [
-                        { title: "운동화", link: "/product-list" },
-                        { title: "운동복", link: "/product-list" },
-                    ]
-                },
-                {
-                    title: "건강",
-                    subMenu: [
-                        { title: "건강식품", link: "/product-list" },
-                        { title: "운동기구", link: "/product-list" },
-                    ]
-                }
-            ]
-        },
-        {
-            title: "자동차·공구",
-            subMenu: [
-                {
-                    title: "자동차용품",
-                    subMenu: [
-                        { title: "차량용품", link: "/product-list" },
-                        { title: "모터오일", link: "/product-list" },
-                    ]
-                },
-                {
-                    title: "공구",
-                    subMenu: [
-                        { title: "전동공구", link: "/product-list" },
-                        { title: "수동공구", link: "/product-list" },
-                    ]
-                }
-            ]
-        },
-        {
-            title: "여행ㆍ도서·e쿠폰",
-            subMenu: [
-                {
-                    title: "여행",
-                    subMenu: [
-                        { title: "항공권", link: "/product-list" },
-                        { title: "호텔", link: "/product-list" },
-                    ]
-                },
-                {
-                    title: "도서",
-                    subMenu: [
-                        { title: "도서", link: "/product-list" },
-                        { title: "e북", link: "/product-list" },
-                    ]
-                }
-            ]
-        }
-    ];
+    
+    /* 비동기 데이터 처리 시 사용 */
+    const [ecommerceMenu, setEcommerceMenu] = useState([]); //메뉴 배열
+    const [isLoading, setIsLoading] = useState(true); //로딩 상태
+    
+    useEffect(() => {
+        // DB에서 데이터를 가져오는 비동기 함수를 정의합니다.
+        const fetchMenuData = async () => {
+            setIsLoading(true); // 로딩 시작
+
+            try {
+                // 실제 DB/API 호출 로직을 여기에 작성
+                // 예: const response = await fetch('/api/getMenu');
+                // 예: const data = await response.json();
+                
+                // 현재는 임시 데이터(mockData)를 사용한다고 가정
+                const mockData = [ /* 기존 ecommerceMenu 배열 내용 전체 */
+                    {
+                        title: "브랜드패션",
+                        subMenu: [
+                            {
+                                title: "패션의류",
+                                subMenu: [
+                                    { title: "여성의류", link: "/product-list" },
+                                    { title: "남성의류", link: "/product-list" },
+                                    { title: "언더웨어", link: "/product-list" },
+                                    { title: "유아동의류", link: "/product-list" },
+                                ]
+                            },
+                            {
+                                title: "잡화",
+                                subMenu: [
+                                    { title: "신발", link: "/product-list" },
+                                    { title: "가방/잡화", link: "/product-list" },
+                                    { title: "유아동신발/잡화", link: "/product-list" },
+                                    { title: "쥬얼리/시계", link: "/product-list" },
+                                    { title: "수입명품", link: "/product-list" },
+                                ]
+                            },
+                            {
+                                title: "뷰티",
+                                subMenu: [
+                                    { title: "화장품/향수", link: "/product-list" },
+                                    { title: "바디/헤어", link: "/product-list" },
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "유아동",
+                        subMenu: [
+                            {
+                                title: "유아동 의류",
+                                subMenu: [
+                                    { title: "신생아", link: "/product-list" },
+                                    { title: "유아", link: "/product-list" },
+                                    { title: "키즈", link: "/product-list" },
+                                ]
+                            },
+                            {
+                                title: "유아동 용품",
+                                subMenu: [
+                                    { title: "이유식", link: "/product-list" },
+                                    { title: "기저귀", link: "/product-list" },
+                                    { title: "수유용품", link: "/product-list" },
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "식품·생필품",
+                        subMenu: [
+                            {
+                                title: "식품",
+                                subMenu: [
+                                    { title: "신선식품", link: "/product-list" },
+                                    { title: "가공식품", link: "/product-list" },
+                                    { title: "냉동식품", link: "/product-list" },
+                                ]
+                            },
+                            {
+                                title: "생필품",
+                                subMenu: [
+                                    { title: "세제", link: "/product-list" },
+                                    { title: "화장지", link: "/product-list" },
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "홈데코ㆍ문구ㆍ취미ㆍ반려",
+                        subMenu: [
+                            {
+                                title: "홈데코",
+                                subMenu: [
+                                    { title: "침구", link: "/product-list" },
+                                    { title: "커튼", link: "/product-list" },
+                                ]
+                            },
+                            {
+                                title: "문구",
+                                subMenu: [
+                                    { title: "필기구", link: "/product-list" },
+                                    { title: "다이어리", link: "/product-list" },
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "컴퓨터·디지털·가전",
+                        subMenu: [
+                            {
+                                title: "컴퓨터",
+                                subMenu: [
+                                    { title: "노트북", link: "/product-list" },
+                                    { title: "데스크탑", link: "/product-list" },
+                                ]
+                            },
+                            {
+                                title: "디지털",
+                                subMenu: [
+                                    { title: "스마트폰", link: "/product-list" },
+                                    { title: "태블릿", link: "/product-list" },
+                                ]
+                            },
+                            {
+                                title: "가전",
+                                subMenu: [
+                                    { title: "TV", link: "/product-list" },
+                                    { title: "냉장고", link: "/product-list" },
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "스포츠·건강·렌탈",
+                        subMenu: [
+                            {
+                                title: "스포츠",
+                                subMenu: [
+                                    { title: "운동화", link: "/product-list" },
+                                    { title: "운동복", link: "/product-list" },
+                                ]
+                            },
+                            {
+                                title: "건강",
+                                subMenu: [
+                                    { title: "건강식품", link: "/product-list" },
+                                    { title: "운동기구", link: "/product-list" },
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "자동차·공구",
+                        subMenu: [
+                            {
+                                title: "자동차용품",
+                                subMenu: [
+                                    { title: "차량용품", link: "/product-list" },
+                                    { title: "모터오일", link: "/product-list" },
+                                ]
+                            },
+                            {
+                                title: "공구",
+                                subMenu: [
+                                    { title: "전동공구", link: "/product-list" },
+                                    { title: "수동공구", link: "/product-list" },
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: "여행ㆍ도서·e쿠폰",
+                        subMenu: [
+                            {
+                                title: "여행",
+                                subMenu: [
+                                    { title: "항공권", link: "/product-list" },
+                                    { title: "호텔", link: "/product-list" },
+                                ]
+                            },
+                            {
+                                title: "도서",
+                                subMenu: [
+                                    { title: "도서", link: "/product-list" },
+                                    { title: "e북", link: "/product-list" },
+                                ]
+                            }
+                        ]
+                    }
+                ];
+
+                // 데이터 상태에 저장
+                setEcommerceMenu(mockData); 
+            } catch (error) {
+                console.error("메뉴 데이터를 불러오는 데 실패했습니다:", error);
+                // 에러 처리 (예: 빈 메뉴 표시, 에러 메시지 표시)
+                setEcommerceMenu([]);
+            } finally {
+                setIsLoading(false); // 로딩 끝
+            }
+        };
+
+        fetchMenuData();
+    }, []); //두 번째 인자에 빈 배열([])을 넣으면 컴포넌트 로드 시 한 번만 실행
 
     const [hoveredIndex, setHoveredIndex] = useState(null);
     const [hoverTimeout, setHoverTimeout] = useState(null);
@@ -207,6 +236,93 @@ function SideMenu({ onClose }) {
         }
     };
 
+    const renderMenuItems = (items, depth = 0) => {
+        if (!Array.isArray(items) || items.length === 0) {
+            return null;
+        }
+
+        return items.map((item, index) => {
+            const key = `${depth}-${index}-${item.title}`;
+            const hasChildren = Array.isArray(item.subMenu) && item.subMenu.length > 0;
+            const titleContent = item.link ? (
+                <Link
+                    to={item.link}
+                    className={depth === 0 ? 'sub-menu-column-title-link' : 'sub-menu-item-link'}
+                >
+                    {depth === 0 ? (
+                        <h3 className="sub-menu-column-title">{item.title}</h3>
+                    ) : (
+                        item.title
+                    )}
+                </Link>
+            ) : depth === 0 ? (
+                <h3 className="sub-menu-column-title">{item.title}</h3>
+            ) : (
+                <span className="sub-menu-nested-title-text">{item.title}</span>
+            );
+
+            if (depth === 0) { //2depth 그림
+                return (
+                    <div className="sub-menu-column" key={key}>
+                        <div className="sub-menu-column-header">
+                            {titleContent}
+                            {hasChildren && <div className="sub-menu-column-divider"></div>}
+                        </div>
+                        <div className="sub-menu-column-list">
+                            {hasChildren ? ( //하위 메뉴가 있는 경우
+                                renderMenuItems(item.subMenu, depth + 1)
+                            ) : (
+                                item.link && ( //하위 메뉴가 없으면
+                                    <Link
+                                        to={item.link}
+                                        className="sub-menu-item-link"
+                                    >
+                                        {item.title}
+                                    </Link>
+                                )
+                            )}
+                        </div>
+                    </div>
+                );
+            }
+
+            if (hasChildren) { //3depth 그림
+                return (
+                    <div className="sub-menu-nested" key={key}>
+                        <div className="sub-menu-nested-title">
+                            {titleContent}
+                        </div>
+                        <div className="sub-menu-nested-list">
+                            {renderMenuItems(item.subMenu, depth + 1)}
+                        </div>
+                    </div>
+                );
+            }
+
+            return ( //더이상 하위 메뉴가 없으면
+                <Link
+                    key={key}
+                    to={item.link || '#'}
+                    className="sub-menu-item-link"
+                >
+                    {item.title}
+                </Link>
+            );
+        });
+    };
+
+    if (isLoading) {
+        return (
+            <div className="side-menu-wrapper">
+                <aside className="side-menu">
+                    <div className="side-menu-container loading-state">
+                        <p>메뉴 데이터를 불러오는 중...</p>
+                    </div>
+                </aside>
+            </div>
+        );
+    }
+
     return (
         <div className="side-menu-wrapper">
             <aside className="side-menu">
@@ -214,7 +330,7 @@ function SideMenu({ onClose }) {
                     className="side-menu-container"
                     onMouseLeave={handleMouseLeave}
                 >
-                    {/* 왼쪽 초록색 사이드바 - 1depth */}
+                    {/* 왼쪽 사이드바 - 1depth */}
                     <nav className="side-menu-nav">
                         {ecommerceMenu.map((firstItem, firstIndex) => (
                             <div 
@@ -241,34 +357,7 @@ function SideMenu({ onClose }) {
                             onMouseEnter={handleSubMenuMouseEnter}
                         >
                             <div className="sub-menu-columns-wrapper">
-                                {ecommerceMenu[hoveredIndex].subMenu.map((secondItem, secondIndex) => (
-                                    <div className="sub-menu-column" key={secondIndex}>
-                                        <div className="sub-menu-column-header">
-                                            {secondItem.link ? (
-                                                <Link 
-                                                    to={secondItem.link} 
-                                                    className="sub-menu-column-title-link"
-                                                >
-                                                    <h3 className="sub-menu-column-title">{secondItem.title}</h3>
-                                                </Link>
-                                            ) : (
-                                                <h3 className="sub-menu-column-title">{secondItem.title}</h3>
-                                            )}
-                                            <div className="sub-menu-column-divider"></div>
-                                        </div>
-                                        <div className="sub-menu-column-list">
-                                            {secondItem.subMenu && secondItem.subMenu.map((thirdItem, thirdIndex) => (
-                                                <Link 
-                                                    key={thirdIndex}
-                                                    to={thirdItem.link || '#'} 
-                                                    className="sub-menu-item-link"
-                                                >
-                                                    {thirdItem.title}
-                                                </Link>
-                                            ))}
-                                        </div>
-                                    </div>
-                                ))}
+                                {renderMenuItems(ecommerceMenu[hoveredIndex].subMenu)}
                             </div>
                             <div className="sub-menu-footer">
                                 <a href="#" className="footer-link">바로가기 &gt;</a>

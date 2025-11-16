@@ -188,6 +188,34 @@
     color: #1e40af;
 }
 
+.sub-menu-nested {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sub-menu-nested-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.sub-menu-nested-title .sub-menu-item-link {
+    padding: 0;
+}
+
+.sub-menu-nested-title-text {
+    display: block;
+    color: #1f2937;
+}
+
+.sub-menu-nested-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding-left: 4px;
+}
+
 /* 푸터 링크 */
 .sub-menu-content-panel {
     display: flex; 
