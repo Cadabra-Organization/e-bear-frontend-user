@@ -47,7 +47,7 @@ function OrderItem({ orderProducts }) {
                             <p className="delivery-status">{item.deliveryStatus}</p>
                         </div>
                         <div className="order-list-button-area">
-                            <button className="order-btn" onClick={() => setPayInfoPopupOpen(item)}>결제정보</button>
+                            <button className="order-btn" onClick={() => setPayInfoPopupOpen(item)}>결제 정보</button>
                             {item.deliveryStatus === "배송완료" && (
                                 <button className="order-btn" onClick={() => setReviewPopupOpen(true)}>리뷰 작성</button>
                             )}

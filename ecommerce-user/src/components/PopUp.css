@@ -10,6 +10,19 @@
     justify-content: center;
     align-items: center;
     z-index: 2000;
+    
+    /* ▼▼▼ 이 3줄을 추가하세요 ▼▼▼ */
+    
+    /* 1. 팝업이 화면보다 크면 스크롤이 생기도록 설정 */
+    overflow: auto;
+    
+    /* 2. 화면이 꽉 찰 때 팝업이 가장자리에 붙지 않도록 여백 추가 */
+    padding: 20px;
+    
+    /* 3. 패딩 계산을 포함시킵니다. */
+    box-sizing: border-box;
+
+    /* --- 기존 애니메이션 스타일 (그대로 둡니다) --- */
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0s 0.3s;
@@ -26,7 +39,20 @@
     padding: 30px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     text-align: center;
-    width: 90%;
+    
+    /* ▼▼▼ 이 3줄을 수정/추가하세요 ▼▼▼ */
+    
+    /* 1. (가장 중요) 90% 또는 35% 대신 고정된 px 값으로 변경 */
+    width: 450px;  /* 예시: 450px (원하는 크기로 조절) */
+
+    /* 2. (중요) 배경(flex) 안에서 팝업이 찌그러지는 것을 방지 */
+    flex-shrink: 0;
+
+    /* 3. 패딩 등을 포함하고, 최대 너비는 화면을 넘지 않게 설정 */
+    max-width: 100%; 
+    box-sizing: border-box;
+
+    /* --- 기존 애니메이션 스타일 (그대로 둡니다) --- */
     transform: translateY(20px) scale(0.95);
     opacity: 0;
     transition: transform 0.3s ease, opacity 0.3s ease;
