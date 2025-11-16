@@ -33,12 +33,12 @@ const MainPage = () => {
     const mainBannerList = [
         {
             name: "mainBanner1",
-            image: '/images/mainBanner1.png',
+            image: 'https://ad-img.gmarket.com/ADS/Contents_/2025_11_07_01_50_10/63ca469856fa4832.JPG',
             description: "",
         },
         {
             name: "mainBanner2",
-            image: '/images/mainBanner1.png',
+            image: 'https://ad-img.gmarket.com/ADS/Contents_/2025_11_10_05_02_41/22c9074a6a81464e.JPG',
             description: "",
         },
     ];
@@ -56,20 +56,21 @@ const MainPage = () => {
             <Navigation navigationMenu={navigationMenu} />
 
             <Slider {...settings}>
-            {mainBannerList.map(item => 
-                <div className="image-container">
-                    <img src={item.image} alt={item.name}/>
-                </div>
-            )}
+                {mainBannerList.map(item => 
+                    <div className="image-container">
+                        <img src={item.image} alt={item.name}/>
+                    </div>
+                )}
             </Slider>
 
             <div className="product-container">
                 <div className="sale-container">
-                    <span>오늘의 특가</span>
-
+                    <span className="title-font">오늘의 특가</span>
+                    <div>
+                    </div>
                 </div>
                 <div className="hot-container">
-                    <span>가장 많이 팔리는 물품</span>
+                    <span className="title-font">가장 많이 팔리는 물품</span>
 
                 </div>
             </div>

@@ -4,10 +4,11 @@
 
 .product-container {
     height: 1020px;
+    padding: 10px 120px;
 }
 
 .sale-container {
-    
+
 }
 
 .member-boon-container {
@@ -16,4 +17,15 @@
 
 .review-container {
     height: 550px;
+}
+
+.image-container img {
+    width: 100%; 
+    height: 100%;
+    object-fit: cover;
+}
+
+.title-font {
+    font-size: 32px;
+    font-weight: 600;
 }
