@@ -275,15 +275,140 @@
 
 /* 반응형 디자인 */
 @media (max-width: 768px) {
+    /* 1. 메뉴 래퍼 (배경 오버레이 역할) */
+    .side-menu-wrapper {
+        position: fixed; /* 화면 고정 */
+        top: 0;
+        left: 0;
+        transform: none;
+        width: 100%;
+        max-width: none;
+        height: 100%;
+        padding: 0;
+        z-index: 1000;
+        /* 메뉴가 닫혔을 때는 이 래퍼를 숨겨야 합니다. (JS로 제어) */
+        background-color: rgba(0, 0, 0, 0.5); /* 오버레이 배경 */
+    }
+
+    /* 2. 사이드 메뉴 (메뉴 박스) */
+    .side-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 300px; /* 메뉴 너비 지정 (예시: 300px) */
+        max-width: 80vw;
+        height: 100vh; /* 화면 높이 가득 채우기 */
+        border-radius: 0;
+        transform: translateX(0); /* 기본 상태는 열린 상태 */
+        transition: transform 0.3s ease-out; 
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* 3. 메뉴 컨테이너 (1, 2, 3depth를 담는 요소) */
+    .side-menu-container {
+        flex-direction: row; /* 1, 2depth를 나란히 배치 유지 (겹치게 하기 위함) */
+        min-height: 100%;
+        max-height: 100%;
+        overflow: hidden; /* 스크롤은 nav와 panel에서 개별적으로 처리 */
+    }
+
+    /* 4. 왼쪽 사이드바 (1depth) */
     .side-menu-nav {
-        width: 240px;
+        width: 100%; /* 1단계 메뉴가 컨테이너 너비를 차지 */
+        min-width: 100%;
+        max-height: 100vh;
+        border-right: none;
+        overflow-y: auto;
+        flex-shrink: 0;
     }
     
-    .side-menu-wrapper {
-        padding: 0 8px;
+    /* 5. 오른쪽 흰색 패널 (2depth, 3depth 멀티 컬럼) */
+    .sub-menu-content-panel {
+        /* 1단계 메뉴와 겹쳐서 보이도록 설정 */
+        position: absolute;
+        top: 0;
+        left: 100%; 
+        width: 100%;
+        min-height: 100%;
+        max-height: 100vh;
+        padding: 20px 16px;
+        z-index: 2; /* 1단계 메뉴보다 위에 배치 */
+        background-color: #ffffff;
+        transition: left 0.3s ease-out; /* 슬라이드 효과 */
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+        
+        /* 컬럼 레이아웃 변경 */
+        flex-direction: column;
+        flex-wrap: nowrap;
+        gap: 20px;
+        align-content: flex-start;
+        overflow-y: auto;
+    }
+
+    .sub-menu-content-panel.active-panel {
+        left: 0;
+    }
+
+    /* 뒤로 가기 버튼 */
+    .sub-menu-back-button {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 5px;
+        background-color: #ffffff;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        color: #1f2937;
+        transition: background-color 0.2s;
+    }
+
+    .sub-menu-back-button:hover {
+        background-color: #ffffff;
+    }
+
+    .sub-menu-back-button .back-icon {
+        width: 16px;
+        height: 16px;
+        color: #6b7280;
+    }
+
+    /* 6. 내부 요소 재조정 */
+    .sub-menu-columns-wrapper {
+        flex-direction: column; /* 컬럼을 세로로 쌓기 */
+        gap: 24px;
+        padding-bottom: 20px;
+        /* width: 100%; (자동) */
     }
 
     .sub-menu-column {
-        min-width: 150px;
+        min-width: 100%;
+        max-width: 100%;
+    }
+    
+    .sub-menu-column-header {
+        margin-bottom: 8px;
+    }
+
+    .sub-menu-column-title {
+        font-size: 16px; 
+    }
+    
+    .sub-menu-footer {
+        flex-direction: column; /* 푸터 링크를 세로로 배치 */
+        gap: 10px;
+        padding-top: 16px;
+        margin-top: 16px;
+    }
+
+    /* 기타 폰트 크기 조정 */
+    .menu-row {
+        padding: 14px 16px;
+        font-size: 14px;
+    }
+    
+    .sub-menu-item-link,
+    .footer-link {
+        font-size: 14px;
     }
 }
