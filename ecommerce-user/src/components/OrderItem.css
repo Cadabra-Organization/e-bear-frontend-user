@@ -7,6 +7,7 @@
     padding: 150px 0;
     color: #656565;
     font-size: 30px;
+    font-weight: 300;
 }
 
 .order-list-content {
@@ -31,14 +32,27 @@
 
 .order-date {
     font-size: 24px;
-    font-weight: 700;
+    font-weight: 500;
     margin-bottom: 8px;
+    margin-top: 6px;
     color: #000000;
+}
+
+.recipent-info {
+    display: flex;
+    gap: 10px;
 }
 
 .recipient {
     color: #000000;
     font-size: 15px;
+    font-weight: 300;
+}
+
+.recipient-name {
+    color: #000000;
+    font-size: 15px;
+    font-weight: 400;
 }
 
 .order-list-product-area,
@@ -57,6 +71,10 @@
 
 .order-list-product-area {
     grid-area: prod;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 330px;
 }
 
 .order-list-status-area {
@@ -64,8 +82,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width: 140px;
     text-align: center;
+    min-width: 76px;
 }
 
 .order-list-button-area {
@@ -75,12 +93,7 @@
     gap: 10px;
     justify-content: center;
     align-items: center;
-}
-
-.order-list-product-area {
-    display: flex;
-    align-items: center;
-    gap: 16px;
+    min-width: 154px;
 }
 
 .product-image {
@@ -93,7 +106,7 @@
 .product-brand {
     color: #000000;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
     margin-bottom: 4px;
 }
 
@@ -101,22 +114,24 @@
     color: #000000;
     font-size: 16px;
     margin-bottom: 6px;
+    font-weight: 400;
 }
 
 .product-quantity {
     font-size: 14px;
     color: #656565;
+    font-weight: 300;
 }
 
 .product-price {
     font-size: 16px;
     color: #000000;
-    font-weight: 700;
+    font-weight: 600;
     margin-top: 6px;
 }
 
 .delivery-status {
-    font-weight: 700;
+    font-weight: 600;
     font-size: 18px;
     color: #000000;
     line-height: 1.4;
@@ -124,16 +139,19 @@
     white-space: normal;
 }
 
-.order-btn {
+.review-btn,
+.pay-btn {
     background: #D6D9E8;
     border: none;
-    padding: 10px 34px;
+    padding: 10px 20%;
     border-radius: 8px;
     cursor: pointer;
     font-size: 18px;
+    font-weight: 400;
 }
 
-.order-btn:hover {
+.review-btn:hover,
+.pay-btn:hover {
     background: #d6dbf4;
 }
 
@@ -167,4 +185,123 @@
 
 .order-list .MuiPaginationItem-root:hover {
     background-color: #f0f0f0;
+}
+
+/* 모바일 */
+@media (max-width: 768px) {
+    .order-list-content {
+        display: block;
+    }
+
+    .order-list .MuiPagination-ul {
+        gap: 4px;
+    }
+
+    .order-mobile-layout {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .delivery-status-mobile {
+        display: block;
+        background: #D6D9E8;
+        width: 100%;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 10px;
+        color: #153085;
+        font-size: 18px;
+        font-weight: 500;
+    }
+
+    .order-product-mobile {
+        display: grid;
+        grid-template-columns: 156px minmax(0, 1fr);
+        grid-template-areas:
+            "img pay"
+            "img info"
+            "img review";
+        column-gap: 4px;
+        row-gap: 2px;
+        align-items: start;
+        width: 100%;
+    }
+
+    .order-product-mobile .product-image {
+        grid-area: img;
+        align-self: center;
+        margin-left: 4px;
+    }
+
+    .order-product-mobile .order-product-info {
+        grid-area: info;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .pay-btn-area {
+        display: flex;
+        grid-area: pay;
+        justify-self: end;
+        align-self: start;
+    }
+
+    .pay-btn-mobile {
+        background: transparent;
+        border: none;
+        padding: 0;
+        font-size: 14px;
+        color: #000000;
+        cursor: pointer;
+    }
+
+    .pay-chev-icon {
+        width: 20px;
+        height: 20px;
+        color: #000000;
+    }
+
+    .pay-btn-mobile:hover,
+    .pay-chev-icon:hover {
+        color: #1e40af;
+    }
+
+    .review-btn-mobile {
+        grid-area: review;
+        justify-self: end;
+        background: #EBEBEB;
+        border: none;
+        padding: 10px 24px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: 500;
+        width: 120px;
+    }
+
+    .review-btn-mobile:hover {
+        background: #e3e3e3;
+    }
+
+    .order-mobile-layout .recipent-info .recipient,
+    .recipient-name {
+        margin: 2px;
+    }
+
+    .order-product-mobile .product-brand {
+        margin: 4px;
+    }
+
+    .order-product-mobile .product-name {
+        margin: 4px;
+    }
+
+    .order-product-mobile .product-quantity {
+        margin: 4px;
+    }
+
+    .order-product-mobile .product-price {
+        margin: 4px;
+    }
 }
