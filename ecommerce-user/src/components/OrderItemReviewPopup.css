@@ -1,5 +1,17 @@
 .layer-popup-content {
-    width: 35% !important;
+    background-color: #fff;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 90%;
+    transform: translateY(20px) scale(0.95);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+@media (min-width: 800px) {
+    .layer-popup-content {
+        width: 35% !important;
+    }
 }
 
 /* 팝업 제목 (추가) */
