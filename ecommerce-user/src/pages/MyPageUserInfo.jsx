@@ -91,25 +91,6 @@ const MyPageUserInfo = () => {
 
                 {/* 메인 콘텐츠 */}
                 <main id="userInfoForm" className="main-content">
-                    <input className="user-input" type="text" placeholder="아이디" />
-                    <input className="user-input" type="password" placeholder="비밀번호" />
-                    <input className="user-input" type="password" placeholder="비밀번호 확인" />
-                    <input className="user-input" type="text" placeholder="이름" />
-                    <div className="user-flex">
-                        <input className="user-input" type="email" placeholder="이메일" />
-                        <button className="user-button">인증받기</button>
-                    </div>
-                    <div className="user-flex">
-                        <input className="user-input" type="text" placeholder="인증코드" />
-                        <button className="user-button">인증받기</button>
-                    </div>
-                    <div className="user-flex">
-                        <input className="user-input" type="text" placeholder="주소" />
-                        <button className="user-button">주소찾기</button>
-                    </div>
-                    <input className="user-input" type="text" placeholder="핸드폰번호" />
-                    <button className="user-button" onClick={updateUserInfo}>수정</button>
-
                     <TextField 
                         name="userId"
                         label="아이디" 
@@ -151,8 +132,6 @@ const MyPageUserInfo = () => {
                             label="이메일" 
                             type="email"
                             variant="filled" 
-                            fullWidth
-                            margin="normal"
                             value={formData.email}
                             onChange={handleChange}/>
                         <Button variant="contained" className="user-button">인증받기</Button>
@@ -163,8 +142,6 @@ const MyPageUserInfo = () => {
                             name="authCode"
                             label="인증코드" 
                             variant="filled" 
-                            fullWidth
-                            margin="normal"
                             value={formData.authCode}
                             onChange={handleChange}/>
                         <Button variant="contained" className="user-button">인증받기</Button>
@@ -175,8 +152,6 @@ const MyPageUserInfo = () => {
                             name="address"
                             label="주소" 
                             variant="filled" 
-                            fullWidth
-                            margin="normal"
                             value={formData.address}
                             onChange={handleChange}/>
                         <Button variant="contained" className="user-button">주소찾기</Button>
@@ -190,14 +165,8 @@ const MyPageUserInfo = () => {
                         margin="normal"
                         value={formData.phone}
                         onChange={handleChange}/>
-                    
-                    <Button 
-                        variant="contained" 
-                        size="large" 
-                        fullWidth 
-                        onClick={updateUserInfo}>
-                        수정
-                    </Button>
+
+                    <Button variant="contained" size="large" className="user-button" fullWidth onClick={updateUserInfo}>수정</Button>
                 </main>
             </div>
         </>
