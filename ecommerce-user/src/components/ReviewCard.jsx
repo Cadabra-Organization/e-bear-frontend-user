@@ -7,9 +7,10 @@ const ReviewCard = ({rate, title, context, name, date}) => {
         <div className="border-line">
             <div>
                 <Rating name="half-rating" defaultValue={rate} precision={0.5} readOnly/>
+                <h2>{title}</h2>
+                <h4>{context}</h4>
             </div>
-            <h2>{title}</h2>
-            <h4>{context}</h4>
+            
             <div className="profile-sector">
                 <AvatarCustom className="profile-avatar h-5 w-5">
                     <AvatarFallback className="avatar-fallback">

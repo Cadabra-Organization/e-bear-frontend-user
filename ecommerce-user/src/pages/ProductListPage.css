@@ -1,4 +1,5 @@
 /* eBEAR 스타일 */
+
 .ebear-container {
     min-height: 100vh;
     background-color: white;
@@ -16,6 +17,10 @@
 .main-content {
     flex: 1;
     padding: 20px 30px;
+}
+
+.main-container {
+    min-width: 768px;
 }
 
 .page-title {

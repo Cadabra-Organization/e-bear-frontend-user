@@ -306,10 +306,6 @@
         padding: 0px;
     }
 
-    .border-line {
-        width: 100%;
-    }
-
     .l_product_buy_result {
         position: fixed;
         bottom: 0;
@@ -372,10 +368,6 @@
     .product-info-category,
     .product-info-content {
         padding: 0px;
-    }
-
-    .border-line {
-        width: 100%;
     }
 
     .l_product_buy_result {

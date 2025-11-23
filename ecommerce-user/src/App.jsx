@@ -16,6 +16,7 @@ import Signup from "./pages/Signup"
 import SignupTermsAgreement from "./pages/SignupTermsAgreement"
 import ProductListPage from "./pages/ProductListPage"
 import MyPageCurrentView from "./pages/MyPageCurrentView"
+import ProductViewPage from "./pages/ProductViewPage"
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         <Route path="/signuptermsagreement" element={<SignupTermsAgreement />} />
         <Route path="/product-list" element={<ProductListPage />} />
         <Route path="/mypage/currentview" element={<MyPageCurrentView />} />
+        <Route path="/product/view/:id" element={<ProductViewPage />} />
       </Routes>
      <Footer />
    </div>
