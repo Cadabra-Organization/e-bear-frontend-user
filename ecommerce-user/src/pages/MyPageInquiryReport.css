@@ -1,77 +1,4 @@
-/* eBEAR 스타일 */
-.ebear-container {
-    min-height: 100vh;
-    background-color: white;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
-  }
-  
-  /* 메인 레이아웃 */
-  .main-layout {
-    max-width: 1280px;
-    margin: 0 auto;
-    display: flex;
-  }
-  
-  .nav-item-collapsible {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .collapsible-trigger {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: 8px 0;
-    color: #1f2937;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: inherit;
-  }
-  
-  .collapsible-trigger:hover {
-    color: #1e40af;
-  }
-  
-  .chevron {
-    transition: transform 0.2s;
-  }
-  
-  .chevron.rotated {
-    transform: rotate(180deg);
-  }
-  
-  .collapsible-content {
-    padding-left: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  
-  .sub-nav-item {
-    padding: 4px 0;
-    font-size: 14px;
-    color: #6b7280;
-    cursor: pointer;
-  }
-  
-  .sub-nav-item:hover {
-    color: #1e40af;
-  }
-  
-  .sub-nav-item.active {
-    color: #1e40af;
-    font-weight: 500;
-  }
-  
-  /* 메인 콘텐츠 */
-  .main-content {
-    flex: 1;
-    padding: 20px 30px;
-  }
-  
-  .page-title {
+.page-title {
     border-bottom: 2px solid #1e40af;
     padding-bottom: 8px;
     margin-bottom: 24px;
@@ -79,9 +6,9 @@
     display: flex;
     justify-content: center;
     margin: 0 auto;
-  }
-  
-  .page-title h1 {
+}
+
+.page-title h1 {
     display: flex;
     justify-content: center;
     padding: 15px 0px;
@@ -89,28 +16,21 @@
     font-weight: 500;
     color: #1f2937;
     margin: 0;
-  }
-  
-  /* 문의 목록 */
-  .inquiry-list {
+}
+
+.main-layout {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px 30px;
+}
+
+.inquiry-list {
     display: flex;
     flex-direction: column;
     gap: 20px;
-  }
-  
-
-  .inquiry-description {
-    font-size: 14px;
-    color: #6b7280;
-    margin: 0 0 12px 0;
-    line-height: 1.5;
-  }
-  
-  
-  /* 반응형 디자인 */
-  @media (max-width: 768px) {
-    .main-layout {
-      flex-direction: column;
-    }
-  }
-  
+}

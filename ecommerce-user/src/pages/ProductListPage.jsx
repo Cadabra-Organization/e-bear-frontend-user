@@ -1,138 +1,125 @@
-import { useState } from "react"
-import "./ProductListPage.css"
-import Headers from "../components/Headers"
-import Footer from "../components/Footer"
 import Navigation from "../components/Navigation"
+import Product from "../components/Product";
 import SideNavigation from "../components/SideNavigation"
+import "./ProductListPage.css"
 
 const ProductListPage = () => {
-    const formatPrice = (price) => price.toLocaleString('ko-KR');
-
+    
     let sideMenu = [
         {
-            title: "회원정보 조회 및 수정",
-            link: "/my-page/info",
+            title: "전체",
+            link: "/product/all",
+        },
+        {
+            title: "상의",
+            link: "/product/top",
             subMenu: [
                 {
-                    title: "회원정보 조회 및 수정",
-                    link: "/my-page/info",
-                }
+                    title: "전체",
+                    link: "/product/top/all",
+                },{
+                    title: "티셔츠",
+                    link: "/product/top/t-shirt",
+                },{
+                    title: "블라우스/셔츠",
+                    link: "/product/top/shirt",
+                },{
+                    title: "니트/가디건",
+                    link: "/product/top/cardigan",
+                },
             ]
         },
         {
-            title: "주문내역",
-            link: "/my-page/order",
+            title: "하의",
+            link: "/product/bottom",
         },
         {
-            title: "문의내역",
-            link: "/my-page/inquiry",
+            title: "원피스",
+            link: "/product/onepiece",
         },
         {
-            title: "고객문의",
-            link: "/my-page/inquiry",
-        },
-        {
-            title: "신고문의",
-            link: "/my-page/inquiry",
-        },
-        {
-            title: "찜목록",
-            link: "/my-page/inquiry",
-        },
-        {
-            title: "최근 본 상품",
-            link: "/my-page/inquiry",
-        },
-        {
-            title: "쿠폰",
-            link: "/my-page/inquiry",
-        },
-        {
-            title: "회원탈퇴",
-            link: "/my-page/inquiry",
+            title: "티셔츠",
+            link: "/product/t-shirt",
         }
-    ]
+    ];
 
     let navigationMenu = [
         {
             title: "Hot",
-            link: "/my-page/info",
+            link: "/product/info",
         },
         {
             title: "세일",
-            link: "/my-page/order",
+            link: "/product/order",
         },
         {
             title: "라이브",
-            link: "/my-page/inquiry",
+            link: "/product/inquiry",
         },
         {
             title: "이벤트",
-            link: "/my-page/inquiry",
+            link: "/product/inquiry",
         },
         {
             title: "회원혜택",
-            link: "/my-page/inquiry",
+            link: "/product/inquiry",
         }
-    ]
-
-    const products = [
-        {
-            id: 1,
-            imageUrl: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=100&h=100&fit=crop&crop=center",
-            brand: '유닉스',
-            name: '오브제 헤어 드라이기 UN-B1919N_1',
-            price: 89900,
-            salePrice: null,
-            rating: null,
-        },
-        {
-            id: 2,
-            imageUrl: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=100&h=100&fit=crop&crop=center",
-            brand: '유닉스',
-            name: '오브제 헤어 드라이기 UN-B1919N_2',
-            price: 89900,
-            salePrice: null,
-            rating: null,
-        },
-        {
-            id: 3,
-            imageUrl: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=100&h=100&fit=crop&crop=center",
-            brand: '유닉스',
-            name: '오브제 헤어 드라이기 UN-B1919_3',
-            price: 89900,
-            salePrice: 71920,
-            rating: null,
-        },
-        {
-            id: 4,
-            imageUrl: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=100&h=100&fit=crop&crop=center",
-            brand: '유닉스',
-            name: '오브제 헤어 드라이기 UN-B1919N_4',
-            price: 89900,
-            salePrice: null,
-            rating: 5.0,
-            reviewCount: 3,
-        },
     ];
+
+    const productData = {
+        category : '여성의류',
+        products : [
+            {
+                id: 1,
+                imageUrl: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=100&h=100&fit=crop&crop=center",
+                brand: '유닉스',
+                name: '오브제 헤어 드라이기 UN-B1919N_1',
+                price: 89900,
+                salePercentage : null,
+                rating: null,
+            },
+            {
+                id: 2,
+                imageUrl: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=100&h=100&fit=crop&crop=center",
+                brand: '유닉스',
+                name: '오브제 헤어 드라이기 UN-B1919N_2',
+                price: 89900,
+                salePercentage : null,
+                rating: null,
+            },
+            {
+                id: 3,
+                imageUrl: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=100&h=100&fit=crop&crop=center",
+                brand: '유닉스',
+                name: '오브제 헤어 드라이기 UN-B1919_3',
+                price: 89900,
+                salePercentage : 20,
+                rating: null,
+            },
+            {
+                id: 4,
+                imageUrl: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=100&h=100&fit=crop&crop=center",
+                brand: '유닉스',
+                name: '오브제 헤어 드라이기 UN-B1919N_4',
+                price: 89900,
+                salePercentage : null,
+                rating: 5.0,
+                reviewCount: 3,
+            },
+        ]
+    }
 
     return (
         <div className="ebear-container">
-            {/* 헤더 */}
-            <Headers />
-
-            {/* 네비게이션 */}
             <Navigation navigationMenu={navigationMenu} />
 
             <div className="page-title">
-                <h1>여성의류</h1>
+                <h1>{productData.category}</h1>
             </div>
 
             <div className="main-layout">
-                {/* 사이드 네비게이션 메뉴 */}
-                <SideNavigation sideMenu={sideMenu} />
+                <SideNavigation sideMenu={sideMenu} type={false} />
 
-                {/* 메인 콘텐츠 */}
                 <main className="main-content">
                     <div className="product-select">
                         <select>
@@ -144,35 +131,8 @@ const ProductListPage = () => {
                     </div>
 
                     <div className="product-grid">
-                        {products.map(product => (
-                            <div key={product.id} className="product-card">
-                                <div className="product-image-container">
-                                    <img src={product.imageUrl || 'https://via.placeholder.com/300'} alt={product.name} />
-                                </div>
-                                <div className="product-details">
-                                    <span className="product-brand">{product.brand}</span>
-                                    <p className="product-name">{product.name}</p>
-                                    
-                                    {product.salePrice ? (
-                                        <div className="product-price">
-                                            <span className="original-price">{formatPrice(product.price)}원</span>
-                                            <span className="sale-info">
-                                                <span className="sale-percentage">20%</span>
-                                                <span className="sale-price">{formatPrice(product.salePrice)}원</span>
-                                            </span>
-                                        </div>
-                                    ) : product.rating ? (
-                                        <div className="product-price-rating">
-                                            <span className="normal-price">{formatPrice(product.price)}원</span>
-                                            <span className="product-rating">★ {product.rating.toFixed(1)} ({product.reviewCount})</span>
-                                        </div>
-                                    ) : (
-                                        <div className="product-price">
-                                            <span className="normal-price">{formatPrice(product.price)}원</span>
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
+                        {productData.products.map(product => (
+                            <Product product={product} />
                         ))}
                     </div>
 
@@ -181,8 +141,6 @@ const ProductListPage = () => {
                     </div>
                 </main>
             </div>
-            {/* 푸터 */}
-            <Footer />
         </div>
     )
 

@@ -1,108 +1,121 @@
-/* 상품문의 스타일 */
-
 .inquiry-item {
-border-bottom: 1px solid #e5e7eb;
-padding-bottom: 20px;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 40px;
 }
 
 .inquiry-item:last-child {
-border-bottom: none;
-}
-
-.product-image {
-width: 80px;
-height: 80px;
-object-fit: cover;
-border-radius: 4px;
-}
-
-.inquiry-details {
-flex: 1;
-}
-
-.product-info {
-margin-bottom: 8px;
-}
-
-.brand-name {
-font-weight: 500;
-color: #1f2937;
-margin: 0 0 4px 0;
-}
-
-.product-name {
-font-size: 14px;
-color: #6b7280;
-margin: 0 0 8px 0;
-}
-
-.inquiry-title {
-font-weight: 500;
-color: #1f2937;
-margin: 0 0 8px 0;
-}
-
-.inquiry-date {
-font-size: 12px;
-color: #9ca3af;
-margin: 0;
-}
-
-.inquiry-meta {
-display: flex;
-align-items: center;
-gap: 8px;
-margin-bottom: 12px;
+    border-bottom: none;
 }
 
 .inquiry-content {
-display: flex;
-gap: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+}
+
+.product-area {
+    display: flex;
+    gap: 26px
+}
+
+.product-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.inqury-product-info {
+    margin-top: 26px;
+}
+
+.brand-name {
+    font-weight: 500;
+    font-size: 16px;
+    color: #1f2937;
+    margin: 0 0 4px 0;
+}
+
+.product-name {
+    font-size: 16px;
+    font-weight: 400;
+    color: #6b7280;
+    margin: 0 0 8px 0;
+}
+
+.inquiry-details {
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+}
+
+.inquiry-title {
+    font-weight: 600;
+    font-size: 16px;
+    color: #000000;
+    margin: 0;
+}
+
+.inquiry-body-content {
+    font-weight: 400;
+    font-size: 16px;
+    color: #000000;
+    margin: 0;
+}
+
+.inquiry-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.inquiry-date {
+    font-size: 16px;
+    color: #656565;
+    margin: 0;
 }
 
 .separator {
-font-size: 12px;
-color: #9ca3af;
-}
-
-.response-section {
-background-color: #f9fafb;
-padding: 16px;
-border-radius: 8px;
-margin-top: 12px;
-}
-
-.response-greeting {
-font-size: 14px;
-color: #1f2937;
-margin: 0 0 8px 0;
-}
-
-.response-content {
-font-size: 14px;
-color: #6b7280;
-margin: 0 0 8px 0;
-line-height: 1.5;
-}
-
-/* 답변 섹션 */
-.response-closing {
-font-size: 14px;
-color: #6b7280;
-margin: 0;
+    font-size: 18px;
+    font-weight: 300;
+    color: #000000;
 }
 
 /* 버튼 */
 .view-response-btn {
-font-size: 12px;
-color: #1e40af;
-text-decoration: underline;
-background: none;
-border: none;
-cursor: pointer;
-padding: 0;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    color: #000000;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center
 }
 
-.view-response-btn:hover {
-color: #1e3a8a;
+.nav-icon {
+    width: 44px;
+    height: 26px;
+    display: inline-block;
+    color: #0B0B0B;
+    opacity: 0.9;
+    padding: 0 16px 0 0;
+}
+
+.response-section {
+    background-color: #EBEBEB;
+    padding: 16px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .main-layout {
+        flex-direction: column;
+    }
 }

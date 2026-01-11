@@ -1,0 +1,179 @@
+.layer-popup-content {
+    background-color: #fff;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 90%;
+    transform: translateY(20px) scale(0.95);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+@media (min-width: 800px) {
+    .layer-popup-content {
+        width: 35% !important;
+    }
+}
+
+/* 팝업 제목 (추가) */
+.popup-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* 닫기 버튼 (추가) */
+.popup-close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #999;
+    transition: color 0.2s;
+}
+.popup-close-button:hover {
+    color: #333;
+}
+
+.inquiry-popup-guide  {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.inquiry-popup-guide p {
+    font-size: 13px; /* 폰트 크기 조정 */
+    margin: 0;
+    color: #666; /* 폰트 색상 조정 */
+    display: flex;
+    align-items: flex-start;
+}
+
+/* --- 별점 영역 스타일 추가 --- */
+.rating-area {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.rating-text {
+    font-size: 14px;
+    color: #666;
+    margin-left: 10px;
+}
+
+.star-rating-container {
+    display: flex;
+    font-size: 24px; /* 별 크기 */
+    cursor: pointer;
+    line-height: 1; 
+    user-select: none;
+}
+
+/* 0.5 별점 구현을 위한 컨테이너 */
+.star-half-container {
+    position: relative;
+    display: inline-block;
+    line-height: 1;
+    margin: 0; 
+    padding: 0;
+}
+
+.star-empty, .star-filled-overlay {
+    line-height: 1; 
+    height: 100%;
+}
+
+/* 빈 별 (회색) */
+.star-empty {
+    color: #ccc; 
+    z-index: 1;
+}
+
+/* 채워진 별 (노란색 오버레이) */
+.star-filled-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden; /* 핵심: width로 채워지는 영역만 표시 */
+    color: #FFC107; /* 채워진 별 색상 */
+    z-index: 2;
+    transition: width 0.1s; /* 부드러운 전환 효과 */
+}
+/* --- 별점 영역 스타일 추가 끝 --- */
+
+
+.inquiry-write-area {
+    margin-bottom: 12px;
+}
+
+.inquiry-message {
+    width: 100%;
+    height: 150px; /* 높이 조정 */
+    border: 1px solid #D4D4D4;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 14px;
+    resize: none;
+}
+
+.check-submit-area {
+    display: flex;
+    flex-direction: row; /* 좌우 정렬로 변경 */
+    justify-content: space-between; /* 양쪽 끝 정렬 */
+    align-items: center;
+    padding-top: 10px;
+}
+
+.inquiry-private-check {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 0; /* 마진 조정 */
+}
+
+.inquiry-checkbox {
+    width: 16px;
+    height: 16px;
+    border: 1px solid #D4D4D4;
+    border-radius: 3px;
+    margin-right: 6px;
+    cursor: pointer;
+}
+
+.inquiry-checkbox-text {
+    font-size: 14px; /* 폰트 크기 조정 */
+    color: #333;
+}
+
+.submit-button {
+    border: 1px solid #2a3d78; /* 색상 조정 */
+    border-radius: 4px; /* 둥근 정도 조정 */
+    width: 120px; /* 너비 조정 */
+    height: 40px;
+    background-color: #2a3d78; /* 색상 조정 */
+    color: #FFFFFF;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 10px 20px;
+    transition: background-color 0.2s, opacity 0.2s;
+}
+
+.submit-button:hover:not(:disabled) {
+    background-color: #1e2c5e;
+}
+
+.submit-button:disabled {
+    cursor: not-allowed;
+    background-color: #ccc; /* 색상 조정 */
+    border: 1px solid #ccc; /* 색상 조정 */
+    opacity: 0.7;
+}
