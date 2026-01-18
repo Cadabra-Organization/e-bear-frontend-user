@@ -1,8 +1,12 @@
 import "./MyPageWishlist.css"
 import SideNavigation from "../components/SideNavigation"
 import Wishlist from "../components/Wishlist"
+import MyPageHeader from "../components/MyPageHeader";
+import { useState } from "react";
 
 const MyPageWishlist = () => {
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    
     let sideMenu = [
         {
             title: "회원정보 조회 및 수정",
@@ -78,13 +82,11 @@ const MyPageWishlist = () => {
 
     return (
         <div className="ebear-container">
-            <div className="page-title">
-                <h1>찜목록</h1>
-            </div>
+            <MyPageHeader title={"찜목록"} toggleSidebar={() => setIsSidebarOpen(true)}/>
 
             <div className="main-layout">
                 {/* 사이드 네비게이션 메뉴 */}
-                <SideNavigation sideMenu={sideMenu} />
+                <SideNavigation sideMenu={sideMenu} isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)}/>
 
                 {/* 메인 콘텐츠 */}
                 <main className="main-content">

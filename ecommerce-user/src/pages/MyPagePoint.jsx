@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import "./MyPagePoint.css";
 import SideNavigation from "../components/SideNavigation";
-import Navigation from "../components/Navigation";
-import Footer from "../components/Footer";
-import Headers from "../components/Headers";
 import Point from "../components/Point";
+import MyPageHeader from "../components/MyPageHeader";
 
 const MyPagePoint = () => {
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
     let sideMenu = [
         {
             title: "회원정보 조회 및 수정",
@@ -58,13 +58,11 @@ const MyPagePoint = () => {
 
     return ( 
         <div>
-            <div className="page-title">
-                <h1>포인트</h1>
-            </div>
+            <MyPageHeader title={"포인트"} toggleSidebar={() => setIsSidebarOpen(true)}/>
 
             <div className="main-layout">
                 {/* 사이드 네비게이션 메뉴 */}
-                <SideNavigation sideMenu={sideMenu} />
+                <SideNavigation sideMenu={sideMenu} isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)}/>
 
                 {/* 메인 콘텐츠 */}
                 <main className="main-content">
