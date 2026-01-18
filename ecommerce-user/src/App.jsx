@@ -17,8 +17,17 @@ import SignupTermsAgreement from "./pages/SignupTermsAgreement"
 import ProductListPage from "./pages/ProductListPage"
 import MyPageCurrentView from "./pages/MyPageCurrentView"
 import ProductViewPage from "./pages/ProductViewPage"
+import { CloseIcon, MessageIcon } from "./components/CustomTag"
+import { useState } from "react"
+import Chat from "./components/Chat"
 
 function App() {
+  const [isMessageOpen, setIsMessageOpen] = useState(false);
+
+  const toggleMessage = () => {
+    setIsMessageOpen(!isMessageOpen);
+  };
+
   return (
     <div className="ebear-container">
      <Headers />
@@ -39,6 +48,12 @@ function App() {
         <Route path="/mypage/currentview" element={<MyPageCurrentView />} />
         <Route path="/product/view/:id" element={<ProductViewPage />} />
       </Routes>
+      {isMessageOpen && (
+        <Chat />
+      )}
+      <div className="message" onClick={toggleMessage}>
+        {isMessageOpen ? <CloseIcon /> : <MessageIcon />}
+      </div>
      <Footer />
    </div>
   )
