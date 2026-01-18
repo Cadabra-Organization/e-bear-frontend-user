@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import "./MyPageCupon.css";
 import Cupon from "../components/Cupon";
 import SideNavigation from "../components/SideNavigation";
-import Navigation from "../components/Navigation";
-import Footer from "../components/Footer";
-import Headers from "../components/Headers";
 import Pagination from "@mui/material/Pagination";
+import MyPageHeader from "../components/MyPageHeader";
 
 const MyPageCupon = () => {
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
     let sideMenu = [
         {
             title: "회원정보 조회 및 수정",
@@ -62,13 +62,11 @@ const MyPageCupon = () => {
 
     return ( 
         <>
-            <div className="page-title">
-                <h1>쿠폰</h1>
-            </div>
+            <MyPageHeader title={"쿠폰"} toggleSidebar={() => setIsSidebarOpen(true)}/>
 
             <div className="main-layout">
                 {/* 사이드 네비게이션 메뉴 */}
-                <SideNavigation sideMenu={sideMenu} />
+                <SideNavigation sideMenu={sideMenu} isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)}/>
 
                 {/* 메인 콘텐츠 */}
                 <main className="main-content">
