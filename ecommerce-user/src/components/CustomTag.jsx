@@ -130,3 +130,25 @@ export const DownloadIcon = ({className = ""}) => (
   <path d="M4 20h16"/>
 </svg>
 )
+
+export const MessageIcon = ({className = ""}) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style={{ width: '60%', height: '60%' }}>
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+    <line x1="8" y1="10" x2="8" y2="10" stroke-width="2.5"></line>
+    <line x1="12" y1="10" x2="12" y2="10" stroke-width="2.5"></line>
+    <line x1="16" y1="10" x2="16" y2="10" stroke-width="2.5"></line>
+  </svg>
+)
+
+export const CloseIcon = ({className = ""}) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: '50%', height: '50%' }}>
+    <line x1="18" y1="6" x2="6" y2="18"></line>
+    <line x1="6" y1="6" x2="18" y2="18"></line>
+  </svg>
+)
+
+export const SendIcon = ({closeName = ""}) => (
+  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+  </svg>
+)
