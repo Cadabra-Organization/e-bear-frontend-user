@@ -3,10 +3,15 @@ import './SideNavigation.css';
 import SideNavigationMenu from "../components/SideNavigationMenu"
 import { Avatar, AvatarFallback, UserIcon } from '../components/CustomTag';
 
-function SideNavigation({ sideMenu, type = true }) {
+function SideNavigation({ sideMenu, type = true, isOpen, onClose }) {
     return (
         <>
-            <aside className="sidebar">
+            <div 
+                className={`sidebar-overlay ${isOpen ? 'active' : ''}`} 
+                onClick={onClose} 
+            />
+
+            <aside className={`sidebar ${isOpen ? 'sidebar-open' : ''}`}>
                 {type ? (
                     <div className="user-profile-true">
                         <div className="profile-content">

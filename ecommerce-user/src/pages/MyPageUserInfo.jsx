@@ -4,8 +4,11 @@ import SideNavigation from "../components/SideNavigation";
 
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import MyPageHeader from "../components/MyPageHeader";
 
 const MyPageUserInfo = () => {
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    
     let sideMenu = [
         {
             title: "회원정보 조회 및 수정",
@@ -82,12 +85,10 @@ const MyPageUserInfo = () => {
 
     return (
         <>
-            <div className="page-title">
-                <h1>회원정보</h1>
-            </div>
+            <MyPageHeader title={"회원정보"} toggleSidebar={() => setIsSidebarOpen(true)}/>
 
             <div className="main-layout">
-                <SideNavigation sideMenu={sideMenu} />
+                <SideNavigation sideMenu={sideMenu} isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)}/>
 
                 {/* 메인 콘텐츠 */}
                 <main id="userInfoForm" className="main-content">

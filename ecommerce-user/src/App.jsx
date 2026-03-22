@@ -17,8 +17,28 @@ import SignupTermsAgreement from "./pages/SignupTermsAgreement"
 import ProductListPage from "./pages/ProductListPage"
 import MyPageCurrentView from "./pages/MyPageCurrentView"
 import ProductViewPage from "./pages/ProductViewPage"
+import CommonError from "./pages/CommonError"
+import { CloseIcon, MessageIcon } from "./components/CustomTag"
+import { useState } from "react"
+import Chat from "./components/Chat"
+import PaymentPage from "./pages/PaymentPage"
 
 function App() {
+  const [isMessageOpen, setIsMessageOpen] = useState(false);
+  const [isError, setIsError] = useState(false);
+
+  const toggleMessage = () => {
+    setIsMessageOpen(!isMessageOpen);
+  };
+
+  if (location.pathname === '/user/err') {
+    return (
+      <Routes>
+        <Route path="/err" element={<CommonError />} />
+        <Route path="*" element={<CommonError />} />
+      </Routes>
+    );
+  }
   return (
     <div className="ebear-container">
      <Headers />
@@ -38,7 +58,14 @@ function App() {
         <Route path="/product-list" element={<ProductListPage />} />
         <Route path="/mypage/currentview" element={<MyPageCurrentView />} />
         <Route path="/product/view/:id" element={<ProductViewPage />} />
+        <Route path="/payment" element={<PaymentPage />} />
       </Routes>
+      {isMessageOpen && (
+        <Chat />
+      )}
+      <div className="message" onClick={toggleMessage}>
+        {isMessageOpen ? <CloseIcon /> : <MessageIcon />}
+      </div>
      <Footer />
    </div>
   )
