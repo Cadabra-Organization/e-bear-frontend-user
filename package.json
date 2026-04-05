@@ -1,7 +1,14 @@
 {
+  "private": true,
+  "scripts": {
+    "dev": "yarn --cwd ecommerce-user dev",
+    "build": "yarn --cwd ecommerce-user build",
+    "preview": "yarn --cwd ecommerce-user preview"
+  },
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
-    "@mui/material": "^7.3.1"
+    "@mui/material": "^7.3.1",
+    "axios": "^1.13.6"
   }
 }
