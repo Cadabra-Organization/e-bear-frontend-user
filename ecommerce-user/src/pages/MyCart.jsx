@@ -1,7 +1,53 @@
 import "./MyCart.css"
-import React, { useState } from 'react';
+import SideNavigation from "../components/SideNavigation"
+import MyPageHeader from "../components/MyPageHeader";
+import { useState } from "react";
 
 const MyCart = () => {
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+    let sideMenu = [
+        {
+            title: "회원정보 조회 및 수정",
+            link: "/mypage/userinfo",
+        },
+        {
+            title: "주문내역",
+            link: "/mypage/orderlist",
+        },
+        {
+            title: "문의내역",
+            subMenu: [
+                {
+                    title: "고객문의",
+                    link: "/mypage/inquiry",
+                },
+                {
+                    title: "신고문의",
+                    link: "/mypage/inquiryreport",
+                }
+            ]
+        },
+        {
+            title: "찜목록",
+            link: "/mypage/wishlist",
+        },
+        {
+            title: "최근 본 상품",
+            link: "/mypage/currentview",
+        },
+        {
+            title: "쿠폰",
+            link: "/mypage/cupon",
+        },
+        {
+            title: "포인트",
+            link: "/mypage/point",
+        },
+        {
+            title: "회원탈퇴"
+        }
+    ];
 
     const initialItems = [
         { id: 1, brand: '유닉스', name: '오브제 헤어 드라이기 UN-B1919N', price: 41000, option: '사이즈 (M)', quantity: 1, img: 'https://myplace-phinf.pstatic.net/20240604_38/1717466827116N09KN_JPEG/IMG_2879.jpeg' },
@@ -50,103 +96,97 @@ const MyCart = () => {
     const checkedItems = items.filter((item) => item.checked);
     const totalCheckedCount = checkedItems.length; // 체크된 상품 개수
 
-    // 체크된 상품들의 (가격 * 수량) 합산
+    // 체크된 상품들의 합산
     const totalGoodsPrice = checkedItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
 
-    const shippingFee = 0; // 배송비 로직이 있다면 여기에 추가 (예: 5만원 이상 무료 등)
+    const shippingFee = 0; // 배송비 로직
     const totalDiscount = 0; // 할인 금액
     const finalPrice = totalGoodsPrice + shippingFee - totalDiscount; // 최종 결제 금액
 
     return (
-        <div className="cart-wrapper">
-            <div className="mobile-header">
-                <h2>장바구니</h2>
-            </div>
+        <>
+            <MyPageHeader title={"장바구니"} toggleSidebar={() => setIsSidebarOpen(true)} />
+            <div className="main-layout">
+                <SideNavigation sideMenu={sideMenu} isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+                <main className="main-content">
+                    <div className="cart-container">
+                        <div className="cart-list-section">
+                            <div className="list-controls">
+                                <label className="checkbox-label">
+                                    {/* 전체 선택 체크박스 연동 */}
+                                    <input
+                                        type="checkbox"
+                                        checked={isAllChecked}
+                                        onChange={handleSelectAll}
+                                    />
+                                    <span>전체 선택</span>
+                                </label>
+                                <div className="control-buttons">
+                                    <button className="btn-outline">선택 삭제</button>
+                                    <button className="btn-outline">선택 주문</button>
+                                </div>
+                            </div>
 
-            <div className="pc-header">
-                <h2>장바구니</h2>
-            </div>
+                            <ul className="cart-list">
+                                {items.map((item) => (
+                                    <li key={item.id} className="cart-item">
+                                        {/* 개별 선택 체크박스 연동 */}
+                                        <input
+                                            type="checkbox"
+                                            className="item-checkbox"
+                                            checked={item.checked}
+                                            onChange={() => handleSelectItem(item.id)}
+                                        />
+                                        <div className="item-image">
+                                            <img src={item.img} alt={item.name} />
+                                        </div>
+                                        <div className="item-details">
+                                            <p className="item-brand">{item.brand}</p>
+                                            <p className="item-name">{item.name}</p>
+                                            <p className="item-price">{item.price.toLocaleString()} 원</p>
+                                            <p className="item-option">옵션 : {item.option}</p>
+                                            <p className="item-qty-text">수량 : {item.quantity}개</p>
 
-            <div className="cart-section-title">
-                <h3>상품 목록</h3>
-            </div>
+                                            <div className="quantity-controls">
+                                                <button onClick={() => handleQuantity(item.id, 'plus')}>+</button>
+                                                <button onClick={() => handleQuantity(item.id, 'minus')}>-</button>
+                                            </div>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
 
-            <div className="cart-container">
-                <div className="cart-list-section">
-                    <div className="list-controls">
-                        <label className="checkbox-label">
-                            {/* 전체 선택 체크박스 연동 */}
-                            <input
-                                type="checkbox"
-                                checked={isAllChecked}
-                                onChange={handleSelectAll}
-                            />
-                            <span>전체 선택</span>
-                        </label>
-                        <div className="control-buttons">
-                            <button className="btn-outline">선택 삭제</button>
-                            <button className="btn-outline">선택 주문</button>
+                        <div className="cart-summary-section">
+                            <div className="summary-box">
+                                <h4>결제 예정 금액</h4>
+                                <div className="summary-row">
+                                    <span>총 상품 금액</span>
+                                    {/* 계산된 총 상품 금액 출력 */}
+                                    <span>{totalGoodsPrice.toLocaleString()}원</span>
+                                </div>
+                                <div className="summary-row">
+                                    <span>총 배송비</span>
+                                    <span>{shippingFee === 0 ? '무료' : `${shippingFee.toLocaleString()}원`}</span>
+                                </div>
+                                <div className="summary-row">
+                                    <span>총 할인 금액</span>
+                                    <span>{totalDiscount.toLocaleString()}원</span>
+                                </div>
+                                <div className="divider"></div>
+                                <div className="summary-row total">
+                                    <span>최종 결제 금액</span>
+                                    {/* 계산된 최종 금액 출력 */}
+                                    <span className="total-price">{finalPrice.toLocaleString()}원</span>
+                                </div>
+                                {/* 체크된 건수가 반영된 주문 버튼 */}
+                                <button className="order-button">총 {totalCheckedCount}건 주문하기</button>
+                            </div>
                         </div>
                     </div>
-
-                    <ul className="cart-list">
-                        {items.map((item) => (
-                            <li key={item.id} className="cart-item">
-                                {/* 개별 선택 체크박스 연동 */}
-                                <input
-                                    type="checkbox"
-                                    className="item-checkbox"
-                                    checked={item.checked}
-                                    onChange={() => handleSelectItem(item.id)}
-                                />
-                                <div className="item-image">
-                                    <img src={item.img} alt={item.name} />
-                                </div>
-                                <div className="item-details">
-                                    <p className="item-brand">{item.brand}</p>
-                                    <p className="item-name">{item.name}</p>
-                                    <p className="item-price">{item.price.toLocaleString()} 원</p>
-                                    <p className="item-option">옵션 : {item.option}</p>
-                                    <p className="item-qty-text">수량 : {item.quantity}개</p>
-
-                                    <div className="quantity-controls">
-                                        <button onClick={() => handleQuantity(item.id, 'plus')}>+</button>
-                                        <button onClick={() => handleQuantity(item.id, 'minus')}>-</button>
-                                    </div>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-
-                <div className="cart-summary-section">
-                    <div className="summary-box">
-                        <h4>결제 예정 금액</h4>
-                        <div className="summary-row">
-                            <span>총 상품 금액</span>
-                            {/* 계산된 총 상품 금액 출력 */}
-                            <span>{totalGoodsPrice.toLocaleString()}원</span>
-                        </div>
-                        <div className="summary-row">
-                            <span>총 배송비</span>
-                            <span>{shippingFee === 0 ? '무료' : `${shippingFee.toLocaleString()}원`}</span>
-                        </div>
-                        <div className="summary-row">
-                            <span>총 할인 금액</span>
-                            <span>{totalDiscount.toLocaleString()}원</span>
-                        </div>
-                        <div className="divider"></div>
-                        <div className="summary-row total">
-                            <span>최종 결제 금액</span>
-                            {/* 계산된 최종 금액 출력 */}
-                            <span className="total-price">{finalPrice.toLocaleString()}원</span>
-                        </div>
-                        {/* 체크된 건수가 반영된 주문 버튼 */}
-                        <button className="order-button">총 {totalCheckedCount}건 주문하기</button>
-                    </div>
-                </div>
+                </main>
             </div>
-        </div>
+        </>
     )
 }
 

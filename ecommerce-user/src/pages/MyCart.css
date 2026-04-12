@@ -19,12 +19,6 @@
     padding: 20px 30px;
 }
 
-.cart-wrapper {
-    max-width: 1024px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
 .pc-header {
     text-align: center;
     border-bottom: 2px solid #2d3e75;
@@ -41,12 +35,6 @@
     text-align: center;
     margin-right: 20px;
     font-size: 18px;
-}
-
-.cart-section-title {
-    padding: 15px 0;
-    border-bottom: 1px solid #eee;
-    font-size: 14px;
 }
 
 /* 메인 컨테이너 (PC: 좌우 배치) */
@@ -221,20 +209,12 @@
         width: 100%;
     }
 
-    .cart-wrapper {
-        padding: 0;
-    }
-
     .pc-header {
         display: none;
     }
 
     .mobile-header {
         display: flex;
-        padding: 15px 20px;
-    }
-
-    .cart-section-title {
         padding: 15px 20px;
     }
 
