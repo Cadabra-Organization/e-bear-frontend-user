@@ -1,8 +1,12 @@
 import "./MyPageInquiryReport.css"
 import SideNavigation from "../components/SideNavigation"
 import InquiryItem from "../components/InquiryItem"
+import MyPageHeader from "../components/MyPageHeader";
+import { useState } from "react";
 
 const MyPageInquiryReport = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
   let item = [
     {
       imageUrl: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=100&h=100&fit=crop&crop=center",
@@ -74,13 +78,11 @@ const MyPageInquiryReport = () => {
 
   return (
     <>
-      <div className="page-title">
-        <h1>문의내역 (신고문의)</h1>
-      </div>
+      <MyPageHeader title={"문의내역 (신고문의)"} toggleSidebar={() => setIsSidebarOpen(true)}/>
 
       <div className="main-layout">
         {/* 사이드 네비게이션 메뉴 */}
-        <SideNavigation sideMenu={sideMenu} />
+        <SideNavigation sideMenu={sideMenu} isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)}/>
         
         {/* 메인 콘텐츠 */}
         <main className="main-content">

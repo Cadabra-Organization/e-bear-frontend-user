@@ -1,9 +1,15 @@
 .border-line {
-    padding: 10px;
+    padding: 30px;
     border: 1px solid rgb(217, 217, 217);
-    width: 240px;
-    min-height: 217px;
+    /* width: 240px;
+    min-height: 217px; */
+    width: 100%;
+    height: 100%;
     border-radius: 8px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .profile-sector {
@@ -13,4 +19,16 @@
 .profile-text-info {
     display: flex;
     flex-direction: column;
+}
+
+@media (max-width: 768px) {
+    .border-line {
+        width: 100%;
+    }
+}
+  
+@media (max-width: 480px) {
+    .border-line {
+        width: 100%;
+    }
 }

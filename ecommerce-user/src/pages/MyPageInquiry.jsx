@@ -1,8 +1,12 @@
 import "./MyPageInquiry.css"
 import SideNavigation from "../components/SideNavigation"
 import InquiryItem from "../components/InquiryItem"
+import MyPageHeader from "../components/MyPageHeader";
+import { useState } from "react";
 
 const MyPageInquiry = () => {
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
     let sideMenu = [
         {
             title: "회원정보 조회 및 수정",
@@ -74,13 +78,11 @@ const MyPageInquiry = () => {
 
     return (
         <>
-            <div className="page-title">
-                <h1>문의내역 (고객문의)</h1>
-            </div>
+            <MyPageHeader title={"문의내역 (고객문의)"} toggleSidebar={() => setIsSidebarOpen(true)}/>
 
             <div className="main-layout">
                 {/* 사이드 네비게이션 메뉴 */}
-                <SideNavigation sideMenu={sideMenu} />
+                <SideNavigation sideMenu={sideMenu} isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)}/>
 
                 {/* 메인 콘텐츠 */}
                 <main className="main-content">

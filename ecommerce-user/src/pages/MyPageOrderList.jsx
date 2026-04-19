@@ -1,12 +1,12 @@
-import { useState } from "react"
 import "./MyPageOrderList.css"
-import Headers from "../components/Headers"
-import Footer from "../components/Footer"
-import Navigation from "../components/Navigation"
 import SideNavigation from "../components/SideNavigation"
 import OrderItem from "../components/OrderItem"
+import MyPageHeader from "../components/MyPageHeader";
+import { useState } from "react";
 
 const MyPageOrderList = () => {
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
     let sideMenu = [
         {
             title: "회원정보 조회 및 수정",
@@ -77,17 +77,15 @@ const MyPageOrderList = () => {
 
     return (
         <>
-            <div className="page-title">
-                <h1>주문내역</h1>
-            </div>
+            <MyPageHeader title={"주문내역"} toggleSidebar={() => setIsSidebarOpen(true)}/>
 
             <div className="main-layout">
                 {/* 사이드 네비게이션 메뉴 */}
-                <SideNavigation sideMenu={sideMenu} />
+                <SideNavigation sideMenu={sideMenu} isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)}/>
 
                 {/* 메인 콘텐츠 */}
                 <main className="main-content">
-                    {/* 찜목록 */}
+                    {/* 주문 상품 목록 */}
                     <OrderItem orderProducts={orderProducts} />
                 </main>
             </div>

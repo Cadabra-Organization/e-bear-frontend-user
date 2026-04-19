@@ -1,0 +1,33 @@
+.page-title {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    width: 100%;
+    border-bottom: 2px solid #1a3a8a; /* 하단 파란색 포인트 라인 */
+}
+
+/* 햄버거 메뉴 버튼 감싸는 영역 */
+.nav-content {
+    display: none; /* 기본적으로 데스크탑에서는 숨김 */
+    position: absolute;
+    left: 20px;
+    cursor: pointer;
+}
+
+.page-title h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+/* 모바일 화면 (768px 이하) */
+@media (max-width: 768px) {
+    .nav-content {
+        display: block; /* 모바일에서만 햄버거 아이콘 노출 */
+    }
+    
+    .page-title h1 {
+        font-size: 1.2rem; /* 모바일에서는 폰트 크기 살짝 축소 */
+    }
+}

@@ -15,7 +15,7 @@ function OrderItemReviewPopup() {
     return (
         <div className="inquiry-popup-container">
             <div className="inquiry-popup-guide">
-                <p>■ 상품과 관련없는 내용, 비방, 광고, 불건전한 내용의 글은 사전동의 없이 삭제될수 있습니다.</p>
+                <p>■ 상품과 관련 없는 내용, 비방, 광고, 불건전한 내용의 글은 사전동의 없이 삭제될 수 있습니다.</p>
             </div>
 
             {/* 별점 입력 영역 */}

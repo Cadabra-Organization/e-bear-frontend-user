@@ -1,4 +1,5 @@
 import { AvatarCustom, AvatarFallback, ChevronDownIcon, HeartFillIcon, HeartIcon, UserIcon } from "../components/CustomTag"
+import { useParams } from "react-router-dom";
 import ReviewCard from "../components/ReviewCard"
 import "./ProductViewPage.css"
 import useMediaQuery from "../hooks/useMediaQuery";
@@ -10,6 +11,7 @@ import ProductViewComboBox from "../components/ProductViewComboBox";
 import ProductOptionSelectList from "../components/ProductOptionSelectList";
 
 const ProductViewPage = () => {
+    const { id } = useParams(); 
     const [comboBox, setComboBox] = useState(false);
     const [comboBoxItem, setComboBoxItem] = useState(0);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
