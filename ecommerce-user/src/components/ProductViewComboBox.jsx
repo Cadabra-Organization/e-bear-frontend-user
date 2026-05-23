@@ -16,7 +16,7 @@ function ProductViewComboBox({ comboOptionList, comboBox, handleComboBox, handle
                 <ul className="comboBox-option" style={{display: comboBox ? "block" : "none"}}>
                     {comboOptionList.map((data, index) => {
                         return (
-                        <li className="comboBox-option-item">
+                        <li className="comboBox-option-item" key={data.productOptionId || index}>
                             <a onClick={() => handleComboBoxItem(data)}>
                                 <div className="comboBox-header-option">
                                     <span>{data.productOptionName}</span>

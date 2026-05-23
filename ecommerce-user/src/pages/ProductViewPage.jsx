@@ -10,9 +10,11 @@ import QnaAccordion from "../components/QnaAccordion";
 import ProductViewComboBox from "../components/ProductViewComboBox";
 import ProductOptionSelectList from "../components/ProductOptionSelectList";
 import api from "../api/axios";
+import { useNavigate } from 'react-router-dom';
 
 const ProductViewPage = () => {
     const { id } = useParams(); 
+    const navigate = useNavigate();
     const [product, setProduct] = useState(null);
     const [comboBox, setComboBox] = useState(false);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -25,6 +27,25 @@ const ProductViewPage = () => {
 
     const handleOpenMobileOptions = () => {
         setIsMobileOptionsOpen(true);
+    }
+
+    const handleBuyProduct = async () => {
+        const requestData = {
+            productOptionList: selectProductOptionList
+        };
+
+        console.log(requestData);
+
+        try {
+            const response = await api.post(`/order/save`, requestData);
+            const data = response.data;
+            navigate(`/payment/${data.orderItemId}`);
+        } catch (err) {
+            console.error("상품 목록 조회 실패:", err);
+            console.error("status:", err.response?.status);
+            console.error("data:", err.response?.data);
+            setError("상품 목록을 불러오지 못했습니다.");
+        }
     }
 
     const handleCloseMobileOptions = () => {
@@ -49,7 +70,7 @@ const ProductViewPage = () => {
 
     const handleComboBoxItem = (item) => {
         const isAlreadySelected = selectProductOptionList.find(
-            (option) => option.optionSubject === item.optionSubject
+            (option) => option.optionSubject === item.productOptionName
         );
     
         if (isAlreadySelected) {
@@ -58,6 +79,7 @@ const ProductViewPage = () => {
             const newOption = {
                 optionSubject: item.productOptionName,
                 optionPrice: item.productOptionPrice,
+                productOptionId: item.productOptionId,
                 optionCount: 1,
             };
             
@@ -71,27 +93,6 @@ const ProductViewPage = () => {
         setComboBox(!comboBox);
     }
 
-    const review = [
-        {rate: 3.5, title: "제목", context: "내용", name: "이름", date: "2025-07-26"},
-        {rate: 3.5, title: "제목", context: "내용", name: "이름", date: "2025-07-26"},
-        {rate: 3.5, title: "제목", context: "내용", name: "이름", date: "2025-07-26"},
-        {rate: 3.5, title: "제목", context: "내용", name: "이름", date: "2025-07-26"},
-        {rate: 3.5, title: "제목", context: "내용", name: "이름", date: "2025-07-26"},
-        {rate: 3.5, title: "제목", context: "내용", name: "이름", date: "2025-07-26"},
-    ];
-
-    const productViewData = {
-        currentViewImg: "https://www.letemsvetemapplem.eu/wp-content/uploads/2025/02/iPhone-17-Pro-1536x1536.jpeg.webp",
-        subViewImg: [
-            "https://www.letemsvetemapplem.eu/wp-content/uploads/2025/02/iPhone-17-Pro-1536x1536.jpeg.webp",
-            "https://www.letemsvetemapplem.eu/wp-content/uploads/2025/02/iPhone-17-Pro-1536x1536.jpeg.webp",
-            "https://www.letemsvetemapplem.eu/wp-content/uploads/2025/02/iPhone-17-Pro-1536x1536.jpeg.webp"
-        ],
-        productPrice: "420,000 ~ ",
-        productFavarite: false,
-        productViewRetrunContent: "상품 수령 후 7일 이내에 신청하실 수 있습니다. 단, 제품이 표시·광고 내용과 다르거나, 계약과 다르게 이행된 경우는 제품 수령일부터 3개월 이내,\n 그 사실을 안 날 또는 알 수 있었던 날부터 30일 이내에 교환/반품이 가능합니다.\n\n 추가적으로 다음의 경우 해당하는 반품/교환은 신청이 불가능할 수 있습니다.\n\n 소비자의 책임 있는 사유로 상품 등이 멸실 또는 훼손된 경우 (단지, 상품 확인을 위한 포장 훼손 제외)\n 소비자의 사용 또는 소비에 의해 상품 등의 가치가 현저히 감소한 경우\n 시간의 경과에 의해 재판매가 곤란할 정도로 상품 등의 가치가 현저히 감소한 경우\n 복제가 가능한 상품 등의 포장을 훼손한 경우\n 소비자의 주문에 따라 개별적으로 생산되는 상품이 제작에 들어간 경우"
-    }
-
     const productMenu = [
         {name:"상품정보", value:"information"}, 
         {name:"리뷰", value:"review"}, 
@@ -102,11 +103,36 @@ const ProductViewPage = () => {
     const fetchProduct = async () => {
         try {
             const response = await api.get(`/product/detail/${id}`);
-            const data = response;
+            const data = response.data;
             console.log(data);
+
+            const options = data.productOptions || [];
+            const prices = options.map(option => option.productOptionPrice);
+
+            let productPriceString = "0";
+
+            if (prices.length === 0) {
+                console.log("옵션이 없습니다.");
+            } else {
+                const minPrice = Math.min(...prices);
+                const maxPrice = Math.max(...prices);
+
+                if (minPrice === maxPrice) {
+                    productPriceString = `${minPrice.toLocaleString()}`;
+                } else {
+                    productPriceString = `${minPrice.toLocaleString()} ~ ${maxPrice.toLocaleString()}`;
+                }
+            }
+
             setProduct({
                 productId: data.productId,
                 productName: data.productName,
+                productPrice: productPriceString,
+                subViewImg: [
+                    "https://www.letemsvetemapplem.eu/wp-content/uploads/2025/02/iPhone-17-Pro-1536x1536.jpeg.webp",
+                    "https://www.letemsvetemapplem.eu/wp-content/uploads/2025/02/iPhone-17-Pro-1536x1536.jpeg.webp",
+                    "https://www.letemsvetemapplem.eu/wp-content/uploads/2025/02/iPhone-17-Pro-1536x1536.jpeg.webp"
+                ],
                 thumbnail: data.thumbnail,
                 content: data.content,
                 seller: data.seller,
@@ -114,7 +140,8 @@ const ProductViewPage = () => {
                 category: data.category,
                 comboOptionList: data.productOptions || [],
                 review: data.reviews || [],
-                qnalist: data.qnas || []
+                qnalist: data.qnas || [],
+                productViewRetrunContent: "상품 수령 후 7일 이내에 신청하실 수 있습니다. 단, 제품이 표시·광고 내용과 다르거나, 계약과 다르게 이행된 경우는 제품 수령일부터 3개월 이내,\n 그 사실을 안 날 또는 알 수 있었던 날부터 30일 이내에 교환/반품이 가능합니다.\n\n 추가적으로 다음의 경우 해당하는 반품/교환은 신청이 불가능할 수 있습니다.\n\n 소비자의 책임 있는 사유로 상품 등이 멸실 또는 훼손된 경우 (단지, 상품 확인을 위한 포장 훼손 제외)\n 소비자의 사용 또는 소비에 의해 상품 등의 가치가 현저히 감소한 경우\n 시간의 경과에 의해 재판매가 곤란할 정도로 상품 등의 가치가 현저히 감소한 경우\n 복제가 가능한 상품 등의 포장을 훼손한 경우\n 소비자의 주문에 따라 개별적으로 생산되는 상품이 제작에 들어간 경우"
             });
         } catch (err) {
             console.error("상품 목록 조회 실패:", err);
@@ -182,9 +209,9 @@ const ProductViewPage = () => {
                     <div className="product-view-contents-left">
                         <div className="product-info-container">
                             <div>
-                                <img src={productViewData.currentViewImg} className="product-img"></img>
+                                <img src={product.currentViewImg} className="product-img"></img>
                                 <div className="sub-image-container">
-                                    {productViewData.subViewImg.map((data, index) => {
+                                    {product.subViewImg.map((data, index) => {
                                         return <img src={data} className="product-img-mini"></img>
                                     })}
                                 </div>
@@ -203,8 +230,8 @@ const ProductViewPage = () => {
                                 </div>
                                 <div className="product-info-content">{product.productName}</div>
                                 <div className="product-info-content product-header-row">
-                                    <span>{productViewData.productPrice}원</span>
-                                    {productViewData.productFavarite ? <HeartFillIcon className="heart-icon" /> : <HeartIcon className="icon heart-icon"/>}
+                                    <span>{product.productPrice}원</span>
+                                    {product.productFavarite ? <HeartFillIcon className="heart-icon" /> : <HeartIcon className="icon heart-icon"/>}
                                 </div>
                             </div>
                         </div>
@@ -303,7 +330,7 @@ const ProductViewPage = () => {
                                     <hr />
                                 </div>
                                 <div className="text-color">
-                                    {productViewData.productViewRetrunContent}
+                                    {product.productViewRetrunContent}
                                 </div>
                             </>
                         )}
@@ -334,7 +361,7 @@ const ProductViewPage = () => {
                                             </div>
                                         </div>
                                         <div className="cupon_area">
-                                            <button className="btn_cupon_change btn_buy">구매</button>
+                                            <button className="btn_cupon_change btn_buy" onClick={handleBuyProduct}>구매</button>
                                             <button className="btn_cupon_change btn_shopping_cart">장바구니</button>
                                         </div>
                                     </div>
@@ -368,7 +395,7 @@ const ProductViewPage = () => {
                                         <span className="total_price">가격</span>
                                     </div>
                                     <div className="cupon_area">
-                                        <button className="btn_cupon_change btn_buy" onClick={handleOpenMobileOptions}>구매</button>
+                                        <button className="btn_cupon_change btn_buy" onClick={isMobileOptionsOpen ? handleBuyProduct : handleOpenMobileOptions}>구매</button>
                                         <button className="btn_cupon_change btn_shopping_cart">장바구니</button>
                                     </div>
                                 </div>

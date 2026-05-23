@@ -1,8 +1,41 @@
 import { useState } from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import api from "../api/axios.js";
 
 const Login = () => {
+    const navigate = useNavigate();
+    const [id, setId] = useState("");
+    const [pw, setPw] = useState("");
+
+    const handleLogin =  async (e) => {
+        e.preventDefault();
+        const loginId = id.trim();
+        if (!loginId || !pw) {
+            alert("아이디와 비밀번호를 입력해 주세요.");
+            return;
+        }
+
+        try {
+            const data = await api.post("/login", {
+                    userId: id,
+                    password: pw
+                });
+            
+            const token = data.headers['access_token'];
+            if (token) localStorage.setItem("token", token);
+            navigate("/");
+        } catch (err) {
+            console.log(err);
+            const body = err.response?.data;
+            const msg =
+                (typeof body === "string" ? body : body?.message ?? body?.error) ||
+                "아이디 또는 비밀번호를 확인해 주세요.";
+            alert(msg);
+        }
+    }
+
     return (
         <div className="login-container">
             <div>
@@ -10,9 +43,9 @@ const Login = () => {
             </div>
             <div>
                 <div>
-                    <input className="login-input" type="text" placeholder="ID" />
-                    <input className="login-input" type="password" placeholder="Password" />
-                    <button className="login-button">Login</button>
+                    <input className="login-input" type="text" placeholder="ID" value={id} onChange={(e) => setId(e.target.value)} />
+                    <input className="login-input" type="password" placeholder="Password" value={pw} onChange={(e) => setPw(e.target.value)} />
+                    <button className="login-button" onClick={handleLogin}>Login</button>
 
                     <label className="login-checkbox-label" for="autoLogin">
                         <div>
