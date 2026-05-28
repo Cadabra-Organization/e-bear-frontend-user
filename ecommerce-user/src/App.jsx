@@ -69,7 +69,7 @@ function App() {
         <Route path="/product-list" element={<ProductListPage />} />
         <Route path="/mypage/currentview" element={<MyPageCurrentView />} />
         <Route path="/product/view/:id" element={<ProductViewPage />} />
-        <Route path="/payment" element={<PaymentPage />} />
+        <Route path="/payment/:id" element={<PaymentPage />} />
         <Route path="/payment/complete" element={<PaymentComplete />} />
         {/* 토스 테스트 */}
         <Route path="/toss" element={<CheckoutPage />} />
