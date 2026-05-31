@@ -34,7 +34,7 @@ export function SuccessPage() {
           
           // 성공 시 결제 완료 화면 이동
           if (result === "success") {
-              navigate(`/pages/complete?orderId=${orderId}`, { replace: true });
+              navigate(`/pages/complete?orderPaymentId=${orderId}`, { replace: true });
           }
         } else {
           // 실패 시 에러 페이지로 강제 이동
