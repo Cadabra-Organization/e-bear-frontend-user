@@ -72,7 +72,7 @@ const PaymentPage = () => {
       // 2. 결제 준비 API 호출 (받아온 orderPaymentId 전달)
       // ==========================================
       if(serverOrderId){
-        const paymentResponse = await api.post("http://localhost:8888/api/payments/ready", {
+        const paymentResponse = await api.post("/api/payments/ready", {
           orderPaymentId: serverOrderId, // 발급받은 orderId를 그대로 결제 서버로 넘김
           paymentAmount: 100, 
           type: paymentMethod.toUpperCase(), 

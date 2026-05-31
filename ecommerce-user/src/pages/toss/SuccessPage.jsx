@@ -17,16 +17,10 @@ export function SuccessPage() {
 
     async function confirmPayment() {
       try {
-        const response = await fetch("http://localhost:8888/api/payments/confirm", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({ 
-            paymentKey,
-            orderId,
-            amount: Number(amount)
-          })
+        const response = await api.post("/api/payments/confirm", {
+          paymentKey,
+          orderId,
+          amount: Number(amount)
         });
 
         if (response.ok) {
