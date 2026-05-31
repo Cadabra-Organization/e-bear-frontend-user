@@ -18,8 +18,8 @@ export function SuccessPage() {
     async function confirmPayment() {
       try {
         const response = await api.post("/api/payments/confirm", {
-          paymentKey,
-          orderId,
+          paymentKey : paymentKey,
+          orderId : orderId,
           amount: Number(amount)
         });
 
