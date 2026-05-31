@@ -17,16 +17,10 @@ export function SuccessPage() {
 
     async function confirmPayment() {
       try {
-        const response = await fetch("http://localhost:8888/api/payments/confirm", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({ 
-            paymentKey,
-            orderId,
-            amount: Number(amount)
-          })
+        const response = await api.post("/api/payments/confirm", {
+          paymentKey : paymentKey,
+          orderId : orderId,
+          amount: Number(amount)
         });
 
         if (response.ok) {
@@ -34,7 +28,7 @@ export function SuccessPage() {
           
           // 성공 시 결제 완료 화면 이동
           if (result === "success") {
-              navigate(`/pages/complete?orderId=${orderId}`, { replace: true });
+              navigate(`/pages/complete?orderPaymentId=${orderId}`, { replace: true });
           }
         } else {
           // 실패 시 에러 페이지로 강제 이동
