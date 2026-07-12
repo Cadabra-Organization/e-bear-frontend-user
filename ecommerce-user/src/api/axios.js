@@ -22,7 +22,13 @@ api.interceptors.request.use(
 );
 
 api.interceptors.response.use(
-  (response) => response.data,
+  (response) => {
+    const token = response.headers?.access_token;
+    if (token) {
+      localStorage.setItem("token", token.replace(/^Bearer\s+/i, ""));
+    }
+    return response.data;
+  },
   (error) => {
     if (error.response && error.response.status === 401) {
       console.error('로그인이 만료되었습니다.');

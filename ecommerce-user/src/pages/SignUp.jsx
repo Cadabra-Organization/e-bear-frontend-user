@@ -1,32 +1,29 @@
 import "./SignUp.css";
 import api from "../api/axios.js";
+import { useState } from "react";
 
 const SignUp = () => {
 
+    const [id, setId] = useState("");
+    const [pw, setPw] = useState("");
+    const [pwConfirm, setPwConfirm] = useState("");
+    const [email, setEmail] = useState("");
+    const [emailAuthCode, setEmailAuthCode] = useState("");
+    const [name, setName] = useState("");
+
     const sendEmailCode = async () => {
-        const email = document.querySelector(".email-input").value;
-    
         await api.post("/email/send", { email });
         alert("인증코드 발송!");
     }
     
     const verifyEmailCode = async () => {
-        const email = document.querySelector(".email-input").value;
-        const code = document.querySelector(".email-auth-code-input").value;
-    
-        await api.post("/email/verify", { email, code });
+        await api.post("/email/verify", { email, emailAuthCode });
         alert("이메일 인증 완료!");
     }
 
     const handleSignUp = async () => {
-        const name = document.querySelector(".name-input").value;
-        const id = document.querySelector(".id-input").value;
-        const password = document.querySelector(".password-input").value;
-        const passwordConfirm = document.querySelector(".password-confirm-input").value;
-        const email = document.querySelector(".email-input").value;
-        const emailAuthCode = document.querySelector(".email-auth-code-input").value;
 
-        if (password !== passwordConfirm) {
+        if (pw !== pwConfirm) {
             alert("비밀번호가 일치하지 않습니다.");
             return;
         }
@@ -36,9 +33,8 @@ const SignUp = () => {
             await api.post("/signup", {
                 name: name,
                 id: id,
-                pw: password,
-                email: email,
-                // emailAuthCode,
+                pw: pw,
+                email: email
             });
             alert("가입이 완료되었습니다.");
         } catch (e) {
@@ -53,17 +49,17 @@ const SignUp = () => {
                 eBear
             </div>
             <div className="signup-input-container">
-                <input className="signup-input name-input" type="text" placeholder="이름" />
-                <input className="signup-input id-input" type="text" placeholder="아이디" />
-                <input className="signup-input password-input" type="password" placeholder="비밀번호" />
-                <input className="signup-input password-confirm-input" type="password" placeholder="비밀번호 확인" />
+                <input className="signup-input" value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder="이름" />
+                <input className="signup-input" value={id} onChange={(e) => setId(e.target.value)} type="text" placeholder="아이디" />
+                <input className="signup-input" value={pw} onChange={(e) => setPw(e.target.value)} type="password" placeholder="비밀번호" />
+                <input className="signup-input" value={pwConfirm} onChange={(e) => setPwConfirm(e.target.value)} type="password" placeholder="비밀번호 확인" />
                 <div className="email-auth-container">
-                    <input className="signup-email-input email-input" type="text" placeholder="이메일" />
+                    <input className="signup-email-input" value={email} onChange={(e) => setEmail(e.target.value)} type="text" placeholder="이메일" />
                     <button className="email-auth-button" onClick={sendEmailCode}>이메일 발송</button>
                 </div>
 
                 <div className="email-auth-container">
-                    <input className="signup-email-input email-auth-code-input" type="text" placeholder="인증번호 입력" />
+                <input className="signup-email-input" value={emailAuthCode} onChange={(e) => setEmailAuthCode(e.target.value)} type="text" placeholder="인증번호 입력" />
                     <button type="button" className="email-auth-button" onClick={verifyEmailCode}>
                         인증확인
                     </button>
