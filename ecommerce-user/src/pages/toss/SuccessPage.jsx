@@ -18,27 +18,34 @@ export function SuccessPage() {
 
     async function confirmPayment() {
       try {
-        const response = await api.post("/api/payments/confirm", {
+        // 결제 승인 요청
+        await api.post("/api/payments/confirm", {
           paymentKey : paymentKey,
           orderId : orderId,
           amount: Number(amount)
         });
+        // 성공 시 결제 완료 화면 이동
+        navigate(`/pages/complete?orderPaymentId=${orderId}`, { replace: true });
 
-        if (response.status === 200) {
-          const result = response.data; 
-          
-          // 성공 시 결제 완료 화면 이동
-          if (result === "success") {
-              navigate(`/pages/complete?orderPaymentId=${orderId}`, { replace: true });
-          }
-        } else {
-          // 실패 시 에러 페이지로 강제 이동
-          const errorJson = result.data;
-          window.location.href = `/user/toss/fail?code=${errorJson.code}&message=${encodeURIComponent(errorJson.message)}`;
-        }
       } catch (error) {
-        console.error('결제승인 중 오류 : ', error)
-        window.location.href = `/user/toss/fail?code=SERVER_ERROR&message=${encodeURIComponent("서버와의 통신에 실패했습니다.")}`;
+        console.error('결제승인 중 오류 : ', error);
+
+        let errorCode = 'SERVER_ERROR';
+        let errorMessage = '서버와의 통신에 실패했습니다.';
+
+        if (error.response && error.response.data) {
+          const serverError = error.response.data;
+          errorCode = serverError.code || errorCode;
+          errorMessage = serverError.message || errorMessage;
+        }
+
+        // window.location.href = `/user/toss/fail?code=${errorJson.code}&message=${encodeURIComponent(errorJson.message)}`;
+        navigate('/user/toss/fail', { 
+          replace: true, 
+          state: { code: errorCode, message: errorMessage } 
+        });
+        
+        // window.location.href = `/user/toss/fail?code=SERVER_ERROR&message=${encodeURIComponent("서버와의 통신에 실패했습니다.")}`;
       }
     } 
 

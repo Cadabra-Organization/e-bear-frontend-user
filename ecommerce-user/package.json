@@ -17,6 +17,7 @@
     "@stomp/stompjs": "^7.3.0",
     "@tosspayments/payment-widget-sdk": "^0.12.1",
     "@tosspayments/tosspayments-sdk": "^2.6.0",
+    "aws-sdk": "^2.1693.0",
     "axios": "^1.13.4",
     "lucide-react": "^0.515.0",
     "react": "^19.0.0",
