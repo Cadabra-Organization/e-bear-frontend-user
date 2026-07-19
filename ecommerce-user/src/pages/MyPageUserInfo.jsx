@@ -69,7 +69,8 @@ const MyPageUserInfo = () => {
     useEffect(() => {
         const fetchUserInfo = async () => {
             try {
-                const userInfo = await api.get("/user/me");
+                const response = await api.get("/user/me");
+                const userInfo = response.data;
                 setFormData((prevData) => ({
                     ...prevData,
                     userId: userInfo.userId ?? '',
@@ -119,13 +120,14 @@ const MyPageUserInfo = () => {
 
         try {
             setIsLoading(true);
-            const updatedUserInfo = await api.put("/user/me", {
+            const response = await api.put("/user/me", {
                 password: formData.password,
                 name: formData.name,
                 email: formData.email,
                 address: formData.address,
                 phone: formData.phone
             });
+            const updatedUserInfo = response.data;
 
             setFormData((prevData) => ({
                 ...prevData,

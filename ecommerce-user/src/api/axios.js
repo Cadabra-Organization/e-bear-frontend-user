@@ -14,7 +14,8 @@ api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
     if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+      const cleanToken = token.replace(/^Bearer\s+/i, "");
+      config.headers.Authorization = `Bearer ${cleanToken}`;
     }
     return config;
   },
@@ -27,7 +28,7 @@ api.interceptors.response.use(
     if (token) {
       localStorage.setItem("token", token.replace(/^Bearer\s+/i, ""));
     }
-    return response.data;
+    return response;
   },
   (error) => {
     if (error.response && error.response.status === 401) {
