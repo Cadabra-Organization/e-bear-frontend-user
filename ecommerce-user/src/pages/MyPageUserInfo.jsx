@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./MyPageUserInfo.css";
 import SideNavigation from "../components/SideNavigation";
 
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import MyPageHeader from "../components/MyPageHeader";
+import api from "../api/axios";
 
 const MyPageUserInfo = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     
     let sideMenu = [
         {
@@ -64,6 +66,31 @@ const MyPageUserInfo = () => {
         phone: ''
     });
 
+    useEffect(() => {
+        const fetchUserInfo = async () => {
+            try {
+                const response = await api.get("/user/me");
+                const userInfo = response.data;
+                setFormData((prevData) => ({
+                    ...prevData,
+                    userId: userInfo.userId ?? '',
+                    name: userInfo.name ?? '',
+                    email: userInfo.email ?? '',
+                    address: userInfo.fullAddress || userInfo.address || '',
+                    phone: userInfo.phone ?? ''
+                }));
+            } catch (err) {
+                console.error("회원정보 조회 실패", err);
+                const msg = err.response?.data?.message || "회원정보를 불러오지 못했습니다.";
+                alert(msg);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchUserInfo();
+    }, []);
+
     // 입력값이 변경될 때마다 formData 상태를 업데이트
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -72,15 +99,55 @@ const MyPageUserInfo = () => {
             [name]: value
         }));
     };
-
-    const updateUserInfo = () => {
-        const hasEmptyInput = Object.values(formData).some(value => value.trim() === '');
+    const updateUserInfo = async () => {
+        const requiredValues = [
+            formData.userId,
+            formData.name,
+            formData.email,
+            formData.address,
+            formData.phone
+        ];
+        const hasEmptyInput = requiredValues.some(value => value.trim() === '');
         if (hasEmptyInput) {
             alert("모든 정보를 입력해주세요.");
             return;
         }
-        // 값 체크 완료
-        console.log('모든 값이 채워져 있습니다.', formData);
+
+        if (formData.password !== formData.passwordCheck) {
+            alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+            return;
+        }
+
+        try {
+            setIsLoading(true);
+            const response = await api.patch("/user/me", {
+                password: formData.password,
+                name: formData.name,
+                email: formData.email,
+                address: formData.address,
+                phone: formData.phone
+            });
+            const updatedUserInfo = response.data;
+
+            setFormData((prevData) => ({
+                ...prevData,
+                password: '',
+                passwordCheck: '',
+                userId: updatedUserInfo.userId ?? '',
+                name: updatedUserInfo.name ?? '',
+                email: updatedUserInfo.email ?? '',
+                address: updatedUserInfo.fullAddress || updatedUserInfo.address || '',
+                phone: updatedUserInfo.phone ?? ''
+            }));
+
+            alert("회원정보가 수정되었습니다.");
+        } catch (err) {
+            console.error("회원정보 수정 실패", err);
+            const msg = err.response?.data?.message || "회원정보 수정에 실패했습니다.";
+            alert(msg);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -99,7 +166,8 @@ const MyPageUserInfo = () => {
                         fullWidth
                         margin="normal"
                         value={formData.userId}
-                        onChange={handleChange}/>
+                        onChange={handleChange}
+                        disabled/>
                     <TextField 
                         name="password"
                         label="비밀번호" 
@@ -127,7 +195,7 @@ const MyPageUserInfo = () => {
                         value={formData.name}
                         onChange={handleChange}/>
                     
-                    <div className="user-flex">
+                    {/* <div className="user-flex">
                         <TextField 
                             name="email"
                             label="이메일" 
@@ -146,7 +214,7 @@ const MyPageUserInfo = () => {
                             value={formData.authCode}
                             onChange={handleChange}/>
                         <Button variant="contained" className="user-button">인증받기</Button>
-                    </div>
+                    </div> */}
 
                     <div className="user-flex">
                         <TextField 
@@ -167,7 +235,9 @@ const MyPageUserInfo = () => {
                         value={formData.phone}
                         onChange={handleChange}/>
 
-                    <Button variant="contained" size="large" className="user-button" fullWidth onClick={updateUserInfo}>수정</Button>
+                    <Button variant="contained" size="large" className="user-button" fullWidth onClick={updateUserInfo} disabled={isLoading}>
+                        {isLoading ? "불러오는 중..." : "수정"}
+                    </Button>
                 </main>
             </div>
         </>
