@@ -11,6 +11,7 @@ import ProductViewComboBox from "../components/ProductViewComboBox";
 import ProductOptionSelectList from "../components/ProductOptionSelectList";
 import api from "../api/axios";
 import { useNavigate } from 'react-router-dom';
+import ReportPopUp from "../components/ReportPopUp";
 
 const ProductViewPage = () => {
     const { id } = useParams();
@@ -18,6 +19,7 @@ const ProductViewPage = () => {
     const [product, setProduct] = useState(null);
     const [comboBox, setComboBox] = useState(false);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [isReportPopupOpen, setIsReportPopupOpen] = useState(false);
     const [expanded, setExpanded] = useState(false);
     const [isMobileOptionsOpen, setIsMobileOptionsOpen] = useState(false);
     const [selectProductOptionList, setSelectProductOptionList] = useState([]);
@@ -55,6 +57,10 @@ const ProductViewPage = () => {
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
     };
+
+    const handleCloseReportPopup = () => {
+        setIsReportPopupOpen(false);
+    }
 
     const handleTabClick = (event, tabName) => {
         if (isMobile) {
@@ -332,6 +338,10 @@ const ProductViewPage = () => {
                                 <div className="text-color">
                                     {product.productViewRetrunContent}
                                 </div>
+                                <div className="report-title">
+                                        <span>유해/불법 상품을 발견하시면, 신고해주세요!</span>
+                                        <button className="report-button" onClick={() => setIsReportPopupOpen(true)}>신고하기</button>
+                                </div>
                             </>
                         )}
                     </div>
@@ -414,6 +424,18 @@ const ProductViewPage = () => {
                     <InquiryPopUp
                         productNo={product.productId}
                         onClose={handleClosePopup}
+                    />
+                }
+            />
+
+            <PopUp
+                isOpen={isReportPopupOpen}
+                onClose={(handleCloseReportPopup)}
+                title={"상품신고"}
+                component={
+                    <ReportPopUp
+                        productNo={product.productId}
+                        onClose={handleCloseReportPopup}
                     />
                 }
             />
