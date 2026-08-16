@@ -120,7 +120,7 @@ const MyPageUserInfo = () => {
 
         try {
             setIsLoading(true);
-            const response = await api.put("/user/me", {
+            const response = await api.patch("/user/me", {
                 password: formData.password,
                 name: formData.name,
                 email: formData.email,
@@ -195,7 +195,7 @@ const MyPageUserInfo = () => {
                         value={formData.name}
                         onChange={handleChange}/>
                     
-                    <div className="user-flex">
+                    {/* <div className="user-flex">
                         <TextField 
                             name="email"
                             label="이메일" 
@@ -214,7 +214,7 @@ const MyPageUserInfo = () => {
                             value={formData.authCode}
                             onChange={handleChange}/>
                         <Button variant="contained" className="user-button">인증받기</Button>
-                    </div>
+                    </div> */}
 
                     <div className="user-flex">
                         <TextField 
