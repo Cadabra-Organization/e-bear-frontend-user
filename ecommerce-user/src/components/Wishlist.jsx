@@ -1,40 +1,44 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';   
 import './Wishlist.css';
 import { Avatar, AvatarFallback, UserIcon, HeartFillIcon, HeartIcon } from "../components/CustomTag"
-import { useEffect } from 'react';
 
-function Wishlist({ wishlistProducts }) {
-    const [product, setProduct] = useState([]);
 
-    useEffect(() => {
-        if (wishlistProducts.length > 0) {
-            setProduct(wishlistProducts.map(item => ({ ...item })));
-        }
-    }, [wishlistProducts]);
-
-    const toggleWish = (index) => {
-        const updatedProducts = [...product];
-        updatedProducts[index].wish = !updatedProducts[index].wish;
-        setProduct(updatedProducts);
+function Wishlist({ wishlistProducts, onRemoveWish, onLoadMore, hasMore, isLoadingMore }) {
+    const handleHeartClick = (e, wishListNo) => {
+        e.preventDefault();   // Link 기본 이동 취소
+        e.stopPropagation();  // 부모로 클릭 전파 차단
+        onRemoveWish(wishListNo);
     };
-
+    
+    if (wishlistProducts.length === 0) {
+        return <div className="wish-empty">찜한 상품이 없습니다.</div>;
+    }
+    
     return (
         <>
             <div className="wish-list">
                 <div className="wish-item">
                     {
-                        product.map((item, index) => (
-                            <div className="wish-content"><img
-                                src={item.imgSrc}
-                                alt="상품 이미지"
-                                className="product-image" />
+                        wishlistProducts.map((item) => (
+                            <Link
+                                to={item.link}
+                                className="wish-content"
+                                key={item.wishListNo}
+                            >
+                                <img
+                                    src={item.imgSrc}
+                                    alt="상품 이미지"
+                                    className="product-image" />
                                 <div className="wish-details">
                                     <div className="product-info">
                                         <div className="heart-row">
-                                            {/* 찜하트 */}
-                                            <p className="brand-name">{item.brand}</p>
-                                            {item.wish ? <div onClick={()=> toggleWish(index)}><HeartFillIcon className="heart-icon" /></div> 
-                                            : <div onClick={()=> toggleWish(index)}><HeartIcon className="heart-icon"  /></div>}
+                                            {/* 찜하트 - 클릭 시 찜 해제 */}
+                                            {/* <p className="brand-name">{item.brand}</p> */}
+                                            <div onClick={(e) => handleHeartClick(e, item.wishListNo)}>
+                                                {item.wish ? <HeartFillIcon className="heart-icon" />
+                                                        : <HeartIcon className="heart-icon" />}
+                                            </div>
                                         </div>
                                         <p className="product-name">{item.product}</p>
                                     </div>
@@ -49,15 +53,23 @@ function Wishlist({ wishlistProducts }) {
                                     </div>
                                     <p className="price">{item.price} 원</p>
                                 </div>
-                            </div>
-                        ))
-                    }
+                            </Link>
+                        ))}
                 </div>
             </div>
             {/* 더보기 버튼 */}
-            <div className="more-area">
-                <button className="more-button">더보기</button>
-            </div>
+            {hasMore && (
+                <div className="more-area">
+                    <button 
+                        className="more-button"
+                        onClick={onLoadMore}
+                        disabled={isLoadingMore}
+                    >
+                        {isLoadingMore ? "불러오는 중..." : "더보기"}
+                    </button>
+                </div>
+            )}
+            
         </>
     )
 }
