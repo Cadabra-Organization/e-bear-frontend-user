@@ -6,7 +6,7 @@ import api from "../api/axios.js";
 import { useEffect, useState, useCallback } from "react";
 // import { srRS } from "@mui/material/locale";
 
-let sideMenu = [
+const sideMenu = [
     {
         title: "회원정보 조회 및 수정",
         link: "/mypage/userinfo",
@@ -60,9 +60,9 @@ const MyPageWishlist = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);  //사이드바
     const [data, setData] = useState([]);                       //찜 리스트
     const [cursor, setCursor] = useState(null);                 //찜 페이징
-    const [hasMore, setHasMore] = useState(false);              //더보기 여부
+    const [hasMore, setHasMore] = useState(false);              //더 불러올 게 있는지
     const [isLoading, setIsLoading] = useState(true);           //찜 조회 상태
-    const [isLoadingMore, setIsLoadingMore] = useState(false);  //더 조회할 게 있는지
+    const [isLoadingMore, setIsLoadingMore] = useState(false);  //추가 로딩 진행 중
 
     const convert = (item) => ({
         wishListNo: item.wishListNo,
