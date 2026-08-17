@@ -1,40 +1,30 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Wishlist.css';
 import { Avatar, AvatarFallback, UserIcon, HeartFillIcon, HeartIcon } from "../components/CustomTag"
-import { useEffect } from 'react';
 
-function Wishlist({ wishlistProducts }) {
-    const [product, setProduct] = useState([]);
 
-    useEffect(() => {
-        if (wishlistProducts.length > 0) {
-            setProduct(wishlistProducts.map(item => ({ ...item })));
-        }
-    }, [wishlistProducts]);
-
-    const toggleWish = (index) => {
-        const updatedProducts = [...product];
-        updatedProducts[index].wish = !updatedProducts[index].wish;
-        setProduct(updatedProducts);
-    };
-
+function Wishlist({ wishlistProducts, onRemoveWish, onLoadMore, hasMore, isLoadingMore }) {
+    if (wishlistProducts.length === 0) {
+        return <div className="wish-empty">찜한 상품이 없습니다.</div>;
+    }
+    
     return (
         <>
             <div className="wish-list">
                 <div className="wish-item">
                     {
-                        product.map((item, index) => (
-                            <div className="wish-content"><img
+                        wishlistProducts.map((item) => (
+                            <div className="wish-content" key={item.wishListNo}><img
                                 src={item.imgSrc}
                                 alt="상품 이미지"
                                 className="product-image" />
                                 <div className="wish-details">
                                     <div className="product-info">
                                         <div className="heart-row">
-                                            {/* 찜하트 */}
-                                            <p className="brand-name">{item.brand}</p>
-                                            {item.wish ? <div onClick={()=> toggleWish(index)}><HeartFillIcon className="heart-icon" /></div> 
-                                            : <div onClick={()=> toggleWish(index)}><HeartIcon className="heart-icon"  /></div>}
+                                            {/* 찜하트 - 클릭 시 찜 해제 */}
+                                            {/* <p className="brand-name">{item.brand}</p> */}
+                                            {item.wish ? <div onClick={() => onRemoveWish(item.wishListNo)}><HeartFillIcon className="heart-icon" /></div>
+                                            : <div onClick={() => onRemoveWish(item.wishListNo)}><HeartIcon className="heart-icon"  /></div>}
                                         </div>
                                         <p className="product-name">{item.product}</p>
                                     </div>
@@ -55,9 +45,18 @@ function Wishlist({ wishlistProducts }) {
                 </div>
             </div>
             {/* 더보기 버튼 */}
-            <div className="more-area">
-                <button className="more-button">더보기</button>
-            </div>
+            {hasMore && (
+                <div className="more-area">
+                    <button 
+                        className="more-button"
+                        onClick={onLoadMore}
+                        disabled={isLoadingMore}
+                    >
+                        {isLoadingMore ? "불러오는 중..." : "더보기"}
+                    </button>
+                </div>
+            )}
+            
         </>
     )
 }
