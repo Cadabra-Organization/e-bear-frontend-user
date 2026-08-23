@@ -16,6 +16,8 @@
     display: flex;
     gap: 16px;
     flex: 0 0 calc(50% - 10px);
+    text-decoration: none;
+    color: inherit;
 }
 
 .product-image {
@@ -36,7 +38,7 @@
 
 .heart-row {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 
 .brand-name {
@@ -111,4 +113,11 @@
     width: 540px;
     height: 40px;
     background-color: #ffffff;
+}
+
+.wish-empty {
+    padding: 60px 20px;
+    text-align: center;
+    font-size: 16px;
+    color: #9ca3af;
 }
