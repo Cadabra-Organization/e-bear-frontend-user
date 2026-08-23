@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./Login.css";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../api/axios.js";
 
 const Login = () => {
@@ -9,7 +8,7 @@ const Login = () => {
     const [id, setId] = useState("");
     const [pw, setPw] = useState("");
 
-    const handleLogin =  async (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
         const loginId = id.trim();
         if (!loginId || !pw) {
@@ -22,19 +21,21 @@ const Login = () => {
                     userId: id,
                     password: pw
                 });
-            
-            const token = data.headers['access_token'];
+
+            const token = data?.token ?? data?.accessToken;
+
             if (token) localStorage.setItem("token", token);
+            // console.log(token);
+            alert("로그인 성공!");
             navigate("/");
         } catch (err) {
-            console.log(err);
             const body = err.response?.data;
             const msg =
                 (typeof body === "string" ? body : body?.message ?? body?.error) ||
                 "아이디 또는 비밀번호를 확인해 주세요.";
             alert(msg);
         }
-    }
+    };
 
     return (
         <div className="login-container">
@@ -42,23 +43,47 @@ const Login = () => {
                 <h1 className="login-title">eBear</h1>
             </div>
             <div>
-                <div>
-                    <input className="login-input" type="text" placeholder="ID" value={id} onChange={(e) => setId(e.target.value)} />
-                    <input className="login-input" type="password" placeholder="Password" value={pw} onChange={(e) => setPw(e.target.value)} />
-                    <button className="login-button" onClick={handleLogin}>Login</button>
+                <form onSubmit={handleLogin}>
+                    <div>
+                        <input
+                            className="login-input login-id-input"
+                            type="text"
+                            placeholder="ID"
+                            value={id}
+                            onChange={(e) => setId(e.target.value)}
+                            autoComplete="username"
+                        />
+                        <input
+                            className="login-input login-password-input"
+                            type="password"
+                            placeholder="Password"
+                            value={pw}
+                            onChange={(e) => setPw(e.target.value)}
+                            autoComplete="current-password"
+                        />
+                        <button type="submit" className="login-button">
+                            Login
+                        </button>
 
-                    <label className="login-checkbox-label" for="autoLogin">
-                        <div>
-                            <input className="login-checkbox" type="checkbox" id="autoLogin" />
-                            <span className="login-checkbox-span"></span>
-                            <span className="login-checkbox-text">자동로그인</span>
-                        </div>
-                    </label>
-                </div>
+                        <label className="login-checkbox-label" htmlFor="autoLogin">
+                            <div>
+                                <input className="login-checkbox" type="checkbox" id="autoLogin" />
+                                <span className="login-checkbox-span"></span>
+                                <span className="login-checkbox-text">자동로그인</span>
+                            </div>
+                        </label>
+                    </div>
+                </form>
                 <div className="login-link-container">
-                    <Link className="login-link" to="/findid">아이디 찾기</Link>
-                    <Link className="login-link" to="/findid">비밀번호 찾기</Link>
-                    <Link className="login-link" to="/signuptermsagreement">회원가입</Link>
+                    <Link className="login-link" to="/findid">
+                        아이디 찾기
+                    </Link>
+                    <Link className="login-link" to="/findid">
+                        비밀번호 찾기
+                    </Link>
+                    <Link className="login-link" to="/signuptermsagreement">
+                        회원가입
+                    </Link>
                 </div>
                 <div className="login-social-button-container">
                     <div className="login-social-button-item">
@@ -76,7 +101,7 @@ const Login = () => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Login;
